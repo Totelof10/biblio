@@ -294,6 +294,12 @@
 			null
 		],
 		[
+			"C:/Users/rtoha/Documents/biblio/custommessagebox.h",
+			"MU",
+			"EWIEGA46WW/moc_custommessagebox.cpp",
+			null
+		],
+		[
 			"C:/Users/rtoha/Documents/biblio/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
@@ -374,6 +380,7 @@
 	"SOURCES" : 
 	[
 		[ "C:/Users/rtoha/Documents/biblio/app.cpp", "MU", null ],
+		[ "C:/Users/rtoha/Documents/biblio/custommessagebox.cpp", "MU", null ],
 		[ "C:/Users/rtoha/Documents/biblio/main.cpp", "MU", null ],
 		[ "C:/Users/rtoha/Documents/biblio/mainwindow.cpp", "MU", null ]
 	],
