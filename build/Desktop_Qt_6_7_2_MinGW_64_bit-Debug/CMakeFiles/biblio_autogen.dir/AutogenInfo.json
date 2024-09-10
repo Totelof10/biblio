@@ -300,6 +300,12 @@
 			null
 		],
 		[
+			"C:/Users/rtoha/Documents/biblio/databasemanager.h",
+			"MU",
+			"EWIEGA46WW/moc_databasemanager.cpp",
+			null
+		],
+		[
 			"C:/Users/rtoha/Documents/biblio/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
@@ -381,6 +387,7 @@
 	[
 		[ "C:/Users/rtoha/Documents/biblio/app.cpp", "MU", null ],
 		[ "C:/Users/rtoha/Documents/biblio/custommessagebox.cpp", "MU", null ],
+		[ "C:/Users/rtoha/Documents/biblio/databasemanager.cpp", "MU", null ],
 		[ "C:/Users/rtoha/Documents/biblio/main.cpp", "MU", null ],
 		[ "C:/Users/rtoha/Documents/biblio/mainwindow.cpp", "MU", null ]
 	],

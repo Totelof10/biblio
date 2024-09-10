@@ -555,6 +555,8 @@ biblio_autogen/timestamp: \
 	C:/Users/rtoha/Documents/biblio/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/biblio_autogen/moc_predefs.h \
 	C:/Users/rtoha/Documents/biblio/custommessagebox.cpp \
 	C:/Users/rtoha/Documents/biblio/custommessagebox.h \
+	C:/Users/rtoha/Documents/biblio/databasemanager.cpp \
+	C:/Users/rtoha/Documents/biblio/databasemanager.h \
 	C:/Users/rtoha/Documents/biblio/img.qrc \
 	C:/Users/rtoha/Documents/biblio/main.cpp \
 	C:/Users/rtoha/Documents/biblio/mainwindow.cpp \

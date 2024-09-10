@@ -1063,3 +1063,5 @@ C:/Users/rtoha/Documents/biblio/custommessagebox.cpp
 C:/Users/rtoha/Documents/biblio/mainwindow.cpp
  uic:./ui_mainwindow.h
 C:/Users/rtoha/Documents/biblio/main.cpp
+C:/Users/rtoha/Documents/biblio/databasemanager.h
+C:/Users/rtoha/Documents/biblio/databasemanager.cpp

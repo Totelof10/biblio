@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -23,7 +24,9 @@ private slots:
 
     void on_btnConnexion_2_clicked();
 
-    void on_btnConnexion_clicked();
+    void handleConnectionButton();
+
+    void handleInscriptionButton();
 
 private:
     Ui::MainWindow *ui;
