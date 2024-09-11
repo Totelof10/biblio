@@ -546,6 +546,8 @@ biblio_autogen/timestamp: \
 	C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/vadefs.h \
 	C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h \
 	C:/Users/rtoha/Documents/biblio/CMakeLists.txt \
+	C:/Users/rtoha/Documents/biblio/ajoutlivreform.cpp \
+	C:/Users/rtoha/Documents/biblio/ajoutlivreform.h \
 	C:/Users/rtoha/Documents/biblio/app.cpp \
 	C:/Users/rtoha/Documents/biblio/app.h \
 	C:/Users/rtoha/Documents/biblio/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/.qtc/package-manager/auto-setup.cmake \
@@ -561,6 +563,7 @@ biblio_autogen/timestamp: \
 	C:/Users/rtoha/Documents/biblio/main.cpp \
 	C:/Users/rtoha/Documents/biblio/mainwindow.cpp \
 	C:/Users/rtoha/Documents/biblio/mainwindow.h \
+	C:/Users/rtoha/Documents/biblio/ajoutlivreform.ui \
 	C:/Users/rtoha/Documents/biblio/app.ui \
 	C:/Users/rtoha/Documents/biblio/mainwindow.ui \
 	C:/Qt/Tools/CMake_64/bin/cmake.exe

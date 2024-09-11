@@ -15,6 +15,15 @@ public:
     explicit App(QWidget *parent = nullptr);
     ~App();
 
+private slots:
+    void handleAccueil();
+    void handleLivre();
+    void handleMembre();
+    void handleEmprunt();
+    void handleEtudiant();
+    void handleAdulte();
+    void handleAfficherAjoutLivreForm();
+
 private:
     Ui::App *ui;
 };
