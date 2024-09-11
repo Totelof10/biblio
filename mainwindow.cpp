@@ -65,6 +65,7 @@ void MainWindow::handleConnectionButton()
     }else{
         msgBox.showError("Erreur", "Erreur de connexion à la base données");
     }
+
 }
 
 

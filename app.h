@@ -24,6 +24,7 @@ private slots:
     void handleAdulte();
     void handleAfficherAjoutLivreForm();
     void afficherLivreDansTableau();
+    void supprimerLivre();
 
 private:
     Ui::App *ui;

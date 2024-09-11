@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
@@ -48,6 +49,8 @@ public:
     QTextEdit *textEditPropriete;
     QLabel *label_6;
     QSpinBox *spinBoxQuantite;
+    QLabel *label_8;
+    QComboBox *comboBoxArmoire;
     QFrame *frame_3;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *btnAjouter;
@@ -151,6 +154,20 @@ public:
 
         formLayout->setWidget(5, QFormLayout::FieldRole, spinBoxQuantite);
 
+        label_8 = new QLabel(frame);
+        label_8->setObjectName("label_8");
+
+        formLayout->setWidget(6, QFormLayout::LabelRole, label_8);
+
+        comboBoxArmoire = new QComboBox(frame);
+        comboBoxArmoire->addItem(QString());
+        comboBoxArmoire->addItem(QString());
+        comboBoxArmoire->addItem(QString());
+        comboBoxArmoire->addItem(QString());
+        comboBoxArmoire->setObjectName("comboBoxArmoire");
+
+        formLayout->setWidget(6, QFormLayout::FieldRole, comboBoxArmoire);
+
 
         verticalLayout->addWidget(frame);
 
@@ -189,6 +206,12 @@ public:
         label_4->setText(QCoreApplication::translate("AjoutLivreForm", "Maison d'\303\251dition", nullptr));
         label_5->setText(QCoreApplication::translate("AjoutLivreForm", "Propri\303\251t\303\251s", nullptr));
         label_6->setText(QCoreApplication::translate("AjoutLivreForm", "Quantit\303\251", nullptr));
+        label_8->setText(QCoreApplication::translate("AjoutLivreForm", "Armoire", nullptr));
+        comboBoxArmoire->setItemText(0, QCoreApplication::translate("AjoutLivreForm", "A", nullptr));
+        comboBoxArmoire->setItemText(1, QCoreApplication::translate("AjoutLivreForm", "B", nullptr));
+        comboBoxArmoire->setItemText(2, QCoreApplication::translate("AjoutLivreForm", "C", nullptr));
+        comboBoxArmoire->setItemText(3, QCoreApplication::translate("AjoutLivreForm", "D", nullptr));
+
         btnAjouter->setText(QCoreApplication::translate("AjoutLivreForm", "Ajouter", nullptr));
         btnAnnuler->setText(QCoreApplication::translate("AjoutLivreForm", "Annuler", nullptr));
     } // retranslateUi

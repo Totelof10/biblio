@@ -64,6 +64,9 @@
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
         <widget class="QTableWidget" name="tableWidget">
+         <property name="sizeAdjustPolicy">
+          <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustIgnored</enum>
+         </property>
          <column>
           <property name="text">
            <string>Titre</string>
@@ -92,6 +95,11 @@
          <column>
           <property name="text">
            <string>Quantité</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Armoire</string>
           </property>
          </column>
         </widget>

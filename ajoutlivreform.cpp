@@ -44,10 +44,12 @@ void AjoutLivreForm::handleAjouterLivre(){
     QString maison_edition = ui->lineEditMaisonEdition->text();
     QString propriete = ui->textEditPropriete->toPlainText();
     int quantite = ui->spinBoxQuantite->value();
+    QString armoire = ui->comboBoxArmoire->currentText();
+
 
     QSqlQuery query(sqlitedb);
-    query.prepare("INSERT INTO Livres (titre, genre, auteur, maison_edition, proprietes, quantite) "
-                  "VALUES (:titre, :genre, :auteur, :maison_edition, :propriete, :quantite)");
+    query.prepare("INSERT INTO Livres (titre, genre, auteur, maison_edition, proprietes, quantite, armoire) "
+                  "VALUES (:titre, :genre, :auteur, :maison_edition, :propriete, :quantite, :armoire)");
 
     query.bindValue(":titre", titre);
     query.bindValue(":genre", genre);
@@ -55,6 +57,7 @@ void AjoutLivreForm::handleAjouterLivre(){
     query.bindValue(":maison_edition", maison_edition);
     query.bindValue(":propriete", propriete);
     query.bindValue(":quantite", quantite);
+    query.bindValue(":armoire", armoire);
 
     if (query.exec()) {
         msgBox.showInformation("Succès", "Ajout réussi");
@@ -73,4 +76,5 @@ void AjoutLivreForm::clearForm(){
     ui->lineEditMaisonEdition->clear();       // Vide le champ Maison d'édition
     ui->textEditPropriete->clear();   // Vide le champ Propriétés
     ui->spinBoxQuantite->setValue(0);  // Réinitialise la Quantité à 0
+    ui->comboBoxArmoire->setCurrentIndex(0);
 }
