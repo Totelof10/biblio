@@ -28,6 +28,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         custommessagebox.h custommessagebox.cpp
         databasemanager.h databasemanager.cpp
         ajoutlivreform.h ajoutlivreform.cpp ajoutlivreform.ui
+        modifierlivreform.h modifierlivreform.cpp modifierlivreform.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET biblio APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

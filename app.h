@@ -15,6 +15,10 @@ public:
     explicit App(QWidget *parent = nullptr);
     ~App();
 
+public:
+    void mettreAJourLigne(int ligne, const QString &titre, const QString &genre, const QString &auteur,
+                          const QString &maisonEdition, const QString &proprietes, int quantite, const QString &armoire);
+
 private slots:
     void handleAccueil();
     void handleLivre();
@@ -25,7 +29,7 @@ private slots:
     void handleAfficherAjoutLivreForm();
     void afficherLivreDansTableau();
     void supprimerLivre();
-
+    void afficherFormulaireModif();
 private:
     Ui::App *ui;
 };

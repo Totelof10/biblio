@@ -3,6 +3,7 @@
 #include "ajoutlivreform.h"
 #include "databasemanager.h"
 #include "custommessagebox.h"
+#include "modifierlivreform.h"
 
 App::App(QWidget *parent)
     : QWidget(parent)
@@ -20,6 +21,7 @@ App::App(QWidget *parent)
     connect(ui->btnMembreAdulte, &QPushButton::clicked, this, &App::handleAdulte);
     connect(ui->btnAjouterLivre, &QPushButton::clicked, this, &App::handleAfficherAjoutLivreForm);
     connect(ui->btnSupprimerLivre, &QPushButton::clicked, this, &App::supprimerLivre);
+    connect(ui->btnModifierLivre, &QPushButton::clicked, this, &App::afficherFormulaireModif);
 
 }
 
@@ -148,6 +150,47 @@ void App::supprimerLivre() {
     } else {
         msgBox.showError("Erreur", "Échec de la suppression du livre de la base de données");
     }
+}
+
+void App::afficherFormulaireModif(){
+    CustomMessageBox msgBox;
+    int selectedRow = ui->tableWidget->currentRow();
+    if (selectedRow < 0) {
+        msgBox.showWarning("Erreur", "Veuillez sélectionner une ligne à modifier.");
+        return;
+    }
+    QString titre = ui->tableWidget->item(selectedRow, 0)->text();
+    QString genre = ui->tableWidget->item(selectedRow, 1)->text();
+    QString auteur = ui->tableWidget->item(selectedRow, 2)->text();
+    QString maison_edition = ui->tableWidget->item(selectedRow, 3)->text();
+    QString proprietes = ui->tableWidget->item(selectedRow, 4)->text();
+    int quantite = ui->tableWidget->item(selectedRow, 5)->text().toInt();
+    QString armoire = ui->tableWidget->item(selectedRow, 6)->text();
+
+    ModifierLivreForm *modifLivre = new ModifierLivreForm(titre, genre, auteur, maison_edition, proprietes, quantite, armoire, nullptr);
+    connect(modifLivre, &ModifierLivreForm::modifieLivre, this, [=](const QString &nouvTitre, const QString &nouvGenre, const QString &nouvAuteur,
+                                                                    const QString &nouvMaisonEdition, const QString &nouvProprietes, int nouvQuantite, const QString &nouvArmoire) {
+        mettreAJourLigne(selectedRow, nouvTitre, nouvGenre, nouvAuteur, nouvMaisonEdition, nouvProprietes, nouvQuantite, nouvArmoire);
+    });
+
+    modifLivre->show();
+
+}
+
+void App::mettreAJourLigne(int ligne, const QString &titre, const QString &genre, const QString &auteur,
+                           const QString &maisonEdition, const QString &proprietes, int quantite, const QString &armoire) {
+    if (ligne < 0 || ligne >= ui->tableWidget->rowCount()) {
+        qWarning() << "Index de ligne invalide:" << ligne;
+        return;
+    }
+
+    ui->tableWidget->setItem(ligne, 0, new QTableWidgetItem(titre));
+    ui->tableWidget->setItem(ligne, 1, new QTableWidgetItem(genre));
+    ui->tableWidget->setItem(ligne, 2, new QTableWidgetItem(auteur));
+    ui->tableWidget->setItem(ligne, 3, new QTableWidgetItem(maisonEdition));
+    ui->tableWidget->setItem(ligne, 4, new QTableWidgetItem(proprietes));
+    ui->tableWidget->setItem(ligne, 5, new QTableWidgetItem(QString::number(quantite)));
+    ui->tableWidget->setItem(ligne, 6, new QTableWidgetItem(armoire));
 }
 
 
