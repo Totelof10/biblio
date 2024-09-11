@@ -37,17 +37,17 @@ public:
     QFrame *frame;
     QFormLayout *formLayout;
     QLabel *label;
-    QLineEdit *lineEdit;
+    QLineEdit *lineEditTitre;
     QLabel *label_2;
-    QLineEdit *lineEdit_2;
+    QLineEdit *lineEditGenre;
     QLabel *label_3;
-    QLineEdit *lineEdit_3;
+    QLineEdit *lineEditAuteur;
     QLabel *label_4;
-    QLineEdit *lineEdit_4;
+    QLineEdit *lineEditMaisonEdition;
     QLabel *label_5;
-    QTextEdit *textEdit;
+    QTextEdit *textEditPropriete;
     QLabel *label_6;
-    QSpinBox *spinBox;
+    QSpinBox *spinBoxQuantite;
     QFrame *frame_3;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *btnAjouter;
@@ -96,60 +96,60 @@ public:
 
         formLayout->setWidget(0, QFormLayout::LabelRole, label);
 
-        lineEdit = new QLineEdit(frame);
-        lineEdit->setObjectName("lineEdit");
+        lineEditTitre = new QLineEdit(frame);
+        lineEditTitre->setObjectName("lineEditTitre");
 
-        formLayout->setWidget(0, QFormLayout::FieldRole, lineEdit);
+        formLayout->setWidget(0, QFormLayout::FieldRole, lineEditTitre);
 
         label_2 = new QLabel(frame);
         label_2->setObjectName("label_2");
 
         formLayout->setWidget(1, QFormLayout::LabelRole, label_2);
 
-        lineEdit_2 = new QLineEdit(frame);
-        lineEdit_2->setObjectName("lineEdit_2");
+        lineEditGenre = new QLineEdit(frame);
+        lineEditGenre->setObjectName("lineEditGenre");
 
-        formLayout->setWidget(1, QFormLayout::FieldRole, lineEdit_2);
+        formLayout->setWidget(1, QFormLayout::FieldRole, lineEditGenre);
 
         label_3 = new QLabel(frame);
         label_3->setObjectName("label_3");
 
         formLayout->setWidget(2, QFormLayout::LabelRole, label_3);
 
-        lineEdit_3 = new QLineEdit(frame);
-        lineEdit_3->setObjectName("lineEdit_3");
+        lineEditAuteur = new QLineEdit(frame);
+        lineEditAuteur->setObjectName("lineEditAuteur");
 
-        formLayout->setWidget(2, QFormLayout::FieldRole, lineEdit_3);
+        formLayout->setWidget(2, QFormLayout::FieldRole, lineEditAuteur);
 
         label_4 = new QLabel(frame);
         label_4->setObjectName("label_4");
 
         formLayout->setWidget(3, QFormLayout::LabelRole, label_4);
 
-        lineEdit_4 = new QLineEdit(frame);
-        lineEdit_4->setObjectName("lineEdit_4");
+        lineEditMaisonEdition = new QLineEdit(frame);
+        lineEditMaisonEdition->setObjectName("lineEditMaisonEdition");
 
-        formLayout->setWidget(3, QFormLayout::FieldRole, lineEdit_4);
+        formLayout->setWidget(3, QFormLayout::FieldRole, lineEditMaisonEdition);
 
         label_5 = new QLabel(frame);
         label_5->setObjectName("label_5");
 
         formLayout->setWidget(4, QFormLayout::LabelRole, label_5);
 
-        textEdit = new QTextEdit(frame);
-        textEdit->setObjectName("textEdit");
+        textEditPropriete = new QTextEdit(frame);
+        textEditPropriete->setObjectName("textEditPropriete");
 
-        formLayout->setWidget(4, QFormLayout::FieldRole, textEdit);
+        formLayout->setWidget(4, QFormLayout::FieldRole, textEditPropriete);
 
         label_6 = new QLabel(frame);
         label_6->setObjectName("label_6");
 
         formLayout->setWidget(5, QFormLayout::LabelRole, label_6);
 
-        spinBox = new QSpinBox(frame);
-        spinBox->setObjectName("spinBox");
+        spinBoxQuantite = new QSpinBox(frame);
+        spinBoxQuantite->setObjectName("spinBoxQuantite");
 
-        formLayout->setWidget(5, QFormLayout::FieldRole, spinBox);
+        formLayout->setWidget(5, QFormLayout::FieldRole, spinBoxQuantite);
 
 
         verticalLayout->addWidget(frame);

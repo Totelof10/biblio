@@ -36,8 +36,11 @@ namespace {
 struct qt_meta_stringdata_CLASSAjoutLivreFormENDCLASS_t {};
 constexpr auto qt_meta_stringdata_CLASSAjoutLivreFormENDCLASS = QtMocHelpers::stringData(
     "AjoutLivreForm",
+    "ajoutLivre",
+    "",
     "handleAnnuler",
-    ""
+    "handleAjouterLivre",
+    "clearForm"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -50,17 +53,27 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAjoutLivreFormENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       1,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    0,   38,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   20,    2, 0x08,    1 /* Private */,
+       3,    0,   39,    2, 0x08,    2 /* Private */,
+       4,    0,   40,    2, 0x08,    3 /* Private */,
+       5,    0,   41,    2, 0x08,    4 /* Private */,
+
+ // signals: parameters
+    QMetaType::Void,
 
  // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -75,7 +88,13 @@ Q_CONSTINIT const QMetaObject AjoutLivreForm::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSAjoutLivreFormENDCLASS_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<AjoutLivreForm, std::true_type>,
+        // method 'ajoutLivre'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'handleAnnuler'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'handleAjouterLivre'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'clearForm'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -87,8 +106,20 @@ void AjoutLivreForm::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         auto *_t = static_cast<AjoutLivreForm *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->handleAnnuler(); break;
+        case 0: _t->ajoutLivre(); break;
+        case 1: _t->handleAnnuler(); break;
+        case 2: _t->handleAjouterLivre(); break;
+        case 3: _t->clearForm(); break;
         default: ;
+        }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (AjoutLivreForm::*)();
+            if (_t _q_method = &AjoutLivreForm::ajoutLivre; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
         }
     }
     (void)_a;
@@ -113,14 +144,20 @@ int AjoutLivreForm::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
+        _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 1)
+        if (_id < 4)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 1;
+        _id -= 4;
     }
     return _id;
+}
+
+// SIGNAL 0
+void AjoutLivreForm::ajoutLivre()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
 QT_WARNING_POP

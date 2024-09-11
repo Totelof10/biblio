@@ -17,6 +17,11 @@ public:
 
 private slots:
     void handleAnnuler();
+    void handleAjouterLivre();
+    void clearForm();
+
+signals:
+    void ajoutLivre();
 
 private:
     Ui::AjoutLivreForm *ui;

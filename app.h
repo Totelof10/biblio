@@ -23,6 +23,7 @@ private slots:
     void handleEtudiant();
     void handleAdulte();
     void handleAfficherAjoutLivreForm();
+    void afficherLivreDansTableau();
 
 private:
     Ui::App *ui;
