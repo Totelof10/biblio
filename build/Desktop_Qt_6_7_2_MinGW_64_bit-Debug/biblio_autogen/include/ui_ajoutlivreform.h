@@ -192,12 +192,12 @@ public:
         btnAjouter->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	border: 1px solid white;\n"
 "	border-radius: 7px;\n"
-"	background-color: #04AA6D;\n"
+"	background-color: #16423C;\n"
 "	color:white;\n"
 "	padding: 7px;\n"
 "}\n"
 "QPushButton:hover{\n"
-"	background-color: #59D367;\n"
+"	background-color: #6A9C89;\n"
 "}"));
 
         horizontalLayout_2->addWidget(btnAjouter);
@@ -208,12 +208,12 @@ public:
         btnAnnuler->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	border: 1px solid white;\n"
 "	border-radius: 7px;\n"
-"	background-color: #04AA6D;\n"
+"	background-color: #821131;\n"
 "	color:white;\n"
 "	padding: 7px;\n"
 "}\n"
 "QPushButton:hover{\n"
-"	background-color: #59D367;\n"
+"	background-color: #C7253E;\n"
 "}"));
 
         horizontalLayout_2->addWidget(btnAnnuler);

@@ -127,11 +127,137 @@ QPushButton:focus{
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="pageAccueil"/>
      <widget class="QWidget" name="pageLivre">
       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QFrame" name="frame_7">
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <property name="spacing">
+           <number>6</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLineEdit" name="lineEditRecherche">
+            <property name="styleSheet">
+             <string notr="true">QLineEdit{
+	border: 1px solid white;
+	border-radius: 5px;
+}
+
+QLineEdit:focus{
+	border: 1px solid black;
+}</string>
+            </property>
+            <property name="placeholderText">
+             <string>Recherche</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnRecherche">
+            <property name="font">
+             <font>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="mouseTracking">
+             <bool>true</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset theme="QIcon::ThemeIcon::EditFind"/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_8">
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_8">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Trier par armoire</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBoxChoixArmoir">
+            <item>
+             <property name="text">
+              <string>Tous</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>A</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>B</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>C</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>D</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Trier par genre :</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBoxChoixGenre"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
        <item>
         <widget class="QTableWidget" name="tableWidget">
          <property name="sizeAdjustPolicy">

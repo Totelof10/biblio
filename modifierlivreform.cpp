@@ -13,6 +13,7 @@ ModifierLivreForm::ModifierLivreForm(QString titre, QString genre, QString auteu
     , ui(new Ui::ModifierLivreForm)
 {
     ui->setupUi(this);
+    this->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::FramelessWindowHint);
     ui->lineEditTitre->setText(titre);
     ui->lineEditGenre->setText(genre);
     ui->lineEditAuteur->setText(auteur);
@@ -21,6 +22,7 @@ ModifierLivreForm::ModifierLivreForm(QString titre, QString genre, QString auteu
     ui->spinBoxQuantite->setValue(quantite);
     ui->comboBoxArmoire->setCurrentText(armoire);
     connect(ui->btnEnregistrer, &QPushButton::clicked, this, &ModifierLivreForm::modifierLivre);
+    connect(ui->btnAnnuler, &QPushButton::clicked, this, &ModifierLivreForm::annulerModif);
 }
 
 ModifierLivreForm::~ModifierLivreForm()
@@ -62,3 +64,6 @@ void ModifierLivreForm::modifierLivre() {
     }
 }
 
+void ModifierLivreForm::annulerModif(){
+    this->close();
+}

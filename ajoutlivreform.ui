@@ -212,12 +212,12 @@
          <string notr="true">QPushButton{
 	border: 1px solid white;
 	border-radius: 7px;
-	background-color: #04AA6D;
+	background-color: #16423C;
 	color:white;
 	padding: 7px;
 }
 QPushButton:hover{
-	background-color: #59D367;
+	background-color: #6A9C89;
 }</string>
         </property>
         <property name="text">
@@ -236,12 +236,12 @@ QPushButton:hover{
          <string notr="true">QPushButton{
 	border: 1px solid white;
 	border-radius: 7px;
-	background-color: #04AA6D;
+	background-color: #821131;
 	color:white;
 	padding: 7px;
 }
 QPushButton:hover{
-	background-color: #59D367;
+	background-color: #C7253E;
 }</string>
         </property>
         <property name="text">

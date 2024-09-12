@@ -20,6 +20,7 @@ public:
     QString ancienTitre;
  private slots:
     void modifierLivre();
+     void annulerModif();
 
  signals:
     void modifieLivre(const QString &titre, const QString &genre, const QString &auteur,

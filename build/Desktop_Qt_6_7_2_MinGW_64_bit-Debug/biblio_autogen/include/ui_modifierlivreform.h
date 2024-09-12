@@ -173,14 +173,40 @@ public:
         frame_3->setFrameShape(QFrame::Shape::StyledPanel);
         frame_3->setFrameShadow(QFrame::Shadow::Raised);
         horizontalLayout = new QHBoxLayout(frame_3);
+        horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName("horizontalLayout");
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
         btnEnregistrer = new QPushButton(frame_3);
         btnEnregistrer->setObjectName("btnEnregistrer");
+        QFont font;
+        font.setBold(true);
+        btnEnregistrer->setFont(font);
+        btnEnregistrer->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	border: 1px solid white;\n"
+"	border-radius: 7px;\n"
+"	background-color: #16423C;\n"
+"	color:white;\n"
+"	padding: 7px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: #6A9C89;\n"
+"}"));
 
         horizontalLayout->addWidget(btnEnregistrer);
 
         btnAnnuler = new QPushButton(frame_3);
         btnAnnuler->setObjectName("btnAnnuler");
+        btnAnnuler->setFont(font);
+        btnAnnuler->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	border: 1px solid white;\n"
+"	border-radius: 7px;\n"
+"	background-color: #821131;\n"
+"	color:white;\n"
+"	padding: 7px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: #C7253E;\n"
+"}"));
 
         horizontalLayout->addWidget(btnAnnuler);
 

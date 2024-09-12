@@ -10,10 +10,14 @@
 #define UI_APP_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
@@ -37,6 +41,16 @@ public:
     QWidget *pageAccueil;
     QWidget *pageLivre;
     QVBoxLayout *verticalLayout_2;
+    QFrame *frame_7;
+    QHBoxLayout *horizontalLayout_7;
+    QLineEdit *lineEditRecherche;
+    QPushButton *btnRecherche;
+    QFrame *frame_8;
+    QHBoxLayout *horizontalLayout_8;
+    QLabel *label;
+    QComboBox *comboBoxChoixArmoir;
+    QLabel *label_2;
+    QComboBox *comboBoxChoixGenre;
     QTableWidget *tableWidget;
     QFrame *frame_2;
     QHBoxLayout *horizontalLayout_2;
@@ -149,6 +163,77 @@ public:
         pageLivre->setObjectName("pageLivre");
         verticalLayout_2 = new QVBoxLayout(pageLivre);
         verticalLayout_2->setObjectName("verticalLayout_2");
+        frame_7 = new QFrame(pageLivre);
+        frame_7->setObjectName("frame_7");
+        frame_7->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_7->setFrameShadow(QFrame::Shadow::Raised);
+        horizontalLayout_7 = new QHBoxLayout(frame_7);
+        horizontalLayout_7->setSpacing(6);
+        horizontalLayout_7->setObjectName("horizontalLayout_7");
+        horizontalLayout_7->setContentsMargins(0, 0, 0, 0);
+        lineEditRecherche = new QLineEdit(frame_7);
+        lineEditRecherche->setObjectName("lineEditRecherche");
+        lineEditRecherche->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+"	border: 1px solid white;\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QLineEdit:focus{\n"
+"	border: 1px solid black;\n"
+"}"));
+
+        horizontalLayout_7->addWidget(lineEditRecherche);
+
+        btnRecherche = new QPushButton(frame_7);
+        btnRecherche->setObjectName("btnRecherche");
+        QFont font1;
+        font1.setBold(false);
+        btnRecherche->setFont(font1);
+        btnRecherche->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        btnRecherche->setMouseTracking(true);
+        btnRecherche->setStyleSheet(QString::fromUtf8(""));
+        QIcon icon(QIcon::fromTheme(QIcon::ThemeIcon::EditFind));
+        btnRecherche->setIcon(icon);
+
+        horizontalLayout_7->addWidget(btnRecherche);
+
+
+        verticalLayout_2->addWidget(frame_7);
+
+        frame_8 = new QFrame(pageLivre);
+        frame_8->setObjectName("frame_8");
+        frame_8->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_8->setFrameShadow(QFrame::Shadow::Raised);
+        horizontalLayout_8 = new QHBoxLayout(frame_8);
+        horizontalLayout_8->setObjectName("horizontalLayout_8");
+        label = new QLabel(frame_8);
+        label->setObjectName("label");
+
+        horizontalLayout_8->addWidget(label);
+
+        comboBoxChoixArmoir = new QComboBox(frame_8);
+        comboBoxChoixArmoir->addItem(QString());
+        comboBoxChoixArmoir->addItem(QString());
+        comboBoxChoixArmoir->addItem(QString());
+        comboBoxChoixArmoir->addItem(QString());
+        comboBoxChoixArmoir->addItem(QString());
+        comboBoxChoixArmoir->setObjectName("comboBoxChoixArmoir");
+
+        horizontalLayout_8->addWidget(comboBoxChoixArmoir);
+
+        label_2 = new QLabel(frame_8);
+        label_2->setObjectName("label_2");
+
+        horizontalLayout_8->addWidget(label_2);
+
+        comboBoxChoixGenre = new QComboBox(frame_8);
+        comboBoxChoixGenre->setObjectName("comboBoxChoixGenre");
+
+        horizontalLayout_8->addWidget(comboBoxChoixGenre);
+
+
+        verticalLayout_2->addWidget(frame_8);
+
         tableWidget = new QTableWidget(pageLivre);
         if (tableWidget->columnCount() < 7)
             tableWidget->setColumnCount(7);
@@ -228,15 +313,15 @@ public:
         horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
         btnMembreEtudiant = new QPushButton(frame_5);
         btnMembreEtudiant->setObjectName("btnMembreEtudiant");
-        QFont font1;
-        font1.setBold(true);
-        btnMembreEtudiant->setFont(font1);
+        QFont font2;
+        font2.setBold(true);
+        btnMembreEtudiant->setFont(font2);
 
         horizontalLayout_5->addWidget(btnMembreEtudiant);
 
         btnMembreAdulte = new QPushButton(frame_5);
         btnMembreAdulte->setObjectName("btnMembreAdulte");
-        btnMembreAdulte->setFont(font1);
+        btnMembreAdulte->setFont(font2);
 
         horizontalLayout_5->addWidget(btnMembreAdulte);
 
@@ -409,7 +494,7 @@ public:
 
         retranslateUi(App);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(1);
         stackedWidget_2->setCurrentIndex(1);
 
 
@@ -423,6 +508,16 @@ public:
         btnLivre->setText(QCoreApplication::translate("App", "Livres", nullptr));
         btnMembre->setText(QCoreApplication::translate("App", "Membres", nullptr));
         btnEmprunt->setText(QCoreApplication::translate("App", "Emprunts", nullptr));
+        lineEditRecherche->setPlaceholderText(QCoreApplication::translate("App", "Recherche", nullptr));
+        btnRecherche->setText(QString());
+        label->setText(QCoreApplication::translate("App", "Trier par armoire", nullptr));
+        comboBoxChoixArmoir->setItemText(0, QCoreApplication::translate("App", "Tous", nullptr));
+        comboBoxChoixArmoir->setItemText(1, QCoreApplication::translate("App", "A", nullptr));
+        comboBoxChoixArmoir->setItemText(2, QCoreApplication::translate("App", "B", nullptr));
+        comboBoxChoixArmoir->setItemText(3, QCoreApplication::translate("App", "C", nullptr));
+        comboBoxChoixArmoir->setItemText(4, QCoreApplication::translate("App", "D", nullptr));
+
+        label_2->setText(QCoreApplication::translate("App", "Trier par genre :", nullptr));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QCoreApplication::translate("App", "Titre", nullptr));
         QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);

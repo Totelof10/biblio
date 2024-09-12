@@ -54,6 +54,9 @@
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
           <widget class="QFrame" name="frame">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
            <property name="frameShape">
             <enum>QFrame::Shape::StyledPanel</enum>
            </property>
@@ -111,6 +114,12 @@
             </item>
             <item>
              <widget class="QFrame" name="frame_4">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="mouseTracking">
+               <bool>true</bool>
+              </property>
               <property name="frameShape">
                <enum>QFrame::Shape::StyledPanel</enum>
               </property>
@@ -146,6 +155,22 @@
                </item>
                <item>
                 <widget class="QPushButton" name="btnInscription">
+                 <property name="font">
+                  <font>
+                   <bold>false</bold>
+                   <underline>true</underline>
+                  </font>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="mouseTracking">
+                  <bool>true</bool>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border: none;
+color: blue;</string>
+                 </property>
                  <property name="text">
                   <string>Inscrivez vous!</string>
                  </property>
@@ -294,6 +319,12 @@
            <layout class="QVBoxLayout" name="verticalLayout_8">
             <item>
              <widget class="QPushButton" name="btnInscription_2">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="mouseTracking">
+               <bool>true</bool>
+              </property>
               <property name="text">
                <string>S'inscrire</string>
               </property>
@@ -320,6 +351,21 @@
             </item>
             <item>
              <widget class="QPushButton" name="btnConnexion_2">
+              <property name="font">
+               <font>
+                <underline>true</underline>
+               </font>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="mouseTracking">
+               <bool>true</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border:none;
+color:blue;</string>
+              </property>
               <property name="text">
                <string>Connectez-vous</string>
               </property>

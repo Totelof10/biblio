@@ -22,6 +22,9 @@ App::App(QWidget *parent)
     connect(ui->btnAjouterLivre, &QPushButton::clicked, this, &App::handleAfficherAjoutLivreForm);
     connect(ui->btnSupprimerLivre, &QPushButton::clicked, this, &App::supprimerLivre);
     connect(ui->btnModifierLivre, &QPushButton::clicked, this, &App::afficherFormulaireModif);
+    connect (ui->btnRecherche, &QPushButton::clicked, this, &App::rechercheDeLivre);
+    connect (ui->lineEditRecherche, &QLineEdit::textChanged, this, &App::rechercheDeLivre);
+    connect(ui->comboBoxChoixArmoir, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &App::filtreArmoire);
 
 }
 
@@ -193,4 +196,89 @@ void App::mettreAJourLigne(int ligne, const QString &titre, const QString &genre
     ui->tableWidget->setItem(ligne, 6, new QTableWidgetItem(armoire));
 }
 
+void App::rechercheDeLivre(){
+    QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
+    QString recherche = ui->lineEditRecherche->text();
+    QSqlQuery query(sqlitedb);
+    query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire FROM livres WHERE titre LIKE :recherche OR genre LIKE :recherche OR auteur LIKE :recherche OR maison_edition LIKE :recherche OR proprietes LIKE :recherche OR armoire LIKE :recherche");
+    query.bindValue(":recherche", "%" +recherche+"%");
+    if (!query.exec()) {
+        qDebug() << "Erreur lors de l'exécution de la requête";
+        return;
+    }
+    ui->tableWidget->setRowCount(0);
+    int row = 0;
+    while (query.next()) {
+        ui->tableWidget->insertRow(row);
 
+        // Ajouter les résultats dans les colonnes
+        QTableWidgetItem *titre = new QTableWidgetItem(query.value("titre").toString());
+        QTableWidgetItem *genre = new QTableWidgetItem(query.value("genre").toString());
+        QTableWidgetItem *auteur = new QTableWidgetItem(query.value("auteur").toString());
+        QTableWidgetItem *maison_edition = new QTableWidgetItem(query.value("maison_edition").toString());
+        QTableWidgetItem *proprietes = new QTableWidgetItem(query.value("proprietes").toString());
+        QTableWidgetItem *quantite = new QTableWidgetItem(QString::number(query.value("quantite").toInt()));
+        QTableWidgetItem *armoire = new QTableWidgetItem(query.value("armoire").toString());
+
+
+        ui->tableWidget->setItem(row, 0, titre);
+        ui->tableWidget->setItem(row, 1, genre);
+        ui->tableWidget->setItem(row, 2, auteur);
+        ui->tableWidget->setItem(row, 3, maison_edition);
+        ui->tableWidget->setItem(row, 4, proprietes);
+        ui->tableWidget->setItem(row, 5, quantite);
+        ui->tableWidget->setItem(row, 6, armoire);
+
+
+        row++;
+    }
+}
+
+void App::filtreArmoire(){
+    QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
+    QString selectedArmoire = ui->comboBoxChoixArmoir->currentText();
+
+    // Préparer la requête SQL pour récupérer les livres en fonction de l'armoire sélectionnée
+    QSqlQuery query(sqlitedb);
+    if (selectedArmoire == "Tous") {
+        // Requête pour afficher tous les livres
+        query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire FROM livres");
+    } else {
+        // Requête pour filtrer les livres selon l'armoire sélectionnée
+        query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire FROM livres WHERE armoire = :armoire");
+        query.bindValue(":armoire", selectedArmoire);
+    }
+
+    if (!query.exec()) {
+        qDebug() << "Erreur lors de l'exécution de la requête:";
+        return;
+    }
+
+    // Vider le tableau avant d'ajouter les nouveaux résultats
+    ui->tableWidget->setRowCount(0);
+
+    // Afficher les résultats dans le QTableWidget
+    int row = 0;
+    while (query.next()) {
+        ui->tableWidget->insertRow(row);
+
+        QTableWidgetItem *titre = new QTableWidgetItem(query.value("titre").toString());
+        QTableWidgetItem *auteur = new QTableWidgetItem(query.value("auteur").toString());
+        QTableWidgetItem *genre = new QTableWidgetItem(query.value("genre").toString());
+        QTableWidgetItem *maison_edition = new QTableWidgetItem(query.value("maison_edition").toString());
+        QTableWidgetItem *proprietes = new QTableWidgetItem(query.value("proprietes").toString());
+        QTableWidgetItem *quantite = new QTableWidgetItem(QString::number(query.value("quantite").toInt()));
+        QTableWidgetItem *armoire = new QTableWidgetItem(query.value("armoire").toString());
+
+        ui->tableWidget->setItem(row, 0, titre);
+        ui->tableWidget->setItem(row, 2, auteur);
+        ui->tableWidget->setItem(row, 1, genre);
+        ui->tableWidget->setItem(row, 3, maison_edition);
+        ui->tableWidget->setItem(row, 5, quantite);
+        ui->tableWidget->setItem(row, 4, proprietes);
+        ui->tableWidget->setItem(row, 6, armoire);
+
+
+        row++;
+    }
+}

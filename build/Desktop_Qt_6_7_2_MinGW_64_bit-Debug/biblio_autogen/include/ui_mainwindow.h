@@ -103,6 +103,7 @@ public:
         horizontalLayout_2->setObjectName("horizontalLayout_2");
         frame = new QFrame(frame_5);
         frame->setObjectName("frame");
+        frame->setStyleSheet(QString::fromUtf8(""));
         frame->setFrameShape(QFrame::Shape::StyledPanel);
         frame->setFrameShadow(QFrame::Shadow::Raised);
         verticalLayout_4 = new QVBoxLayout(frame);
@@ -148,6 +149,8 @@ public:
 
         frame_4 = new QFrame(frame);
         frame_4->setObjectName("frame_4");
+        frame_4->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        frame_4->setMouseTracking(true);
         frame_4->setFrameShape(QFrame::Shape::StyledPanel);
         frame_4->setFrameShadow(QFrame::Shadow::Raised);
         verticalLayout_3 = new QVBoxLayout(frame_4);
@@ -173,6 +176,14 @@ public:
 
         btnInscription = new QPushButton(frame_6);
         btnInscription->setObjectName("btnInscription");
+        QFont font;
+        font.setBold(false);
+        font.setUnderline(true);
+        btnInscription->setFont(font);
+        btnInscription->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        btnInscription->setMouseTracking(true);
+        btnInscription->setStyleSheet(QString::fromUtf8("border: none;\n"
+"color: blue;"));
 
         horizontalLayout_3->addWidget(btnInscription);
 
@@ -267,6 +278,8 @@ public:
         verticalLayout_8->setObjectName("verticalLayout_8");
         btnInscription_2 = new QPushButton(frame_11);
         btnInscription_2->setObjectName("btnInscription_2");
+        btnInscription_2->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        btnInscription_2->setMouseTracking(true);
 
         verticalLayout_8->addWidget(btnInscription_2);
 
@@ -286,6 +299,13 @@ public:
 
         btnConnexion_2 = new QPushButton(frame_12);
         btnConnexion_2->setObjectName("btnConnexion_2");
+        QFont font1;
+        font1.setUnderline(true);
+        btnConnexion_2->setFont(font1);
+        btnConnexion_2->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        btnConnexion_2->setMouseTracking(true);
+        btnConnexion_2->setStyleSheet(QString::fromUtf8("border:none;\n"
+"color:blue;"));
 
         horizontalLayout_5->addWidget(btnConnexion_2);
 

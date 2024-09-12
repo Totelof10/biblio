@@ -30,6 +30,8 @@ private slots:
     void afficherLivreDansTableau();
     void supprimerLivre();
     void afficherFormulaireModif();
+    void rechercheDeLivre();
+    void filtreArmoire();
 private:
     Ui::App *ui;
 };
