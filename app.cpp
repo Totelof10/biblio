@@ -4,6 +4,7 @@
 #include "databasemanager.h"
 #include "custommessagebox.h"
 #include "modifierlivreform.h"
+#include "parametre.h"
 
 App::App(QWidget *parent)
     : QWidget(parent)
@@ -11,6 +12,7 @@ App::App(QWidget *parent)
 {
     ui->setupUi(this);
     afficherLivreDansTableau();
+    comboArmoireAfficher();
     ui->stackedWidget->setCurrentWidget(ui->pageAccueil);
     ui->stackedWidget_2->setCurrentWidget(ui->pageEtudiant);
     connect(ui->btnAccueil, &QPushButton::clicked, this, &App::handleAccueil);
@@ -25,7 +27,7 @@ App::App(QWidget *parent)
     connect (ui->btnRecherche, &QPushButton::clicked, this, &App::rechercheDeLivre);
     connect (ui->lineEditRecherche, &QLineEdit::textChanged, this, &App::rechercheDeLivre);
     connect(ui->comboBoxChoixArmoir, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &App::filtreArmoire);
-
+    connect(ui->btnParametre, &QPushButton::clicked, this, &App::handleAfficheParam);
 }
 
 App::~App()
@@ -282,3 +284,57 @@ void App::filtreArmoire(){
         row++;
     }
 }
+
+void App::handleAfficheParam(){
+    Parametre *parametre = new Parametre(nullptr);
+    connect(parametre, &Parametre::ajoutArmoir, this, &App::comboArmoireAfficher);
+    parametre->show();
+}
+
+void App::comboArmoireAfficher() {
+    CustomMessageBox msgBox;
+    QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
+
+    // Vérification de l'ouverture de la base de données
+    if (!sqlitedb.open()) {
+        msgBox.showError("Erreur", "Impossible d'ouvrir la base de données.");
+        return;
+    }
+
+    // Préparation des objets QSqlQuery pour chaque requête
+    QSqlQuery queryArmoire(sqlitedb);
+    QSqlQuery queryGenre(sqlitedb);
+
+    // Exécution de la première requête pour les armoires
+    if (!queryArmoire.exec("SELECT armoire FROM armoires")) {
+        msgBox.showError("Erreur", "Erreur lors de l'exécution de la requête sur les armoires");
+        return;
+    }
+
+    // Exécution de la seconde requête pour les genres
+    if (!queryGenre.exec("SELECT genre FROM genres")) {
+        msgBox.showError("Erreur", "Erreur lors de l'exécution de la requête sur les genres");
+        return;
+    }
+
+    // Vider les QComboBox
+    ui->comboBoxChoixArmoir->clear();
+    ui->comboBoxChoixGenre->clear();
+
+    // Ajouter une option "Tous" pour chaque QComboBox
+    ui->comboBoxChoixArmoir->addItem("Tous");
+    ui->comboBoxChoixGenre->addItem("Tous");
+
+    // Parcourir les résultats des armoires et ajouter chaque armoire au comboBoxChoixArmoir
+    while (queryArmoire.next()) {
+        QString armoire = queryArmoire.value("armoire").toString();
+        ui->comboBoxChoixArmoir->addItem(armoire);
+    }
+
+    // Parcourir les résultats des genres et ajouter chaque genre au comboBoxChoixGenre
+    while (queryGenre.next()) {
+        QString genre = queryGenre.value("genre").toString();
+        ui->comboBoxChoixGenre->addItem(genre);
+    }
+}
+

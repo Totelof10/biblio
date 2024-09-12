@@ -4,3 +4,4 @@
 #include "EWIEGA46WW/moc_custommessagebox.cpp"
 #include "EWIEGA46WW/moc_mainwindow.cpp"
 #include "EWIEGA46WW/moc_modifierlivreform.cpp"
+#include "EWIEGA46WW/moc_parametre.cpp"

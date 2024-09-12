@@ -32,6 +32,8 @@ private slots:
     void afficherFormulaireModif();
     void rechercheDeLivre();
     void filtreArmoire();
+    void handleAfficheParam();
+    void comboArmoireAfficher();
 private:
     Ui::App *ui;
 };

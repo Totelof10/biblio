@@ -212,11 +212,6 @@ public:
         horizontalLayout_8->addWidget(label);
 
         comboBoxChoixArmoir = new QComboBox(frame_8);
-        comboBoxChoixArmoir->addItem(QString());
-        comboBoxChoixArmoir->addItem(QString());
-        comboBoxChoixArmoir->addItem(QString());
-        comboBoxChoixArmoir->addItem(QString());
-        comboBoxChoixArmoir->addItem(QString());
         comboBoxChoixArmoir->setObjectName("comboBoxChoixArmoir");
 
         horizontalLayout_8->addWidget(comboBoxChoixArmoir);
@@ -511,12 +506,6 @@ public:
         lineEditRecherche->setPlaceholderText(QCoreApplication::translate("App", "Recherche", nullptr));
         btnRecherche->setText(QString());
         label->setText(QCoreApplication::translate("App", "Trier par armoire", nullptr));
-        comboBoxChoixArmoir->setItemText(0, QCoreApplication::translate("App", "Tous", nullptr));
-        comboBoxChoixArmoir->setItemText(1, QCoreApplication::translate("App", "A", nullptr));
-        comboBoxChoixArmoir->setItemText(2, QCoreApplication::translate("App", "B", nullptr));
-        comboBoxChoixArmoir->setItemText(3, QCoreApplication::translate("App", "C", nullptr));
-        comboBoxChoixArmoir->setItemText(4, QCoreApplication::translate("App", "D", nullptr));
-
         label_2->setText(QCoreApplication::translate("App", "Trier par genre :", nullptr));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QCoreApplication::translate("App", "Titre", nullptr));

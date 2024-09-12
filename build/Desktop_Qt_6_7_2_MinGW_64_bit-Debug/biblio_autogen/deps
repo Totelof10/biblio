@@ -565,8 +565,11 @@ biblio_autogen/timestamp: \
 	C:/Users/rtoha/Documents/biblio/mainwindow.h \
 	C:/Users/rtoha/Documents/biblio/modifierlivreform.cpp \
 	C:/Users/rtoha/Documents/biblio/modifierlivreform.h \
+	C:/Users/rtoha/Documents/biblio/parametre.cpp \
+	C:/Users/rtoha/Documents/biblio/parametre.h \
 	C:/Users/rtoha/Documents/biblio/ajoutlivreform.ui \
 	C:/Users/rtoha/Documents/biblio/app.ui \
 	C:/Users/rtoha/Documents/biblio/mainwindow.ui \
 	C:/Users/rtoha/Documents/biblio/modifierlivreform.ui \
+	C:/Users/rtoha/Documents/biblio/parametre.ui \
 	C:/Qt/Tools/CMake_64/bin/cmake.exe

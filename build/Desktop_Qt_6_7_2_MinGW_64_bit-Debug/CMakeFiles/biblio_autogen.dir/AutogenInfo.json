@@ -322,6 +322,12 @@
 			"MU",
 			"EWIEGA46WW/moc_modifierlivreform.cpp",
 			null
+		],
+		[
+			"C:/Users/rtoha/Documents/biblio/parametre.h",
+			"MU",
+			"EWIEGA46WW/moc_parametre.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -403,7 +409,8 @@
 		[ "C:/Users/rtoha/Documents/biblio/databasemanager.cpp", "MU", null ],
 		[ "C:/Users/rtoha/Documents/biblio/main.cpp", "MU", null ],
 		[ "C:/Users/rtoha/Documents/biblio/mainwindow.cpp", "MU", null ],
-		[ "C:/Users/rtoha/Documents/biblio/modifierlivreform.cpp", "MU", null ]
+		[ "C:/Users/rtoha/Documents/biblio/modifierlivreform.cpp", "MU", null ],
+		[ "C:/Users/rtoha/Documents/biblio/parametre.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],
