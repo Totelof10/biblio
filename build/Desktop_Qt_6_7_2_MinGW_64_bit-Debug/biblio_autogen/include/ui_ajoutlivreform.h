@@ -60,7 +60,8 @@ public:
     {
         if (AjoutLivreForm->objectName().isEmpty())
             AjoutLivreForm->setObjectName("AjoutLivreForm");
-        AjoutLivreForm->resize(426, 355);
+        AjoutLivreForm->resize(426, 367);
+        AjoutLivreForm->setStyleSheet(QString::fromUtf8(""));
         verticalLayout = new QVBoxLayout(AjoutLivreForm);
         verticalLayout->setObjectName("verticalLayout");
         frame_2 = new QFrame(AjoutLivreForm);
@@ -101,6 +102,9 @@ public:
 
         lineEditTitre = new QLineEdit(frame);
         lineEditTitre->setObjectName("lineEditTitre");
+        QFont font1;
+        font1.setKerning(true);
+        lineEditTitre->setFont(font1);
 
         formLayout->setWidget(0, QFormLayout::FieldRole, lineEditTitre);
 
@@ -176,14 +180,41 @@ public:
         frame_3->setFrameShape(QFrame::Shape::StyledPanel);
         frame_3->setFrameShadow(QFrame::Shadow::Raised);
         horizontalLayout_2 = new QHBoxLayout(frame_3);
+        horizontalLayout_2->setSpacing(0);
         horizontalLayout_2->setObjectName("horizontalLayout_2");
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         btnAjouter = new QPushButton(frame_3);
         btnAjouter->setObjectName("btnAjouter");
+        QFont font2;
+        font2.setPointSize(9);
+        font2.setBold(true);
+        btnAjouter->setFont(font2);
+        btnAjouter->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	border: 1px solid white;\n"
+"	border-radius: 7px;\n"
+"	background-color: #04AA6D;\n"
+"	color:white;\n"
+"	padding: 7px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: #59D367;\n"
+"}"));
 
         horizontalLayout_2->addWidget(btnAjouter);
 
         btnAnnuler = new QPushButton(frame_3);
         btnAnnuler->setObjectName("btnAnnuler");
+        btnAnnuler->setFont(font);
+        btnAnnuler->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	border: 1px solid white;\n"
+"	border-radius: 7px;\n"
+"	background-color: #04AA6D;\n"
+"	color:white;\n"
+"	padding: 7px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: #59D367;\n"
+"}"));
 
         horizontalLayout_2->addWidget(btnAnnuler);
 

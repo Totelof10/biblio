@@ -8,6 +8,7 @@ AjoutLivreForm::AjoutLivreForm(QWidget *parent)
     , ui(new Ui::AjoutLivreForm)
 {
     ui->setupUi(this);
+    this->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::FramelessWindowHint);
     connect(ui->btnAnnuler, &QPushButton::clicked, this, &AjoutLivreForm::handleAnnuler);
     connect(ui->btnAjouter, &QPushButton::clicked, this, &AjoutLivreForm::handleAjouterLivre);
 

@@ -85,27 +85,55 @@ public:
         verticalLayout->setObjectName("verticalLayout");
         frame = new QFrame(App);
         frame->setObjectName("frame");
+        frame->setAutoFillBackground(false);
+        frame->setStyleSheet(QString::fromUtf8("QFrame{\n"
+"	background-color: rgb(29, 46, 62);\n"
+"}\n"
+"QPushButton{\n"
+"	padding: 10px 10px;\n"
+"	border:none;\n"
+"	color:white;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: rgb(45, 66, 75);\n"
+"}\n"
+"QPushButton:focus{\n"
+"	background-color:#00CCDD;\n"
+"}"));
         frame->setFrameShape(QFrame::Shape::StyledPanel);
         frame->setFrameShadow(QFrame::Shadow::Raised);
         horizontalLayout = new QHBoxLayout(frame);
+        horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName("horizontalLayout");
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
         btnAccueil = new QPushButton(frame);
         btnAccueil->setObjectName("btnAccueil");
+        QFont font;
+        font.setPointSize(12);
+        font.setBold(true);
+        btnAccueil->setFont(font);
+        btnAccueil->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
 
         horizontalLayout->addWidget(btnAccueil);
 
         btnLivre = new QPushButton(frame);
         btnLivre->setObjectName("btnLivre");
+        btnLivre->setFont(font);
+        btnLivre->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
 
         horizontalLayout->addWidget(btnLivre);
 
         btnMembre = new QPushButton(frame);
         btnMembre->setObjectName("btnMembre");
+        btnMembre->setFont(font);
+        btnMembre->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
 
         horizontalLayout->addWidget(btnMembre);
 
         btnEmprunt = new QPushButton(frame);
         btnEmprunt->setObjectName("btnEmprunt");
+        btnEmprunt->setFont(font);
+        btnEmprunt->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
 
         horizontalLayout->addWidget(btnEmprunt);
 
@@ -178,20 +206,37 @@ public:
         verticalLayout_3->setObjectName("verticalLayout_3");
         frame_5 = new QFrame(pageMembre);
         frame_5->setObjectName("frame_5");
-        frame_5->setStyleSheet(QString::fromUtf8("/*QPushButton:focus{\n"
-"	background-color:blue;\n"
-"}*/"));
+        frame_5->setStyleSheet(QString::fromUtf8("QFrame{\n"
+"	background-color: rgb(29, 46, 62);\n"
+"}\n"
+"QPushButton{\n"
+"	padding: 10px 10px;\n"
+"	border:none;\n"
+"	color:white;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: rgb(45, 66, 75);\n"
+"}\n"
+"QPushButton:focus{\n"
+"	background-color:#00CCDD;\n"
+"}"));
         frame_5->setFrameShape(QFrame::Shape::StyledPanel);
         frame_5->setFrameShadow(QFrame::Shadow::Raised);
         horizontalLayout_5 = new QHBoxLayout(frame_5);
+        horizontalLayout_5->setSpacing(0);
         horizontalLayout_5->setObjectName("horizontalLayout_5");
+        horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
         btnMembreEtudiant = new QPushButton(frame_5);
         btnMembreEtudiant->setObjectName("btnMembreEtudiant");
+        QFont font1;
+        font1.setBold(true);
+        btnMembreEtudiant->setFont(font1);
 
         horizontalLayout_5->addWidget(btnMembreEtudiant);
 
         btnMembreAdulte = new QPushButton(frame_5);
         btnMembreAdulte->setObjectName("btnMembreAdulte");
+        btnMembreAdulte->setFont(font1);
 
         horizontalLayout_5->addWidget(btnMembreAdulte);
 
@@ -320,21 +365,41 @@ public:
 
         frame_3 = new QFrame(App);
         frame_3->setObjectName("frame_3");
+        frame_3->setStyleSheet(QString::fromUtf8("QFrame{\n"
+"	background-color: rgb(29, 46, 62);\n"
+"}\n"
+"QPushButton{\n"
+"	padding: 10px 10px;\n"
+"	border:none;\n"
+"	color:white;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: rgb(45, 66, 75);\n"
+"}\n"
+"QPushButton:focus{\n"
+"	background-color:#00CCDD;\n"
+"}"));
         frame_3->setFrameShape(QFrame::Shape::StyledPanel);
         frame_3->setFrameShadow(QFrame::Shadow::Raised);
         horizontalLayout_3 = new QHBoxLayout(frame_3);
+        horizontalLayout_3->setSpacing(0);
         horizontalLayout_3->setObjectName("horizontalLayout_3");
+        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_3->addItem(horizontalSpacer_2);
 
         btnParametre = new QPushButton(frame_3);
         btnParametre->setObjectName("btnParametre");
+        btnParametre->setFont(font);
+        btnParametre->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
 
         horizontalLayout_3->addWidget(btnParametre);
 
         btnDeconnexion = new QPushButton(frame_3);
         btnDeconnexion->setObjectName("btnDeconnexion");
+        btnDeconnexion->setFont(font);
+        btnDeconnexion->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
 
         horizontalLayout_3->addWidget(btnDeconnexion);
 
@@ -344,7 +409,7 @@ public:
 
         retranslateUi(App);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(2);
         stackedWidget_2->setCurrentIndex(1);
 
 
