@@ -92,6 +92,17 @@ public:
         horizontalLayout->setObjectName("horizontalLayout");
         stackedWidget = new QStackedWidget(centralwidget);
         stackedWidget->setObjectName("stackedWidget");
+        stackedWidget->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+"	border: 1px solid grey;\n"
+"	border-radius: 4px;\n"
+"}\n"
+"QLineEdit:hover{\n"
+"	border: 2px solid #61677A;\n"
+"}\n"
+"QLineEdit:focus{\n"
+"	border: 2px solid #0078AA;\n"
+"}\n"
+""));
         page = new QWidget();
         page->setObjectName("page");
         frame_5 = new QFrame(page);
@@ -116,6 +127,9 @@ public:
         verticalLayout->setObjectName("verticalLayout");
         label = new QLabel(frame_2);
         label->setObjectName("label");
+        QFont font;
+        font.setBold(true);
+        label->setFont(font);
 
         verticalLayout->addWidget(label);
 
@@ -135,6 +149,7 @@ public:
         verticalLayout_2->setObjectName("verticalLayout_2");
         label_2 = new QLabel(frame_3);
         label_2->setObjectName("label_2");
+        label_2->setFont(font);
 
         verticalLayout_2->addWidget(label_2);
 
@@ -149,14 +164,29 @@ public:
 
         frame_4 = new QFrame(frame);
         frame_4->setObjectName("frame_4");
-        frame_4->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        frame_4->setMouseTracking(true);
+        frame_4->setCursor(QCursor(Qt::CursorShape::ArrowCursor));
+        frame_4->setMouseTracking(false);
         frame_4->setFrameShape(QFrame::Shape::StyledPanel);
         frame_4->setFrameShadow(QFrame::Shadow::Raised);
         verticalLayout_3 = new QVBoxLayout(frame_4);
+        verticalLayout_3->setSpacing(0);
         verticalLayout_3->setObjectName("verticalLayout_3");
         btnConnexion = new QPushButton(frame_4);
         btnConnexion->setObjectName("btnConnexion");
+        QFont font1;
+        font1.setPointSize(10);
+        font1.setBold(true);
+        btnConnexion->setFont(font1);
+        btnConnexion->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        btnConnexion->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	border: 1px solid #21325E;\n"
+"	border-radius: 4px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: #21325E;\n"
+"	color:white;\n"
+"}\n"
+""));
 
         verticalLayout_3->addWidget(btnConnexion);
 
@@ -171,15 +201,16 @@ public:
         horizontalLayout_3->setObjectName("horizontalLayout_3");
         label_4 = new QLabel(frame_6);
         label_4->setObjectName("label_4");
+        label_4->setFont(font);
 
         horizontalLayout_3->addWidget(label_4);
 
         btnInscription = new QPushButton(frame_6);
         btnInscription->setObjectName("btnInscription");
-        QFont font;
-        font.setBold(false);
-        font.setUnderline(true);
-        btnInscription->setFont(font);
+        QFont font2;
+        font2.setBold(true);
+        font2.setUnderline(true);
+        btnInscription->setFont(font2);
         btnInscription->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         btnInscription->setMouseTracking(true);
         btnInscription->setStyleSheet(QString::fromUtf8("border: none;\n"
@@ -219,6 +250,7 @@ public:
         verticalLayout_6->setObjectName("verticalLayout_6");
         label_5 = new QLabel(frame_9);
         label_5->setObjectName("label_5");
+        label_5->setFont(font);
 
         verticalLayout_6->addWidget(label_5);
 
@@ -238,6 +270,7 @@ public:
         verticalLayout_7->setObjectName("verticalLayout_7");
         label_6 = new QLabel(frame_10);
         label_6->setObjectName("label_6");
+        label_6->setFont(font);
 
         verticalLayout_7->addWidget(label_6);
 
@@ -258,6 +291,7 @@ public:
         verticalLayout_9->setObjectName("verticalLayout_9");
         label_9 = new QLabel(frame_13);
         label_9->setObjectName("label_9");
+        label_9->setFont(font);
 
         verticalLayout_9->addWidget(label_9);
 
@@ -278,8 +312,17 @@ public:
         verticalLayout_8->setObjectName("verticalLayout_8");
         btnInscription_2 = new QPushButton(frame_11);
         btnInscription_2->setObjectName("btnInscription_2");
+        btnInscription_2->setFont(font1);
         btnInscription_2->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         btnInscription_2->setMouseTracking(true);
+        btnInscription_2->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	border: 1px solid #21325E;\n"
+"	border-radius: 4px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: #21325E;\n"
+"	color:white;\n"
+"}"));
 
         verticalLayout_8->addWidget(btnInscription_2);
 
@@ -294,14 +337,13 @@ public:
         horizontalLayout_5->setObjectName("horizontalLayout_5");
         label_7 = new QLabel(frame_12);
         label_7->setObjectName("label_7");
+        label_7->setFont(font);
 
         horizontalLayout_5->addWidget(label_7);
 
         btnConnexion_2 = new QPushButton(frame_12);
         btnConnexion_2->setObjectName("btnConnexion_2");
-        QFont font1;
-        font1.setUnderline(true);
-        btnConnexion_2->setFont(font1);
+        btnConnexion_2->setFont(font2);
         btnConnexion_2->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         btnConnexion_2->setMouseTracking(true);
         btnConnexion_2->setStyleSheet(QString::fromUtf8("border:none;\n"
@@ -345,7 +387,7 @@ public:
         label_8->setText(QString());
         label_5->setText(QCoreApplication::translate("MainWindow", "Utilisateur :", nullptr));
         label_6->setText(QCoreApplication::translate("MainWindow", "Mot de passe :", nullptr));
-        label_9->setText(QCoreApplication::translate("MainWindow", "Mot de passe :", nullptr));
+        label_9->setText(QCoreApplication::translate("MainWindow", "Confirmer votre mot de passe :", nullptr));
         btnInscription_2->setText(QCoreApplication::translate("MainWindow", "S'inscrire", nullptr));
         label_7->setText(QCoreApplication::translate("MainWindow", "D\303\251ja inscrit?", nullptr));
         btnConnexion_2->setText(QCoreApplication::translate("MainWindow", "Connectez-vous", nullptr));

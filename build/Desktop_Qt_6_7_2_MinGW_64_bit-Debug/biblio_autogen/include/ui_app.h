@@ -256,19 +256,63 @@ public:
         frame_2->setFrameShape(QFrame::Shape::StyledPanel);
         frame_2->setFrameShadow(QFrame::Shadow::Raised);
         horizontalLayout_2 = new QHBoxLayout(frame_2);
+        horizontalLayout_2->setSpacing(0);
         horizontalLayout_2->setObjectName("horizontalLayout_2");
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         btnAjouterLivre = new QPushButton(frame_2);
         btnAjouterLivre->setObjectName("btnAjouterLivre");
+        QFont font2;
+        font2.setBold(true);
+        btnAjouterLivre->setFont(font2);
+        btnAjouterLivre->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        btnAjouterLivre->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	border: 1px solid white;\n"
+"	border-radius: 7px;\n"
+"	background-color: #16423C;\n"
+"	color:white;\n"
+"	padding: 7px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: #6A9C89;\n"
+"}"));
 
         horizontalLayout_2->addWidget(btnAjouterLivre);
 
         btnModifierLivre = new QPushButton(frame_2);
         btnModifierLivre->setObjectName("btnModifierLivre");
+        QFont font3;
+        font3.setBold(true);
+        font3.setUnderline(false);
+        btnModifierLivre->setFont(font3);
+        btnModifierLivre->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        btnModifierLivre->setMouseTracking(true);
+        btnModifierLivre->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	border: 1px solid white;\n"
+"	border-radius: 7px;\n"
+"	background-color: #FFA823;\n"
+"	color:white;\n"
+"	padding: 7px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: #FFD35A;\n"
+"}"));
 
         horizontalLayout_2->addWidget(btnModifierLivre);
 
         btnSupprimerLivre = new QPushButton(frame_2);
         btnSupprimerLivre->setObjectName("btnSupprimerLivre");
+        btnSupprimerLivre->setFont(font2);
+        btnSupprimerLivre->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        btnSupprimerLivre->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	border: 1px solid white;\n"
+"	border-radius: 7px;\n"
+"	background-color: #821131;\n"
+"	color:white;\n"
+"	padding: 7px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: #C7253E;\n"
+"}"));
 
         horizontalLayout_2->addWidget(btnSupprimerLivre);
 
@@ -308,8 +352,6 @@ public:
         horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
         btnMembreEtudiant = new QPushButton(frame_5);
         btnMembreEtudiant->setObjectName("btnMembreEtudiant");
-        QFont font2;
-        font2.setBold(true);
         btnMembreEtudiant->setFont(font2);
 
         horizontalLayout_5->addWidget(btnMembreEtudiant);

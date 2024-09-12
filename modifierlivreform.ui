@@ -99,9 +99,6 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="lineEditGenre"/>
-      </item>
       <item row="2" column="0">
        <widget class="QLabel" name="label_4">
         <property name="text">
@@ -133,31 +130,13 @@
        <widget class="QSpinBox" name="spinBoxQuantite"/>
       </item>
       <item row="8" column="1">
-       <widget class="QComboBox" name="comboBoxArmoire">
-        <item>
-         <property name="text">
-          <string>A</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>B</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>C</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>D</string>
-         </property>
-        </item>
-       </widget>
+       <widget class="QComboBox" name="comboBoxArmoire"/>
       </item>
       <item row="4" column="1">
        <widget class="QTextEdit" name="textEditPropriete"/>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="comboBoxGenre"/>
       </item>
      </layout>
     </widget>
@@ -230,7 +209,7 @@ QPushButton:hover{
 }</string>
         </property>
         <property name="text">
-         <string>Annuler</string>
+         <string>Fermer</string>
         </property>
        </widget>
       </item>

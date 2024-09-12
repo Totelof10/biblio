@@ -13,9 +13,11 @@ ModifierLivreForm::ModifierLivreForm(QString titre, QString genre, QString auteu
     , ui(new Ui::ModifierLivreForm)
 {
     ui->setupUi(this);
+    comboArmoireAfficher();
+    comboGenreAfficher();
     this->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::FramelessWindowHint);
     ui->lineEditTitre->setText(titre);
-    ui->lineEditGenre->setText(genre);
+    ui->comboBoxGenre->setCurrentText(genre);
     ui->lineEditAuteur->setText(auteur);
     ui->lineEditMaisonEdition->setText(maison_edition);
     ui->textEditPropriete->setText(proprietes);
@@ -34,7 +36,7 @@ void ModifierLivreForm::modifierLivre() {
     CustomMessageBox msgBox;
     QSqlDatabase sqlitedb = DatabaseManager::getDatabase();    // Récupérer les nouvelles valeurs des champs
     QString nouveauTitre = ui->lineEditTitre->text();
-    QString nouveauGenre = ui->lineEditGenre->text();
+    QString nouveauGenre = ui->comboBoxGenre->currentText();
     QString nouvelAuteur = ui->lineEditAuteur->text();
     QString nouvelleMaisonEdition = ui->lineEditMaisonEdition->text();
     QString nouvellesProprietes = ui->textEditPropriete->toPlainText();
@@ -66,4 +68,75 @@ void ModifierLivreForm::modifierLivre() {
 
 void ModifierLivreForm::annulerModif(){
     this->close();
+}
+
+void ModifierLivreForm::comboArmoireAfficher() {
+    CustomMessageBox msgBox;
+    QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
+
+    // Vérifier l'ouverture de la base de données
+    if (!sqlitedb.open()) {
+        msgBox.showError("Erreur", "Impossible d'ouvrir la base de données.");
+        return;
+    }
+
+    QSqlQuery query(sqlitedb);
+    query.exec("SELECT armoire FROM armoires");
+
+    // Obtenir la référence au QComboBox
+    QComboBox *comboBoxArmoire = ui->comboBoxArmoire;
+    comboBoxArmoire->clear();  // Vider le QComboBox avant d'ajouter de nouveaux éléments
+
+    // Exécuter la requête
+    if (!query.exec()) {
+        msgBox.showError("Erreur", "Erreur lors de l'exécution de la requête");
+        return;
+    }
+    comboBoxArmoire->addItem("");
+
+    // Parcourir les résultats et ajouter chaque armoire au QComboBox
+    while (query.next()) {
+        QString armoire = query.value("armoire").toString();
+        qDebug() << "Ajout de l'armoire:" << armoire;  // Afficher chaque armoire pour déboguer
+        comboBoxArmoire->addItem(armoire);
+    }
+
+    qDebug() << "Liste des armoires mise à jour avec succès.";
+}
+
+void ModifierLivreForm::comboGenreAfficher(){
+    CustomMessageBox msgBox;
+    QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
+
+    // Vérifier l'ouverture de la base de données
+    if (!sqlitedb.open()) {
+        msgBox.showError("Erreur", "Impossible d'ouvrir la base de données.");
+        return;
+    }
+
+    QSqlQuery query(sqlitedb);
+    query.prepare("SELECT genre FROM genres");
+
+    // Obtenir la référence au QComboBox
+    QComboBox *comboBoxArmoire = ui->comboBoxGenre;
+    comboBoxArmoire->clear();  // Vider le QComboBox avant d'ajouter de nouveaux éléments
+
+    // Ajouter une option "Tous" pour afficher tous les livres
+    comboBoxArmoire->addItem("");
+    // Exécuter la requête
+    if (!query.exec()) {
+        msgBox.showError("Erreur", "Erreur lors de l'exécution de la requête");
+        return;
+    }
+
+    // Parcourir les résultats et ajouter chaque armoire au QComboBox
+    while (query.next()) {
+        QString genre = query.value("genre").toString();
+        qDebug() << "Ajout de l'armoire:" << genre;  // Afficher chaque armoire pour déboguer
+        comboBoxArmoire->addItem(genre);
+    }
+
+    qDebug() << "Liste des armoires mise à jour avec succès.";
+
+
 }

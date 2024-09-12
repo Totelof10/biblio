@@ -5,6 +5,7 @@
 #include "custommessagebox.h"
 #include "modifierlivreform.h"
 #include "parametre.h"
+#include "deconnexion.h"
 
 App::App(QWidget *parent)
     : QWidget(parent)
@@ -15,6 +16,7 @@ App::App(QWidget *parent)
     comboArmoireAfficher();
     ui->stackedWidget->setCurrentWidget(ui->pageAccueil);
     ui->stackedWidget_2->setCurrentWidget(ui->pageEtudiant);
+    connect(ui->btnDeconnexion, &QPushButton::clicked, this, &App::deconnexion);
     connect(ui->btnAccueil, &QPushButton::clicked, this, &App::handleAccueil);
     connect(ui->btnLivre, &QPushButton::clicked, this, &App::handleLivre);
     connect(ui->btnMembre, &QPushButton::clicked, this, &App::handleMembre);
@@ -28,6 +30,8 @@ App::App(QWidget *parent)
     connect (ui->lineEditRecherche, &QLineEdit::textChanged, this, &App::rechercheDeLivre);
     connect(ui->comboBoxChoixArmoir, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &App::filtreArmoire);
     connect(ui->btnParametre, &QPushButton::clicked, this, &App::handleAfficheParam);
+    connect(ui->comboBoxChoixGenre, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &App::filtreGenre);
+
 }
 
 App::~App()
@@ -38,7 +42,13 @@ App::~App()
 void App::handleAccueil(){
     ui->stackedWidget->setCurrentWidget(ui->pageAccueil);
 }
+//Auth
+void App::deconnexion(){
+    Deconnexion *deconnexion = new Deconnexion(this, this);  // 'this' est la fenêtre parent, 'appWindow' est l'instance de App
+    deconnexion->show();
 
+}
+//Gestion Livre
 void App::handleLivre(){
     ui->stackedWidget->setCurrentWidget(ui->pageLivre);
 
@@ -285,6 +295,50 @@ void App::filtreArmoire(){
     }
 }
 
+void App::filtreGenre(){
+    QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
+    QString selectedGenre = ui->comboBoxChoixGenre->currentText();
+    QSqlQuery query(sqlitedb);
+    if (selectedGenre == "Tous") {
+        // Requête pour afficher tous les livres
+        query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire FROM livres");
+    } else {
+        // Requête pour filtrer les livres selon l'armoire sélectionnée
+        query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire FROM livres WHERE genre = :genre");
+        query.bindValue(":genre", selectedGenre);
+    }
+    if (!query.exec()) {
+        qDebug() << "Erreur lors de l'exécution de la requête:";
+        return;
+    }
+
+    // Vider le tableau avant d'ajouter les nouveaux résultats
+    ui->tableWidget->setRowCount(0);
+    int row = 0;
+    while (query.next()) {
+        ui->tableWidget->insertRow(row);
+
+        QTableWidgetItem *titre = new QTableWidgetItem(query.value("titre").toString());
+        QTableWidgetItem *auteur = new QTableWidgetItem(query.value("auteur").toString());
+        QTableWidgetItem *genre = new QTableWidgetItem(query.value("genre").toString());
+        QTableWidgetItem *maison_edition = new QTableWidgetItem(query.value("maison_edition").toString());
+        QTableWidgetItem *proprietes = new QTableWidgetItem(query.value("proprietes").toString());
+        QTableWidgetItem *quantite = new QTableWidgetItem(QString::number(query.value("quantite").toInt()));
+        QTableWidgetItem *armoire = new QTableWidgetItem(query.value("armoire").toString());
+
+        ui->tableWidget->setItem(row, 0, titre);
+        ui->tableWidget->setItem(row, 2, auteur);
+        ui->tableWidget->setItem(row, 1, genre);
+        ui->tableWidget->setItem(row, 3, maison_edition);
+        ui->tableWidget->setItem(row, 5, quantite);
+        ui->tableWidget->setItem(row, 4, proprietes);
+        ui->tableWidget->setItem(row, 6, armoire);
+
+
+        row++;
+    }
+}
+
 void App::handleAfficheParam(){
     Parametre *parametre = new Parametre(nullptr);
     connect(parametre, &Parametre::ajoutArmoir, this, &App::comboArmoireAfficher);
@@ -338,3 +392,5 @@ void App::comboArmoireAfficher() {
     }
 }
 
+
+//Gestion Membre

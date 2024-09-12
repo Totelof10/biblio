@@ -19,6 +19,8 @@ private slots:
     void handleAnnuler();
     void handleAjouterLivre();
     void clearForm();
+    void comboArmoireAfficher();
+    void comboGenreAfficher();
 
 signals:
     void ajoutLivre();

@@ -36,8 +36,9 @@ namespace {
 struct qt_meta_stringdata_CLASSAppENDCLASS_t {};
 constexpr auto qt_meta_stringdata_CLASSAppENDCLASS = QtMocHelpers::stringData(
     "App",
-    "handleAccueil",
+    "deconnexion",
     "",
+    "handleAccueil",
     "handleLivre",
     "handleMembre",
     "handleEmprunt",
@@ -49,6 +50,7 @@ constexpr auto qt_meta_stringdata_CLASSAppENDCLASS = QtMocHelpers::stringData(
     "afficherFormulaireModif",
     "rechercheDeLivre",
     "filtreArmoire",
+    "filtreGenre",
     "handleAfficheParam",
     "comboArmoireAfficher"
 );
@@ -63,7 +65,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAppENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      14,   14, // methods
+      16,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -71,22 +73,26 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAppENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   98,    2, 0x08,    1 /* Private */,
-       3,    0,   99,    2, 0x08,    2 /* Private */,
-       4,    0,  100,    2, 0x08,    3 /* Private */,
-       5,    0,  101,    2, 0x08,    4 /* Private */,
-       6,    0,  102,    2, 0x08,    5 /* Private */,
-       7,    0,  103,    2, 0x08,    6 /* Private */,
-       8,    0,  104,    2, 0x08,    7 /* Private */,
-       9,    0,  105,    2, 0x08,    8 /* Private */,
-      10,    0,  106,    2, 0x08,    9 /* Private */,
-      11,    0,  107,    2, 0x08,   10 /* Private */,
-      12,    0,  108,    2, 0x08,   11 /* Private */,
-      13,    0,  109,    2, 0x08,   12 /* Private */,
-      14,    0,  110,    2, 0x08,   13 /* Private */,
-      15,    0,  111,    2, 0x08,   14 /* Private */,
+       1,    0,  110,    2, 0x08,    1 /* Private */,
+       3,    0,  111,    2, 0x08,    2 /* Private */,
+       4,    0,  112,    2, 0x08,    3 /* Private */,
+       5,    0,  113,    2, 0x08,    4 /* Private */,
+       6,    0,  114,    2, 0x08,    5 /* Private */,
+       7,    0,  115,    2, 0x08,    6 /* Private */,
+       8,    0,  116,    2, 0x08,    7 /* Private */,
+       9,    0,  117,    2, 0x08,    8 /* Private */,
+      10,    0,  118,    2, 0x08,    9 /* Private */,
+      11,    0,  119,    2, 0x08,   10 /* Private */,
+      12,    0,  120,    2, 0x08,   11 /* Private */,
+      13,    0,  121,    2, 0x08,   12 /* Private */,
+      14,    0,  122,    2, 0x08,   13 /* Private */,
+      15,    0,  123,    2, 0x08,   14 /* Private */,
+      16,    0,  124,    2, 0x08,   15 /* Private */,
+      17,    0,  125,    2, 0x08,   16 /* Private */,
 
  // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -114,6 +120,8 @@ Q_CONSTINIT const QMetaObject App::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSAppENDCLASS_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<App, std::true_type>,
+        // method 'deconnexion'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'handleAccueil'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'handleLivre'
@@ -138,6 +146,8 @@ Q_CONSTINIT const QMetaObject App::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'filtreArmoire'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'filtreGenre'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'handleAfficheParam'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'comboArmoireAfficher'
@@ -152,20 +162,22 @@ void App::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **
         auto *_t = static_cast<App *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->handleAccueil(); break;
-        case 1: _t->handleLivre(); break;
-        case 2: _t->handleMembre(); break;
-        case 3: _t->handleEmprunt(); break;
-        case 4: _t->handleEtudiant(); break;
-        case 5: _t->handleAdulte(); break;
-        case 6: _t->handleAfficherAjoutLivreForm(); break;
-        case 7: _t->afficherLivreDansTableau(); break;
-        case 8: _t->supprimerLivre(); break;
-        case 9: _t->afficherFormulaireModif(); break;
-        case 10: _t->rechercheDeLivre(); break;
-        case 11: _t->filtreArmoire(); break;
-        case 12: _t->handleAfficheParam(); break;
-        case 13: _t->comboArmoireAfficher(); break;
+        case 0: _t->deconnexion(); break;
+        case 1: _t->handleAccueil(); break;
+        case 2: _t->handleLivre(); break;
+        case 3: _t->handleMembre(); break;
+        case 4: _t->handleEmprunt(); break;
+        case 5: _t->handleEtudiant(); break;
+        case 6: _t->handleAdulte(); break;
+        case 7: _t->handleAfficherAjoutLivreForm(); break;
+        case 8: _t->afficherLivreDansTableau(); break;
+        case 9: _t->supprimerLivre(); break;
+        case 10: _t->afficherFormulaireModif(); break;
+        case 11: _t->rechercheDeLivre(); break;
+        case 12: _t->filtreArmoire(); break;
+        case 13: _t->filtreGenre(); break;
+        case 14: _t->handleAfficheParam(); break;
+        case 15: _t->comboArmoireAfficher(); break;
         default: ;
         }
     }
@@ -191,13 +203,13 @@ int App::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 14)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 14;
+        _id -= 16;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 14)
+        if (_id < 16)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 14;
+        _id -= 16;
     }
     return _id;
 }

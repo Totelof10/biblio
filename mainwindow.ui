@@ -32,6 +32,19 @@
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
+      <property name="styleSheet">
+       <string notr="true">QLineEdit{
+	border: 1px solid grey;
+	border-radius: 4px;
+}
+QLineEdit:hover{
+	border: 2px solid #61677A;
+}
+QLineEdit:focus{
+	border: 2px solid #0078AA;
+}
+</string>
+      </property>
       <property name="currentIndex">
        <number>1</number>
       </property>
@@ -75,6 +88,11 @@
               <layout class="QVBoxLayout" name="verticalLayout">
                <item>
                 <widget class="QLabel" name="label">
+                 <property name="font">
+                  <font>
+                   <bold>true</bold>
+                  </font>
+                 </property>
                  <property name="text">
                   <string>Utilisateur :</string>
                  </property>
@@ -97,6 +115,11 @@
               <layout class="QVBoxLayout" name="verticalLayout_2">
                <item>
                 <widget class="QLabel" name="label_2">
+                 <property name="font">
+                  <font>
+                   <bold>true</bold>
+                  </font>
+                 </property>
                  <property name="text">
                   <string>Mot de passe :</string>
                  </property>
@@ -115,10 +138,10 @@
             <item>
              <widget class="QFrame" name="frame_4">
               <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
+               <cursorShape>ArrowCursor</cursorShape>
               </property>
               <property name="mouseTracking">
-               <bool>true</bool>
+               <bool>false</bool>
               </property>
               <property name="frameShape">
                <enum>QFrame::Shape::StyledPanel</enum>
@@ -127,8 +150,31 @@
                <enum>QFrame::Shadow::Raised</enum>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_3">
+               <property name="spacing">
+                <number>0</number>
+               </property>
                <item>
                 <widget class="QPushButton" name="btnConnexion">
+                 <property name="font">
+                  <font>
+                   <pointsize>10</pointsize>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+	border: 1px solid #21325E;
+	border-radius: 4px;
+}
+QPushButton:hover{
+	background-color: #21325E;
+	color:white;
+}
+</string>
+                 </property>
                  <property name="text">
                   <string>Se connecter</string>
                  </property>
@@ -148,6 +194,11 @@
               <layout class="QHBoxLayout" name="horizontalLayout_3">
                <item>
                 <widget class="QLabel" name="label_4">
+                 <property name="font">
+                  <font>
+                   <bold>true</bold>
+                  </font>
+                 </property>
                  <property name="text">
                   <string>Pas de compte?</string>
                  </property>
@@ -157,7 +208,7 @@
                 <widget class="QPushButton" name="btnInscription">
                  <property name="font">
                   <font>
-                   <bold>false</bold>
+                   <bold>true</bold>
                    <underline>true</underline>
                   </font>
                  </property>
@@ -245,6 +296,11 @@ color: blue;</string>
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
              <widget class="QLabel" name="label_5">
+              <property name="font">
+               <font>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="text">
                <string>Utilisateur :</string>
               </property>
@@ -267,6 +323,11 @@ color: blue;</string>
            <layout class="QVBoxLayout" name="verticalLayout_7">
             <item>
              <widget class="QLabel" name="label_6">
+              <property name="font">
+               <font>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="text">
                <string>Mot de passe :</string>
               </property>
@@ -293,8 +354,13 @@ color: blue;</string>
            <layout class="QVBoxLayout" name="verticalLayout_9">
             <item>
              <widget class="QLabel" name="label_9">
+              <property name="font">
+               <font>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="text">
-               <string>Mot de passe :</string>
+               <string>Confirmer votre mot de passe :</string>
               </property>
              </widget>
             </item>
@@ -319,11 +385,27 @@ color: blue;</string>
            <layout class="QVBoxLayout" name="verticalLayout_8">
             <item>
              <widget class="QPushButton" name="btnInscription_2">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="mouseTracking">
                <bool>true</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+	border: 1px solid #21325E;
+	border-radius: 4px;
+}
+QPushButton:hover{
+	background-color: #21325E;
+	color:white;
+}</string>
               </property>
               <property name="text">
                <string>S'inscrire</string>
@@ -344,6 +426,11 @@ color: blue;</string>
            <layout class="QHBoxLayout" name="horizontalLayout_5">
             <item>
              <widget class="QLabel" name="label_7">
+              <property name="font">
+               <font>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="text">
                <string>Déja inscrit?</string>
               </property>
@@ -353,6 +440,7 @@ color: blue;</string>
              <widget class="QPushButton" name="btnConnexion_2">
               <property name="font">
                <font>
+                <bold>true</bold>
                 <underline>true</underline>
                </font>
               </property>

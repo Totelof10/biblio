@@ -312,6 +312,12 @@
 			null
 		],
 		[
+			"C:/Users/rtoha/Documents/biblio/deconnexion.h",
+			"MU",
+			"EWIEGA46WW/moc_deconnexion.cpp",
+			null
+		],
+		[
 			"C:/Users/rtoha/Documents/biblio/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
@@ -407,6 +413,7 @@
 		[ "C:/Users/rtoha/Documents/biblio/app.cpp", "MU", null ],
 		[ "C:/Users/rtoha/Documents/biblio/custommessagebox.cpp", "MU", null ],
 		[ "C:/Users/rtoha/Documents/biblio/databasemanager.cpp", "MU", null ],
+		[ "C:/Users/rtoha/Documents/biblio/deconnexion.cpp", "MU", null ],
 		[ "C:/Users/rtoha/Documents/biblio/main.cpp", "MU", null ],
 		[ "C:/Users/rtoha/Documents/biblio/mainwindow.cpp", "MU", null ],
 		[ "C:/Users/rtoha/Documents/biblio/modifierlivreform.cpp", "MU", null ],

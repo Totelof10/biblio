@@ -20,6 +20,9 @@ public:
                           const QString &maisonEdition, const QString &proprietes, int quantite, const QString &armoire);
 
 private slots:
+    //Auth
+    void deconnexion();
+    //Gestion Livres
     void handleAccueil();
     void handleLivre();
     void handleMembre();
@@ -32,8 +35,11 @@ private slots:
     void afficherFormulaireModif();
     void rechercheDeLivre();
     void filtreArmoire();
+    void filtreGenre();
     void handleAfficheParam();
     void comboArmoireAfficher();
+
+    //Gestion Membre
 private:
     Ui::App *ui;
 };

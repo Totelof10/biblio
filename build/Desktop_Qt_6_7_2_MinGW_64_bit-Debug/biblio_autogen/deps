@@ -559,6 +559,8 @@ biblio_autogen/timestamp: \
 	C:/Users/rtoha/Documents/biblio/custommessagebox.h \
 	C:/Users/rtoha/Documents/biblio/databasemanager.cpp \
 	C:/Users/rtoha/Documents/biblio/databasemanager.h \
+	C:/Users/rtoha/Documents/biblio/deconnexion.cpp \
+	C:/Users/rtoha/Documents/biblio/deconnexion.h \
 	C:/Users/rtoha/Documents/biblio/img.qrc \
 	C:/Users/rtoha/Documents/biblio/main.cpp \
 	C:/Users/rtoha/Documents/biblio/mainwindow.cpp \
@@ -569,6 +571,7 @@ biblio_autogen/timestamp: \
 	C:/Users/rtoha/Documents/biblio/parametre.h \
 	C:/Users/rtoha/Documents/biblio/ajoutlivreform.ui \
 	C:/Users/rtoha/Documents/biblio/app.ui \
+	C:/Users/rtoha/Documents/biblio/deconnexion.ui \
 	C:/Users/rtoha/Documents/biblio/mainwindow.ui \
 	C:/Users/rtoha/Documents/biblio/modifierlivreform.ui \
 	C:/Users/rtoha/Documents/biblio/parametre.ui \

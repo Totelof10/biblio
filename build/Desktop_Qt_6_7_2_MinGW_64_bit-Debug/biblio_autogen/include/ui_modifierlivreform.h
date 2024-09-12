@@ -42,7 +42,6 @@ public:
     QLabel *label_3;
     QLineEdit *lineEditTitre;
     QLabel *label_2;
-    QLineEdit *lineEditGenre;
     QLabel *label_4;
     QLineEdit *lineEditAuteur;
     QLabel *label_5;
@@ -51,6 +50,7 @@ public:
     QSpinBox *spinBoxQuantite;
     QComboBox *comboBoxArmoire;
     QTextEdit *textEditPropriete;
+    QComboBox *comboBoxGenre;
     QFrame *frame_3;
     QHBoxLayout *horizontalLayout;
     QPushButton *btnEnregistrer;
@@ -116,11 +116,6 @@ public:
 
         formLayout->setWidget(1, QFormLayout::LabelRole, label_2);
 
-        lineEditGenre = new QLineEdit(frame);
-        lineEditGenre->setObjectName("lineEditGenre");
-
-        formLayout->setWidget(1, QFormLayout::FieldRole, lineEditGenre);
-
         label_4 = new QLabel(frame);
         label_4->setObjectName("label_4");
 
@@ -152,10 +147,6 @@ public:
         formLayout->setWidget(7, QFormLayout::FieldRole, spinBoxQuantite);
 
         comboBoxArmoire = new QComboBox(frame);
-        comboBoxArmoire->addItem(QString());
-        comboBoxArmoire->addItem(QString());
-        comboBoxArmoire->addItem(QString());
-        comboBoxArmoire->addItem(QString());
         comboBoxArmoire->setObjectName("comboBoxArmoire");
 
         formLayout->setWidget(8, QFormLayout::FieldRole, comboBoxArmoire);
@@ -164,6 +155,11 @@ public:
         textEditPropriete->setObjectName("textEditPropriete");
 
         formLayout->setWidget(4, QFormLayout::FieldRole, textEditPropriete);
+
+        comboBoxGenre = new QComboBox(frame);
+        comboBoxGenre->setObjectName("comboBoxGenre");
+
+        formLayout->setWidget(1, QFormLayout::FieldRole, comboBoxGenre);
 
 
         verticalLayout->addWidget(frame);
@@ -230,13 +226,8 @@ public:
         label_4->setText(QCoreApplication::translate("ModifierLivreForm", "Auteur", nullptr));
         label_5->setText(QCoreApplication::translate("ModifierLivreForm", "Maison d'\303\251dition", nullptr));
         label_7->setText(QCoreApplication::translate("ModifierLivreForm", "Propri\303\251t\303\251s", nullptr));
-        comboBoxArmoire->setItemText(0, QCoreApplication::translate("ModifierLivreForm", "A", nullptr));
-        comboBoxArmoire->setItemText(1, QCoreApplication::translate("ModifierLivreForm", "B", nullptr));
-        comboBoxArmoire->setItemText(2, QCoreApplication::translate("ModifierLivreForm", "C", nullptr));
-        comboBoxArmoire->setItemText(3, QCoreApplication::translate("ModifierLivreForm", "D", nullptr));
-
         btnEnregistrer->setText(QCoreApplication::translate("ModifierLivreForm", "Enregistrer", nullptr));
-        btnAnnuler->setText(QCoreApplication::translate("ModifierLivreForm", "Annuler", nullptr));
+        btnAnnuler->setText(QCoreApplication::translate("ModifierLivreForm", "Fermer", nullptr));
     } // retranslateUi
 
 };

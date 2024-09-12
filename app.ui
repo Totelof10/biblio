@@ -283,8 +283,43 @@ QLineEdit:focus{
           <enum>QFrame::Shadow::Raised</enum>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
           <item>
            <widget class="QPushButton" name="btnAjouterLivre">
+            <property name="font">
+             <font>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	border: 1px solid white;
+	border-radius: 7px;
+	background-color: #16423C;
+	color:white;
+	padding: 7px;
+}
+QPushButton:hover{
+	background-color: #6A9C89;
+}</string>
+            </property>
             <property name="text">
              <string>Nouveau</string>
             </property>
@@ -292,6 +327,30 @@ QLineEdit:focus{
           </item>
           <item>
            <widget class="QPushButton" name="btnModifierLivre">
+            <property name="font">
+             <font>
+              <bold>true</bold>
+              <underline>false</underline>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="mouseTracking">
+             <bool>true</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	border: 1px solid white;
+	border-radius: 7px;
+	background-color: #FFA823;
+	color:white;
+	padding: 7px;
+}
+QPushButton:hover{
+	background-color: #FFD35A;
+}</string>
+            </property>
             <property name="text">
              <string>Modifier</string>
             </property>
@@ -299,6 +358,26 @@ QLineEdit:focus{
           </item>
           <item>
            <widget class="QPushButton" name="btnSupprimerLivre">
+            <property name="font">
+             <font>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	border: 1px solid white;
+	border-radius: 7px;
+	background-color: #821131;
+	color:white;
+	padding: 7px;
+}
+QPushButton:hover{
+	background-color: #C7253E;
+}</string>
+            </property>
             <property name="text">
              <string>Supprimer</string>
             </property>

@@ -8,6 +8,8 @@ AjoutLivreForm::AjoutLivreForm(QWidget *parent)
     , ui(new Ui::AjoutLivreForm)
 {
     ui->setupUi(this);
+    comboArmoireAfficher();
+    comboGenreAfficher();
     this->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::FramelessWindowHint);
     connect(ui->btnAnnuler, &QPushButton::clicked, this, &AjoutLivreForm::handleAnnuler);
     connect(ui->btnAjouter, &QPushButton::clicked, this, &AjoutLivreForm::handleAjouterLivre);
@@ -28,7 +30,7 @@ void AjoutLivreForm::handleAjouterLivre(){
 
     // Vérifier que les champs obligatoires ne sont pas vides
     QString titre = ui->lineEditTitre->text();
-    QString genre = ui->lineEditGenre->text();
+    QString genre = ui->comboBoxGenre->currentText();
     QString auteur = ui->lineEditAuteur->text();
     if (titre.isEmpty() || genre.isEmpty() || auteur.isEmpty()) {
         msgBox.showError("Erreur", "Veuillez remplir tous les champs obligatoires.");
@@ -72,10 +74,81 @@ void AjoutLivreForm::handleAjouterLivre(){
 
 void AjoutLivreForm::clearForm(){
     ui->lineEditTitre->clear();        // Vide le champ Titre
-    ui->lineEditGenre->clear();
+    ui->comboBoxGenre->setCurrentIndex(0);
     ui->lineEditAuteur->clear();       // Vide le champ Auteur
     ui->lineEditMaisonEdition->clear();       // Vide le champ Maison d'édition
     ui->textEditPropriete->clear();   // Vide le champ Propriétés
     ui->spinBoxQuantite->setValue(0);  // Réinitialise la Quantité à 0
     ui->comboBoxArmoire->setCurrentIndex(0);
+}
+
+void AjoutLivreForm::comboArmoireAfficher() {
+    CustomMessageBox msgBox;
+    QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
+
+    // Vérifier l'ouverture de la base de données
+    if (!sqlitedb.open()) {
+        msgBox.showError("Erreur", "Impossible d'ouvrir la base de données.");
+        return;
+    }
+
+    QSqlQuery query(sqlitedb);
+    query.exec("SELECT armoire FROM armoires");
+
+    // Obtenir la référence au QComboBox
+    QComboBox *comboBoxArmoire = ui->comboBoxArmoire;
+    comboBoxArmoire->clear();  // Vider le QComboBox avant d'ajouter de nouveaux éléments
+
+    // Exécuter la requête
+    if (!query.exec()) {
+        msgBox.showError("Erreur", "Erreur lors de l'exécution de la requête");
+        return;
+    }
+    comboBoxArmoire->addItem("");
+
+    // Parcourir les résultats et ajouter chaque armoire au QComboBox
+    while (query.next()) {
+        QString armoire = query.value("armoire").toString();
+        qDebug() << "Ajout de l'armoire:" << armoire;  // Afficher chaque armoire pour déboguer
+        comboBoxArmoire->addItem(armoire);
+    }
+
+    qDebug() << "Liste des armoires mise à jour avec succès.";
+}
+
+void AjoutLivreForm::comboGenreAfficher(){
+        CustomMessageBox msgBox;
+        QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
+
+        // Vérifier l'ouverture de la base de données
+        if (!sqlitedb.open()) {
+            msgBox.showError("Erreur", "Impossible d'ouvrir la base de données.");
+            return;
+        }
+
+        QSqlQuery query(sqlitedb);
+        query.prepare("SELECT genre FROM genres");
+
+        // Obtenir la référence au QComboBox
+        QComboBox *comboBoxArmoire = ui->comboBoxGenre;
+        comboBoxArmoire->clear();  // Vider le QComboBox avant d'ajouter de nouveaux éléments
+
+        // Ajouter une option "Tous" pour afficher tous les livres
+        comboBoxArmoire->addItem("");
+        // Exécuter la requête
+        if (!query.exec()) {
+            msgBox.showError("Erreur", "Erreur lors de l'exécution de la requête");
+            return;
+        }
+
+        // Parcourir les résultats et ajouter chaque armoire au QComboBox
+        while (query.next()) {
+            QString genre = query.value("genre").toString();
+            qDebug() << "Ajout de l'armoire:" << genre;  // Afficher chaque armoire pour déboguer
+            comboBoxArmoire->addItem(genre);
+        }
+
+        qDebug() << "Liste des armoires mise à jour avec succès.";
+
+
 }

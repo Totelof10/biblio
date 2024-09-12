@@ -20,7 +20,9 @@ public:
     QString ancienTitre;
  private slots:
     void modifierLivre();
-     void annulerModif();
+    void annulerModif();
+    void comboArmoireAfficher();
+    void comboGenreAfficher();
 
  signals:
     void modifieLivre(const QString &titre, const QString &genre, const QString &auteur,

@@ -121,6 +121,14 @@ build CMakeFiles/biblio.dir/parametre.cpp.obj: CXX_COMPILER__biblio_unscanned_De
   OBJECT_DIR = CMakeFiles\biblio.dir
   OBJECT_FILE_DIR = CMakeFiles\biblio.dir
 
+build CMakeFiles/biblio.dir/deconnexion.cpp.obj: CXX_COMPILER__biblio_unscanned_Debug C$:/Users/rtoha/Documents/biblio/deconnexion.cpp || cmake_object_order_depends_target_biblio
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\biblio.dir\deconnexion.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/rtoha/Documents/biblio/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/biblio_autogen/include -isystem C:/Qt/6.7.2/mingw_64/include/QtCore -isystem C:/Qt/6.7.2/mingw_64/include -isystem C:/Qt/6.7.2/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.7.2/mingw_64/include/QtWidgets -isystem C:/Qt/6.7.2/mingw_64/include/QtGui -isystem C:/Qt/6.7.2/mingw_64/include/QtSql
+  OBJECT_DIR = CMakeFiles\biblio.dir
+  OBJECT_FILE_DIR = CMakeFiles\biblio.dir
+
 build CMakeFiles/biblio.dir/biblio_autogen/EWIEGA46WW/qrc_img.cpp.obj: CXX_COMPILER__biblio_unscanned_Debug C$:/Users/rtoha/Documents/biblio/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/biblio_autogen/EWIEGA46WW/qrc_img.cpp || cmake_object_order_depends_target_biblio
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   DEP_FILE = CMakeFiles\biblio.dir\biblio_autogen\EWIEGA46WW\qrc_img.cpp.obj.d
@@ -137,7 +145,7 @@ build CMakeFiles/biblio.dir/biblio_autogen/EWIEGA46WW/qrc_img.cpp.obj: CXX_COMPI
 #############################################
 # Link the executable biblio.exe
 
-build biblio.exe: CXX_EXECUTABLE_LINKER__biblio_Debug CMakeFiles/biblio.dir/biblio_autogen/mocs_compilation.cpp.obj CMakeFiles/biblio.dir/main.cpp.obj CMakeFiles/biblio.dir/mainwindow.cpp.obj CMakeFiles/biblio.dir/app.cpp.obj CMakeFiles/biblio.dir/custommessagebox.cpp.obj CMakeFiles/biblio.dir/databasemanager.cpp.obj CMakeFiles/biblio.dir/ajoutlivreform.cpp.obj CMakeFiles/biblio.dir/modifierlivreform.cpp.obj CMakeFiles/biblio.dir/parametre.cpp.obj CMakeFiles/biblio.dir/biblio_autogen/EWIEGA46WW/qrc_img.cpp.obj | C$:/Qt/6.7.2/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.7.2/mingw_64/lib/libQt6Sql.a C$:/Qt/6.7.2/mingw_64/lib/libQt6Gui.a C$:/Qt/6.7.2/mingw_64/lib/libQt6Core.a C$:/Qt/6.7.2/mingw_64/lib/libQt6EntryPoint.a || biblio_autogen biblio_autogen_timestamp_deps
+build biblio.exe: CXX_EXECUTABLE_LINKER__biblio_Debug CMakeFiles/biblio.dir/biblio_autogen/mocs_compilation.cpp.obj CMakeFiles/biblio.dir/main.cpp.obj CMakeFiles/biblio.dir/mainwindow.cpp.obj CMakeFiles/biblio.dir/app.cpp.obj CMakeFiles/biblio.dir/custommessagebox.cpp.obj CMakeFiles/biblio.dir/databasemanager.cpp.obj CMakeFiles/biblio.dir/ajoutlivreform.cpp.obj CMakeFiles/biblio.dir/modifierlivreform.cpp.obj CMakeFiles/biblio.dir/parametre.cpp.obj CMakeFiles/biblio.dir/deconnexion.cpp.obj CMakeFiles/biblio.dir/biblio_autogen/EWIEGA46WW/qrc_img.cpp.obj | C$:/Qt/6.7.2/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.7.2/mingw_64/lib/libQt6Sql.a C$:/Qt/6.7.2/mingw_64/lib/libQt6Gui.a C$:/Qt/6.7.2/mingw_64/lib/libQt6Core.a C$:/Qt/6.7.2/mingw_64/lib/libQt6EntryPoint.a || biblio_autogen biblio_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = C:/Qt/6.7.2/mingw_64/lib/libQt6Widgets.a  C:/Qt/6.7.2/mingw_64/lib/libQt6Sql.a  C:/Qt/6.7.2/mingw_64/lib/libQt6Gui.a  -ld3d11  -ldxgi  -ldxguid  -ld3d12  C:/Qt/6.7.2/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lmingw32  C:/Qt/6.7.2/mingw_64/lib/libQt6EntryPoint.a  -lshell32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
@@ -224,7 +232,7 @@ build biblio_autogen_timestamp_deps: phony
 #############################################
 # Utility command for biblio_autogen
 
-build biblio_autogen: phony CMakeFiles/biblio_autogen biblio_autogen/include/ui_mainwindow.h biblio_autogen/include/ui_app.h biblio_autogen/include/ui_ajoutlivreform.h biblio_autogen/include/ui_modifierlivreform.h biblio_autogen/include/ui_parametre.h biblio_autogen/timestamp biblio_autogen/mocs_compilation.cpp biblio_autogen_timestamp_deps
+build biblio_autogen: phony CMakeFiles/biblio_autogen biblio_autogen/include/ui_mainwindow.h biblio_autogen/include/ui_app.h biblio_autogen/include/ui_ajoutlivreform.h biblio_autogen/include/ui_modifierlivreform.h biblio_autogen/include/ui_parametre.h biblio_autogen/include/ui_deconnexion.h biblio_autogen/timestamp biblio_autogen/mocs_compilation.cpp biblio_autogen_timestamp_deps
 
 
 #############################################
@@ -250,7 +258,7 @@ build biblio_autogen/EWIEGA46WW/qrc_img.cpp | ${cmake_ninja_workdir}biblio_autog
 #############################################
 # Phony custom command for CMakeFiles\biblio_autogen
 
-build CMakeFiles/biblio_autogen biblio_autogen/include/ui_mainwindow.h biblio_autogen/include/ui_app.h biblio_autogen/include/ui_ajoutlivreform.h biblio_autogen/include/ui_modifierlivreform.h biblio_autogen/include/ui_parametre.h | ${cmake_ninja_workdir}CMakeFiles/biblio_autogen ${cmake_ninja_workdir}biblio_autogen/include/ui_mainwindow.h ${cmake_ninja_workdir}biblio_autogen/include/ui_app.h ${cmake_ninja_workdir}biblio_autogen/include/ui_ajoutlivreform.h ${cmake_ninja_workdir}biblio_autogen/include/ui_modifierlivreform.h ${cmake_ninja_workdir}biblio_autogen/include/ui_parametre.h: phony biblio_autogen/timestamp || biblio_autogen_timestamp_deps
+build CMakeFiles/biblio_autogen biblio_autogen/include/ui_mainwindow.h biblio_autogen/include/ui_app.h biblio_autogen/include/ui_ajoutlivreform.h biblio_autogen/include/ui_modifierlivreform.h biblio_autogen/include/ui_parametre.h biblio_autogen/include/ui_deconnexion.h | ${cmake_ninja_workdir}CMakeFiles/biblio_autogen ${cmake_ninja_workdir}biblio_autogen/include/ui_mainwindow.h ${cmake_ninja_workdir}biblio_autogen/include/ui_app.h ${cmake_ninja_workdir}biblio_autogen/include/ui_ajoutlivreform.h ${cmake_ninja_workdir}biblio_autogen/include/ui_modifierlivreform.h ${cmake_ninja_workdir}biblio_autogen/include/ui_parametre.h ${cmake_ninja_workdir}biblio_autogen/include/ui_deconnexion.h: phony biblio_autogen/timestamp || biblio_autogen_timestamp_deps
 
 # =============================================================================
 # Target aliases.
