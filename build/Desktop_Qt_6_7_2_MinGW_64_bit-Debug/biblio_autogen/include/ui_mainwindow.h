@@ -182,10 +182,10 @@ public:
 "	border: 1px solid #21325E;\n"
 "	border-radius: 4px;\n"
 "}\n"
-"QPushButton:hover{\n"
+"/*QPushButton:hover{\n"
 "	background-color: #21325E;\n"
 "	color:white;\n"
-"}\n"
+"}*/\n"
 ""));
 
         verticalLayout_3->addWidget(btnConnexion);
@@ -316,6 +316,7 @@ public:
         btnInscription_2->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         btnInscription_2->setMouseTracking(true);
         btnInscription_2->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	alternate-background-color: rgb(33, 50, 94);\n"
 "	border: 1px solid #21325E;\n"
 "	border-radius: 4px;\n"
 "}\n"
@@ -386,7 +387,13 @@ public:
         label_3->setText(QString());
         label_8->setText(QString());
         label_5->setText(QCoreApplication::translate("MainWindow", "Utilisateur :", nullptr));
+#if QT_CONFIG(tooltip)
+        lineEditAddUser->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>Ajouter le nom d'utilisateur</p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
         label_6->setText(QCoreApplication::translate("MainWindow", "Mot de passe :", nullptr));
+#if QT_CONFIG(tooltip)
+        lineEditAddMdp->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>Minimum 5 caract\303\250re</p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
         label_9->setText(QCoreApplication::translate("MainWindow", "Confirmer votre mot de passe :", nullptr));
         btnInscription_2->setText(QCoreApplication::translate("MainWindow", "S'inscrire", nullptr));
         label_7->setText(QCoreApplication::translate("MainWindow", "D\303\251ja inscrit?", nullptr));

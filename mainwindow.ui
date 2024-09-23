@@ -169,10 +169,10 @@ QLineEdit:focus{
 	border: 1px solid #21325E;
 	border-radius: 4px;
 }
-QPushButton:hover{
+/*QPushButton:hover{
 	background-color: #21325E;
 	color:white;
-}
+}*/
 </string>
                  </property>
                  <property name="text">
@@ -307,7 +307,11 @@ color: blue;</string>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEditAddUser"/>
+             <widget class="QLineEdit" name="lineEditAddUser">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ajouter le nom d'utilisateur&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -335,6 +339,9 @@ color: blue;</string>
             </item>
             <item>
              <widget class="QLineEdit" name="lineEditAddMdp">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum 5 caractère&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="echoMode">
                <enum>QLineEdit::EchoMode::Password</enum>
               </property>
@@ -399,6 +406,7 @@ color: blue;</string>
               </property>
               <property name="styleSheet">
                <string notr="true">QPushButton{
+	alternate-background-color: rgb(33, 50, 94);
 	border: 1px solid #21325E;
 	border-radius: 4px;
 }

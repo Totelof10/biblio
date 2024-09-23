@@ -12,17 +12,16 @@ App::App(QWidget *parent)
     , ui(new Ui::App)
 {
     ui->setupUi(this);
-    afficherLivreDansTableau();
+
     comboArmoireAfficher();
+    afficherLivreDansTableau();
+    afficherMembreDansTableau();
     ui->stackedWidget->setCurrentWidget(ui->pageAccueil);
-    ui->stackedWidget_2->setCurrentWidget(ui->pageEtudiant);
     connect(ui->btnDeconnexion, &QPushButton::clicked, this, &App::deconnexion);
     connect(ui->btnAccueil, &QPushButton::clicked, this, &App::handleAccueil);
     connect(ui->btnLivre, &QPushButton::clicked, this, &App::handleLivre);
     connect(ui->btnMembre, &QPushButton::clicked, this, &App::handleMembre);
     connect(ui->btnEmprunt, &QPushButton::clicked, this, &App::handleEmprunt);
-    connect(ui->btnMembreEtudiant, &QPushButton::clicked, this, &App::handleEtudiant);
-    connect(ui->btnMembreAdulte, &QPushButton::clicked, this, &App::handleAdulte);
     connect(ui->btnAjouterLivre, &QPushButton::clicked, this, &App::handleAfficherAjoutLivreForm);
     connect(ui->btnSupprimerLivre, &QPushButton::clicked, this, &App::supprimerLivre);
     connect(ui->btnModifierLivre, &QPushButton::clicked, this, &App::afficherFormulaireModif);
@@ -31,6 +30,9 @@ App::App(QWidget *parent)
     connect(ui->comboBoxChoixArmoir, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &App::filtreArmoire);
     connect(ui->btnParametre, &QPushButton::clicked, this, &App::handleAfficheParam);
     connect(ui->comboBoxChoixGenre, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &App::filtreGenre);
+
+    //Gestion Membre
+    connect(ui->btnEnregistrerMembre, &QPushButton::clicked, this, &App::enregistrerMembre);
 
 }
 
@@ -60,14 +62,6 @@ void App::handleMembre(){
 
 void App::handleEmprunt(){
     ui->stackedWidget->setCurrentWidget(ui->pageEmprunt);
-}
-
-void App::handleEtudiant(){
-    ui->stackedWidget_2->setCurrentWidget(ui->pageEtudiant);
-}
-
-void App::handleAdulte(){
-    ui->stackedWidget_2->setCurrentWidget(ui->pageAdulte);
 }
 
 void App::handleAfficherAjoutLivreForm(){
@@ -392,5 +386,78 @@ void App::comboArmoireAfficher() {
     }
 }
 
-
 //Gestion Membre
+void App::enregistrerMembre(){
+    CustomMessageBox msgBox;
+    QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
+    QString nom = ui->lineEditNom->text();
+    QString prenoms = ui->lineEditPrenoms->text();
+    QString statut = ui->radioAdulte->isChecked()? "Adulte":"Enfant";
+    QString sexe = ui->radioSexeHomme->isChecked()?"Homme":"Femme";
+    QString debut = ui->dateTimeEditDebut->dateTime().toString("dd-MM-yyyy");
+    QString fin = ui->dateTimeEditFin->dateTime().toString("dd-MM-yyyy");
+
+    QSqlQuery query(sqlitedb);
+    query.prepare("INSERT INTO membres (nom, prenoms, statut, sexe, debut, fin) VALUES(:nom, :prenoms, :statut, :sexe, :debut, :fin)");
+    query.bindValue(":nom", nom);
+    query.bindValue(":prenoms", prenoms);
+    query.bindValue(":statut", statut);
+    query.bindValue(":sexe", sexe);
+    query.bindValue(":debut", debut);
+    query.bindValue(":fin", fin);
+
+    if(!query.exec()){
+        msgBox.showError("Erreur", "Erreur lors de l'ajout du membre");
+        qDebug() <<query.lastError();
+    }else{
+        msgBox.showInformation("Succes", "Ajout réussi!!");
+        qDebug() <<"okk";
+    }
+    emit ajoutMemebre();
+    afficherMembreDansTableau();
+}
+
+void App::afficherMembreDansTableau(){
+    CustomMessageBox msgBox;
+
+    // Récupère la base de données via DatabaseManager
+    QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
+    if (!sqlitedb.open()) {
+        msgBox.showError("Erreur", "Impossible d'ouvrir la base de données.");
+        return;
+    }
+
+    // Préparation et exécution de la requête SQL
+    QSqlQuery query(sqlitedb);
+    if (!query.exec("SELECT nom, prenoms, statut, sexe, debut, fin FROM membres")) {
+        msgBox.showError("Erreur", "Échec de l'exécution de la requête.");
+        return;
+    }
+
+    // Vider le QTableWidget avant d'insérer les nouvelles données
+    ui->tableWidget_2->setRowCount(0);
+
+    // Insertion des données dans le QTableWidget
+    int row = 0;
+    while (query.next()) {
+        ui->tableWidget_2->insertRow(row);
+
+        // Récupération des données (sans l'ID)
+        QString nom = query.value(0).toString();
+        QString prenoms = query.value(1).toString();
+        QString statut = query.value(2).toString();
+        QString sexe = query.value(3).toString();
+        QString debut = query.value(4).toString();
+        QString fin = query.value(5).toString();
+
+        // Insertion des données dans le QTableWidget sans l'ID
+        ui->tableWidget_2->setItem(row, 0, new QTableWidgetItem(nom));
+        ui->tableWidget_2->setItem(row, 1, new QTableWidgetItem(prenoms));
+        ui->tableWidget_2->setItem(row, 2, new QTableWidgetItem(statut));
+        ui->tableWidget_2->setItem(row, 3, new QTableWidgetItem(sexe));
+        ui->tableWidget_2->setItem(row, 4, new QTableWidgetItem(debut));
+        ui->tableWidget_2->setItem(row, 5, new QTableWidgetItem(fin));
+
+        row++;
+    }
+}

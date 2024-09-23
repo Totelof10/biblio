@@ -3,6 +3,7 @@
 #include "EWIEGA46WW/moc_app.cpp"
 #include "EWIEGA46WW/moc_custommessagebox.cpp"
 #include "EWIEGA46WW/moc_deconnexion.cpp"
+#include "EWIEGA46WW/moc_hoverbutton.cpp"
 #include "EWIEGA46WW/moc_mainwindow.cpp"
 #include "EWIEGA46WW/moc_modifierlivreform.cpp"
 #include "EWIEGA46WW/moc_parametre.cpp"

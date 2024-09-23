@@ -86,6 +86,10 @@ void MainWindow::handleInscriptionButton()
         msgBox.showError("Erreur", "Impossible d'ouvrir la base de données");
         return;
     }
+    if(username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()){
+        msgBox.showWarning("Erreur", "Veuillez remplir le formulaire");
+        return;
+    }
 
     if (password != confirmPassword) {
         msgBox.showWarning("Erreur", "Veuillez insérer des mots de passe identiques");

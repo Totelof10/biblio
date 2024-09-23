@@ -2,6 +2,8 @@
 #define APP_H
 
 #include <QWidget>
+#include <QSqlError>
+
 
 namespace Ui {
 class App;
@@ -27,8 +29,6 @@ private slots:
     void handleLivre();
     void handleMembre();
     void handleEmprunt();
-    void handleEtudiant();
-    void handleAdulte();
     void handleAfficherAjoutLivreForm();
     void afficherLivreDansTableau();
     void supprimerLivre();
@@ -38,8 +38,12 @@ private slots:
     void filtreGenre();
     void handleAfficheParam();
     void comboArmoireAfficher();
-
     //Gestion Membre
+    void enregistrerMembre();
+    void afficherMembreDansTableau();
+
+signals:
+    void ajoutMemebre();
 private:
     Ui::App *ui;
 };

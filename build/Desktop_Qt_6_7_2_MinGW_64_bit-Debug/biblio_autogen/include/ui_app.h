@@ -12,13 +12,17 @@
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCalendarWidget>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QDateTimeEdit>
+#include <QtWidgets/QFormLayout>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTableWidget>
@@ -39,6 +43,16 @@ public:
     QPushButton *btnEmprunt;
     QStackedWidget *stackedWidget;
     QWidget *pageAccueil;
+    QVBoxLayout *verticalLayout_6;
+    QFrame *frame_9;
+    QVBoxLayout *verticalLayout_7;
+    QLabel *label_3;
+    QCalendarWidget *calendarWidget;
+    QFrame *frame_10;
+    QHBoxLayout *horizontalLayout_9;
+    QPushButton *pushButton;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton_3;
     QWidget *pageLivre;
     QVBoxLayout *verticalLayout_2;
     QFrame *frame_7;
@@ -59,30 +73,32 @@ public:
     QPushButton *btnSupprimerLivre;
     QSpacerItem *horizontalSpacer;
     QWidget *pageMembre;
-    QVBoxLayout *verticalLayout_3;
-    QFrame *frame_5;
-    QHBoxLayout *horizontalLayout_5;
-    QPushButton *btnMembreEtudiant;
-    QPushButton *btnMembreAdulte;
-    QStackedWidget *stackedWidget_2;
-    QWidget *pageEtudiant;
-    QVBoxLayout *verticalLayout_4;
-    QTableWidget *tableWidget_2;
-    QFrame *frame_4;
     QHBoxLayout *horizontalLayout_4;
-    QPushButton *btnAjouterEtudiant;
-    QPushButton *btnModifierEtudiant;
-    QPushButton *btnSupprimerEtudiant;
-    QSpacerItem *horizontalSpacer_3;
-    QWidget *pageAdulte;
-    QVBoxLayout *verticalLayout_5;
-    QTableWidget *tableWidget_3;
-    QFrame *frame_6;
+    QFrame *frame_4;
+    QFormLayout *formLayout;
+    QLabel *label_4;
+    QLineEdit *lineEditNom;
+    QLabel *label_5;
+    QLineEdit *lineEditPrenoms;
+    QLabel *label_6;
+    QFrame *frame_11;
     QHBoxLayout *horizontalLayout_6;
-    QPushButton *btnAjouterAdulte;
-    QPushButton *btnModifierAdulte;
-    QPushButton *btnSupprimerAdulte;
-    QSpacerItem *horizontalSpacer_4;
+    QRadioButton *radioAdulte;
+    QRadioButton *radioEnfant;
+    QLabel *label_8;
+    QFrame *frame_6;
+    QHBoxLayout *horizontalLayout_5;
+    QRadioButton *radioSexeHomme;
+    QRadioButton *radioSexeFemme;
+    QLabel *label_9;
+    QDateTimeEdit *dateTimeEditDebut;
+    QLabel *label_10;
+    QDateTimeEdit *dateTimeEditFin;
+    QLabel *label_7;
+    QPushButton *btnEnregistrerMembre;
+    QFrame *frame_5;
+    QVBoxLayout *verticalLayout_3;
+    QTableWidget *tableWidget_2;
     QWidget *pageEmprunt;
     QFrame *frame_3;
     QHBoxLayout *horizontalLayout_3;
@@ -158,6 +174,52 @@ public:
         stackedWidget->setObjectName("stackedWidget");
         pageAccueil = new QWidget();
         pageAccueil->setObjectName("pageAccueil");
+        verticalLayout_6 = new QVBoxLayout(pageAccueil);
+        verticalLayout_6->setObjectName("verticalLayout_6");
+        frame_9 = new QFrame(pageAccueil);
+        frame_9->setObjectName("frame_9");
+        frame_9->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_9->setFrameShadow(QFrame::Shadow::Raised);
+        verticalLayout_7 = new QVBoxLayout(frame_9);
+        verticalLayout_7->setObjectName("verticalLayout_7");
+        label_3 = new QLabel(frame_9);
+        label_3->setObjectName("label_3");
+        label_3->setFont(font);
+
+        verticalLayout_7->addWidget(label_3);
+
+
+        verticalLayout_6->addWidget(frame_9);
+
+        calendarWidget = new QCalendarWidget(pageAccueil);
+        calendarWidget->setObjectName("calendarWidget");
+
+        verticalLayout_6->addWidget(calendarWidget);
+
+        frame_10 = new QFrame(pageAccueil);
+        frame_10->setObjectName("frame_10");
+        frame_10->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_10->setFrameShadow(QFrame::Shadow::Raised);
+        horizontalLayout_9 = new QHBoxLayout(frame_10);
+        horizontalLayout_9->setObjectName("horizontalLayout_9");
+        pushButton = new QPushButton(frame_10);
+        pushButton->setObjectName("pushButton");
+
+        horizontalLayout_9->addWidget(pushButton);
+
+        pushButton_2 = new QPushButton(frame_10);
+        pushButton_2->setObjectName("pushButton_2");
+
+        horizontalLayout_9->addWidget(pushButton_2);
+
+        pushButton_3 = new QPushButton(frame_10);
+        pushButton_3->setObjectName("pushButton_3");
+
+        horizontalLayout_9->addWidget(pushButton_3);
+
+
+        verticalLayout_6->addWidget(frame_10);
+
         stackedWidget->addWidget(pageAccueil);
         pageLivre = new QWidget();
         pageLivre->setObjectName("pageLivre");
@@ -326,52 +388,122 @@ public:
         stackedWidget->addWidget(pageLivre);
         pageMembre = new QWidget();
         pageMembre->setObjectName("pageMembre");
-        verticalLayout_3 = new QVBoxLayout(pageMembre);
-        verticalLayout_3->setObjectName("verticalLayout_3");
+        horizontalLayout_4 = new QHBoxLayout(pageMembre);
+        horizontalLayout_4->setObjectName("horizontalLayout_4");
+        frame_4 = new QFrame(pageMembre);
+        frame_4->setObjectName("frame_4");
+        frame_4->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_4->setFrameShadow(QFrame::Shadow::Raised);
+        formLayout = new QFormLayout(frame_4);
+        formLayout->setObjectName("formLayout");
+        label_4 = new QLabel(frame_4);
+        label_4->setObjectName("label_4");
+
+        formLayout->setWidget(0, QFormLayout::LabelRole, label_4);
+
+        lineEditNom = new QLineEdit(frame_4);
+        lineEditNom->setObjectName("lineEditNom");
+
+        formLayout->setWidget(0, QFormLayout::FieldRole, lineEditNom);
+
+        label_5 = new QLabel(frame_4);
+        label_5->setObjectName("label_5");
+
+        formLayout->setWidget(1, QFormLayout::LabelRole, label_5);
+
+        lineEditPrenoms = new QLineEdit(frame_4);
+        lineEditPrenoms->setObjectName("lineEditPrenoms");
+
+        formLayout->setWidget(1, QFormLayout::FieldRole, lineEditPrenoms);
+
+        label_6 = new QLabel(frame_4);
+        label_6->setObjectName("label_6");
+
+        formLayout->setWidget(2, QFormLayout::LabelRole, label_6);
+
+        frame_11 = new QFrame(frame_4);
+        frame_11->setObjectName("frame_11");
+        frame_11->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_11->setFrameShadow(QFrame::Shadow::Raised);
+        horizontalLayout_6 = new QHBoxLayout(frame_11);
+        horizontalLayout_6->setObjectName("horizontalLayout_6");
+        radioAdulte = new QRadioButton(frame_11);
+        radioAdulte->setObjectName("radioAdulte");
+
+        horizontalLayout_6->addWidget(radioAdulte);
+
+        radioEnfant = new QRadioButton(frame_11);
+        radioEnfant->setObjectName("radioEnfant");
+
+        horizontalLayout_6->addWidget(radioEnfant);
+
+
+        formLayout->setWidget(2, QFormLayout::FieldRole, frame_11);
+
+        label_8 = new QLabel(frame_4);
+        label_8->setObjectName("label_8");
+
+        formLayout->setWidget(3, QFormLayout::LabelRole, label_8);
+
+        frame_6 = new QFrame(frame_4);
+        frame_6->setObjectName("frame_6");
+        frame_6->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_6->setFrameShadow(QFrame::Shadow::Raised);
+        horizontalLayout_5 = new QHBoxLayout(frame_6);
+        horizontalLayout_5->setObjectName("horizontalLayout_5");
+        radioSexeHomme = new QRadioButton(frame_6);
+        radioSexeHomme->setObjectName("radioSexeHomme");
+
+        horizontalLayout_5->addWidget(radioSexeHomme);
+
+        radioSexeFemme = new QRadioButton(frame_6);
+        radioSexeFemme->setObjectName("radioSexeFemme");
+
+        horizontalLayout_5->addWidget(radioSexeFemme);
+
+
+        formLayout->setWidget(3, QFormLayout::FieldRole, frame_6);
+
+        label_9 = new QLabel(frame_4);
+        label_9->setObjectName("label_9");
+
+        formLayout->setWidget(4, QFormLayout::LabelRole, label_9);
+
+        dateTimeEditDebut = new QDateTimeEdit(frame_4);
+        dateTimeEditDebut->setObjectName("dateTimeEditDebut");
+
+        formLayout->setWidget(4, QFormLayout::FieldRole, dateTimeEditDebut);
+
+        label_10 = new QLabel(frame_4);
+        label_10->setObjectName("label_10");
+
+        formLayout->setWidget(5, QFormLayout::LabelRole, label_10);
+
+        dateTimeEditFin = new QDateTimeEdit(frame_4);
+        dateTimeEditFin->setObjectName("dateTimeEditFin");
+
+        formLayout->setWidget(5, QFormLayout::FieldRole, dateTimeEditFin);
+
+        label_7 = new QLabel(frame_4);
+        label_7->setObjectName("label_7");
+
+        formLayout->setWidget(7, QFormLayout::LabelRole, label_7);
+
+        btnEnregistrerMembre = new QPushButton(frame_4);
+        btnEnregistrerMembre->setObjectName("btnEnregistrerMembre");
+
+        formLayout->setWidget(6, QFormLayout::FieldRole, btnEnregistrerMembre);
+
+
+        horizontalLayout_4->addWidget(frame_4);
+
         frame_5 = new QFrame(pageMembre);
         frame_5->setObjectName("frame_5");
-        frame_5->setStyleSheet(QString::fromUtf8("QFrame{\n"
-"	background-color: rgb(29, 46, 62);\n"
-"}\n"
-"QPushButton{\n"
-"	padding: 10px 10px;\n"
-"	border:none;\n"
-"	color:white;\n"
-"}\n"
-"QPushButton:hover{\n"
-"	background-color: rgb(45, 66, 75);\n"
-"}\n"
-"QPushButton:focus{\n"
-"	background-color:#00CCDD;\n"
-"}"));
         frame_5->setFrameShape(QFrame::Shape::StyledPanel);
         frame_5->setFrameShadow(QFrame::Shadow::Raised);
-        horizontalLayout_5 = new QHBoxLayout(frame_5);
-        horizontalLayout_5->setSpacing(0);
-        horizontalLayout_5->setObjectName("horizontalLayout_5");
-        horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
-        btnMembreEtudiant = new QPushButton(frame_5);
-        btnMembreEtudiant->setObjectName("btnMembreEtudiant");
-        btnMembreEtudiant->setFont(font2);
-
-        horizontalLayout_5->addWidget(btnMembreEtudiant);
-
-        btnMembreAdulte = new QPushButton(frame_5);
-        btnMembreAdulte->setObjectName("btnMembreAdulte");
-        btnMembreAdulte->setFont(font2);
-
-        horizontalLayout_5->addWidget(btnMembreAdulte);
-
-
-        verticalLayout_3->addWidget(frame_5);
-
-        stackedWidget_2 = new QStackedWidget(pageMembre);
-        stackedWidget_2->setObjectName("stackedWidget_2");
-        pageEtudiant = new QWidget();
-        pageEtudiant->setObjectName("pageEtudiant");
-        verticalLayout_4 = new QVBoxLayout(pageEtudiant);
-        verticalLayout_4->setObjectName("verticalLayout_4");
-        tableWidget_2 = new QTableWidget(pageEtudiant);
+        verticalLayout_3 = new QVBoxLayout(frame_5);
+        verticalLayout_3->setObjectName("verticalLayout_3");
+        tableWidget_2 = new QTableWidget(frame_5);
         if (tableWidget_2->columnCount() < 7)
             tableWidget_2->setColumnCount(7);
         QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
@@ -390,94 +522,12 @@ public:
         tableWidget_2->setHorizontalHeaderItem(6, __qtablewidgetitem13);
         tableWidget_2->setObjectName("tableWidget_2");
 
-        verticalLayout_4->addWidget(tableWidget_2);
-
-        frame_4 = new QFrame(pageEtudiant);
-        frame_4->setObjectName("frame_4");
-        frame_4->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_4->setFrameShadow(QFrame::Shadow::Raised);
-        horizontalLayout_4 = new QHBoxLayout(frame_4);
-        horizontalLayout_4->setObjectName("horizontalLayout_4");
-        btnAjouterEtudiant = new QPushButton(frame_4);
-        btnAjouterEtudiant->setObjectName("btnAjouterEtudiant");
-
-        horizontalLayout_4->addWidget(btnAjouterEtudiant);
-
-        btnModifierEtudiant = new QPushButton(frame_4);
-        btnModifierEtudiant->setObjectName("btnModifierEtudiant");
-
-        horizontalLayout_4->addWidget(btnModifierEtudiant);
-
-        btnSupprimerEtudiant = new QPushButton(frame_4);
-        btnSupprimerEtudiant->setObjectName("btnSupprimerEtudiant");
-
-        horizontalLayout_4->addWidget(btnSupprimerEtudiant);
-
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
-
-        horizontalLayout_4->addItem(horizontalSpacer_3);
+        verticalLayout_3->addWidget(tableWidget_2);
 
 
-        verticalLayout_4->addWidget(frame_4);
+        horizontalLayout_4->addWidget(frame_5);
 
-        stackedWidget_2->addWidget(pageEtudiant);
-        pageAdulte = new QWidget();
-        pageAdulte->setObjectName("pageAdulte");
-        verticalLayout_5 = new QVBoxLayout(pageAdulte);
-        verticalLayout_5->setObjectName("verticalLayout_5");
-        tableWidget_3 = new QTableWidget(pageAdulte);
-        if (tableWidget_3->columnCount() < 7)
-            tableWidget_3->setColumnCount(7);
-        QTableWidgetItem *__qtablewidgetitem14 = new QTableWidgetItem();
-        tableWidget_3->setHorizontalHeaderItem(0, __qtablewidgetitem14);
-        QTableWidgetItem *__qtablewidgetitem15 = new QTableWidgetItem();
-        tableWidget_3->setHorizontalHeaderItem(1, __qtablewidgetitem15);
-        QTableWidgetItem *__qtablewidgetitem16 = new QTableWidgetItem();
-        tableWidget_3->setHorizontalHeaderItem(2, __qtablewidgetitem16);
-        QTableWidgetItem *__qtablewidgetitem17 = new QTableWidgetItem();
-        tableWidget_3->setHorizontalHeaderItem(3, __qtablewidgetitem17);
-        QTableWidgetItem *__qtablewidgetitem18 = new QTableWidgetItem();
-        tableWidget_3->setHorizontalHeaderItem(4, __qtablewidgetitem18);
-        QTableWidgetItem *__qtablewidgetitem19 = new QTableWidgetItem();
-        tableWidget_3->setHorizontalHeaderItem(5, __qtablewidgetitem19);
-        QTableWidgetItem *__qtablewidgetitem20 = new QTableWidgetItem();
-        tableWidget_3->setHorizontalHeaderItem(6, __qtablewidgetitem20);
-        tableWidget_3->setObjectName("tableWidget_3");
-
-        verticalLayout_5->addWidget(tableWidget_3);
-
-        frame_6 = new QFrame(pageAdulte);
-        frame_6->setObjectName("frame_6");
-        frame_6->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_6->setFrameShadow(QFrame::Shadow::Raised);
-        horizontalLayout_6 = new QHBoxLayout(frame_6);
-        horizontalLayout_6->setObjectName("horizontalLayout_6");
-        btnAjouterAdulte = new QPushButton(frame_6);
-        btnAjouterAdulte->setObjectName("btnAjouterAdulte");
-
-        horizontalLayout_6->addWidget(btnAjouterAdulte);
-
-        btnModifierAdulte = new QPushButton(frame_6);
-        btnModifierAdulte->setObjectName("btnModifierAdulte");
-
-        horizontalLayout_6->addWidget(btnModifierAdulte);
-
-        btnSupprimerAdulte = new QPushButton(frame_6);
-        btnSupprimerAdulte->setObjectName("btnSupprimerAdulte");
-
-        horizontalLayout_6->addWidget(btnSupprimerAdulte);
-
-        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
-
-        horizontalLayout_6->addItem(horizontalSpacer_4);
-
-
-        verticalLayout_5->addWidget(frame_6);
-
-        stackedWidget_2->addWidget(pageAdulte);
-
-        verticalLayout_3->addWidget(stackedWidget_2);
-
+        horizontalLayout_4->setStretch(1, 6);
         stackedWidget->addWidget(pageMembre);
         pageEmprunt = new QWidget();
         pageEmprunt->setObjectName("pageEmprunt");
@@ -531,8 +581,7 @@ public:
 
         retranslateUi(App);
 
-        stackedWidget->setCurrentIndex(1);
-        stackedWidget_2->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(App);
@@ -545,6 +594,10 @@ public:
         btnLivre->setText(QCoreApplication::translate("App", "Livres", nullptr));
         btnMembre->setText(QCoreApplication::translate("App", "Membres", nullptr));
         btnEmprunt->setText(QCoreApplication::translate("App", "Emprunts", nullptr));
+        label_3->setText(QCoreApplication::translate("App", "\"Mots de Dieux\"", nullptr));
+        pushButton->setText(QCoreApplication::translate("App", "Emprunt en cours", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("App", "Etat", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("App", "Tableau de bord", nullptr));
         lineEditRecherche->setPlaceholderText(QCoreApplication::translate("App", "Recherche", nullptr));
         btnRecherche->setText(QString());
         label->setText(QCoreApplication::translate("App", "Trier par armoire", nullptr));
@@ -566,42 +619,32 @@ public:
         btnAjouterLivre->setText(QCoreApplication::translate("App", "Nouveau", nullptr));
         btnModifierLivre->setText(QCoreApplication::translate("App", "Modifier", nullptr));
         btnSupprimerLivre->setText(QCoreApplication::translate("App", "Supprimer", nullptr));
-        btnMembreEtudiant->setText(QCoreApplication::translate("App", "Etudiants", nullptr));
-        btnMembreAdulte->setText(QCoreApplication::translate("App", "Adultes", nullptr));
+        label_4->setText(QCoreApplication::translate("App", "Nom :", nullptr));
+        label_5->setText(QCoreApplication::translate("App", "Pr\303\251nom(s) :", nullptr));
+        label_6->setText(QCoreApplication::translate("App", "Statut :", nullptr));
+        radioAdulte->setText(QCoreApplication::translate("App", "Adulte", nullptr));
+        radioEnfant->setText(QCoreApplication::translate("App", "Enfant", nullptr));
+        label_8->setText(QCoreApplication::translate("App", "Sexe :", nullptr));
+        radioSexeHomme->setText(QCoreApplication::translate("App", "Homme", nullptr));
+        radioSexeFemme->setText(QCoreApplication::translate("App", "Femme", nullptr));
+        label_9->setText(QCoreApplication::translate("App", "D\303\251but :", nullptr));
+        label_10->setText(QCoreApplication::translate("App", "Fin :", nullptr));
+        label_7->setText(QString());
+        btnEnregistrerMembre->setText(QCoreApplication::translate("App", "Enregistrer", nullptr));
         QTableWidgetItem *___qtablewidgetitem7 = tableWidget_2->horizontalHeaderItem(0);
         ___qtablewidgetitem7->setText(QCoreApplication::translate("App", "Nom", nullptr));
         QTableWidgetItem *___qtablewidgetitem8 = tableWidget_2->horizontalHeaderItem(1);
         ___qtablewidgetitem8->setText(QCoreApplication::translate("App", "Pr\303\251nom(s)", nullptr));
         QTableWidgetItem *___qtablewidgetitem9 = tableWidget_2->horizontalHeaderItem(2);
-        ___qtablewidgetitem9->setText(QCoreApplication::translate("App", "Date de naissance", nullptr));
+        ___qtablewidgetitem9->setText(QCoreApplication::translate("App", "Statut", nullptr));
         QTableWidgetItem *___qtablewidgetitem10 = tableWidget_2->horizontalHeaderItem(3);
-        ___qtablewidgetitem10->setText(QCoreApplication::translate("App", "Niveau d'\303\251tude", nullptr));
+        ___qtablewidgetitem10->setText(QCoreApplication::translate("App", "Sexe", nullptr));
         QTableWidgetItem *___qtablewidgetitem11 = tableWidget_2->horizontalHeaderItem(4);
-        ___qtablewidgetitem11->setText(QCoreApplication::translate("App", "Sexe", nullptr));
+        ___qtablewidgetitem11->setText(QCoreApplication::translate("App", "D\303\251but", nullptr));
         QTableWidgetItem *___qtablewidgetitem12 = tableWidget_2->horizontalHeaderItem(5);
-        ___qtablewidgetitem12->setText(QCoreApplication::translate("App", "Adresse", nullptr));
+        ___qtablewidgetitem12->setText(QCoreApplication::translate("App", "Fin", nullptr));
         QTableWidgetItem *___qtablewidgetitem13 = tableWidget_2->horizontalHeaderItem(6);
-        ___qtablewidgetitem13->setText(QCoreApplication::translate("App", "Num\303\251ro de t\303\251l\303\251phone", nullptr));
-        btnAjouterEtudiant->setText(QCoreApplication::translate("App", "Nouveau", nullptr));
-        btnModifierEtudiant->setText(QCoreApplication::translate("App", "Modifier", nullptr));
-        btnSupprimerEtudiant->setText(QCoreApplication::translate("App", "Supprimer", nullptr));
-        QTableWidgetItem *___qtablewidgetitem14 = tableWidget_3->horizontalHeaderItem(0);
-        ___qtablewidgetitem14->setText(QCoreApplication::translate("App", "Nom", nullptr));
-        QTableWidgetItem *___qtablewidgetitem15 = tableWidget_3->horizontalHeaderItem(1);
-        ___qtablewidgetitem15->setText(QCoreApplication::translate("App", "Pr\303\251nom(s)", nullptr));
-        QTableWidgetItem *___qtablewidgetitem16 = tableWidget_3->horizontalHeaderItem(2);
-        ___qtablewidgetitem16->setText(QCoreApplication::translate("App", "Date de naissance", nullptr));
-        QTableWidgetItem *___qtablewidgetitem17 = tableWidget_3->horizontalHeaderItem(3);
-        ___qtablewidgetitem17->setText(QCoreApplication::translate("App", "Fonction", nullptr));
-        QTableWidgetItem *___qtablewidgetitem18 = tableWidget_3->horizontalHeaderItem(4);
-        ___qtablewidgetitem18->setText(QCoreApplication::translate("App", "Sexe", nullptr));
-        QTableWidgetItem *___qtablewidgetitem19 = tableWidget_3->horizontalHeaderItem(5);
-        ___qtablewidgetitem19->setText(QCoreApplication::translate("App", "Adresse", nullptr));
-        QTableWidgetItem *___qtablewidgetitem20 = tableWidget_3->horizontalHeaderItem(6);
-        ___qtablewidgetitem20->setText(QCoreApplication::translate("App", "Num\303\251ro de t\303\251l\303\251phone", nullptr));
-        btnAjouterAdulte->setText(QCoreApplication::translate("App", "Nouveau", nullptr));
-        btnModifierAdulte->setText(QCoreApplication::translate("App", "Modifier", nullptr));
-        btnSupprimerAdulte->setText(QCoreApplication::translate("App", "Supprimer", nullptr));
+        ___qtablewidgetitem13->setText(QCoreApplication::translate("App", "Validit\303\251", nullptr));
         btnParametre->setText(QCoreApplication::translate("App", "Parametre", nullptr));
         btnDeconnexion->setText(QCoreApplication::translate("App", "D\303\251connexion", nullptr));
     } // retranslateUi

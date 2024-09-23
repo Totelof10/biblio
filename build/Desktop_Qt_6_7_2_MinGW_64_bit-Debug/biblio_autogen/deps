@@ -141,13 +141,21 @@ biblio_autogen/timestamp: \
 	C:/Qt/6.7.2/mingw_64/include/QtGui/qtransform.h \
 	C:/Qt/6.7.2/mingw_64/include/QtGui/qwindowdefs.h \
 	C:/Qt/6.7.2/mingw_64/include/QtGui/qwindowdefs_win.h \
+	C:/Qt/6.7.2/mingw_64/include/QtSql/QSqlError \
+	C:/Qt/6.7.2/mingw_64/include/QtSql/qsqlerror.h \
+	C:/Qt/6.7.2/mingw_64/include/QtSql/qtsql-config.h \
+	C:/Qt/6.7.2/mingw_64/include/QtSql/qtsqlexports.h \
+	C:/Qt/6.7.2/mingw_64/include/QtSql/qtsqlglobal.h \
 	C:/Qt/6.7.2/mingw_64/include/QtWidgets/QMainWindow \
 	C:/Qt/6.7.2/mingw_64/include/QtWidgets/QMessageBox \
+	C:/Qt/6.7.2/mingw_64/include/QtWidgets/QPushButton \
 	C:/Qt/6.7.2/mingw_64/include/QtWidgets/QWidget \
+	C:/Qt/6.7.2/mingw_64/include/QtWidgets/qabstractbutton.h \
 	C:/Qt/6.7.2/mingw_64/include/QtWidgets/qdialog.h \
 	C:/Qt/6.7.2/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
 	C:/Qt/6.7.2/mingw_64/include/QtWidgets/qmainwindow.h \
 	C:/Qt/6.7.2/mingw_64/include/QtWidgets/qmessagebox.h \
+	C:/Qt/6.7.2/mingw_64/include/QtWidgets/qpushbutton.h \
 	C:/Qt/6.7.2/mingw_64/include/QtWidgets/qsizepolicy.h \
 	C:/Qt/6.7.2/mingw_64/include/QtWidgets/qtabwidget.h \
 	C:/Qt/6.7.2/mingw_64/include/QtWidgets/qtwidgets-config.h \
@@ -561,6 +569,8 @@ biblio_autogen/timestamp: \
 	C:/Users/rtoha/Documents/biblio/databasemanager.h \
 	C:/Users/rtoha/Documents/biblio/deconnexion.cpp \
 	C:/Users/rtoha/Documents/biblio/deconnexion.h \
+	C:/Users/rtoha/Documents/biblio/hoverbutton.cpp \
+	C:/Users/rtoha/Documents/biblio/hoverbutton.h \
 	C:/Users/rtoha/Documents/biblio/img.qrc \
 	C:/Users/rtoha/Documents/biblio/main.cpp \
 	C:/Users/rtoha/Documents/biblio/mainwindow.cpp \
