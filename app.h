@@ -41,6 +41,8 @@ private slots:
     //Gestion Membre
     void enregistrerMembre();
     void afficherMembreDansTableau();
+    void ajoutBtnTableau();
+    void supprimerMembre(int row);
 
 signals:
     void ajoutMemebre();

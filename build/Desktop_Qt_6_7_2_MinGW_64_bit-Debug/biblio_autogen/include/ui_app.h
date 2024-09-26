@@ -504,8 +504,8 @@ public:
         verticalLayout_3 = new QVBoxLayout(frame_5);
         verticalLayout_3->setObjectName("verticalLayout_3");
         tableWidget_2 = new QTableWidget(frame_5);
-        if (tableWidget_2->columnCount() < 7)
-            tableWidget_2->setColumnCount(7);
+        if (tableWidget_2->columnCount() < 9)
+            tableWidget_2->setColumnCount(9);
         QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
         tableWidget_2->setHorizontalHeaderItem(0, __qtablewidgetitem7);
         QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
@@ -520,6 +520,10 @@ public:
         tableWidget_2->setHorizontalHeaderItem(5, __qtablewidgetitem12);
         QTableWidgetItem *__qtablewidgetitem13 = new QTableWidgetItem();
         tableWidget_2->setHorizontalHeaderItem(6, __qtablewidgetitem13);
+        QTableWidgetItem *__qtablewidgetitem14 = new QTableWidgetItem();
+        tableWidget_2->setHorizontalHeaderItem(7, __qtablewidgetitem14);
+        QTableWidgetItem *__qtablewidgetitem15 = new QTableWidgetItem();
+        tableWidget_2->setHorizontalHeaderItem(8, __qtablewidgetitem15);
         tableWidget_2->setObjectName("tableWidget_2");
 
         verticalLayout_3->addWidget(tableWidget_2);
@@ -645,6 +649,10 @@ public:
         ___qtablewidgetitem12->setText(QCoreApplication::translate("App", "Fin", nullptr));
         QTableWidgetItem *___qtablewidgetitem13 = tableWidget_2->horizontalHeaderItem(6);
         ___qtablewidgetitem13->setText(QCoreApplication::translate("App", "Validit\303\251", nullptr));
+        QTableWidgetItem *___qtablewidgetitem14 = tableWidget_2->horizontalHeaderItem(7);
+        ___qtablewidgetitem14->setText(QCoreApplication::translate("App", "Renouvellement", nullptr));
+        QTableWidgetItem *___qtablewidgetitem15 = tableWidget_2->horizontalHeaderItem(8);
+        ___qtablewidgetitem15->setText(QCoreApplication::translate("App", "Supprimer", nullptr));
         btnParametre->setText(QCoreApplication::translate("App", "Parametre", nullptr));
         btnDeconnexion->setText(QCoreApplication::translate("App", "D\303\251connexion", nullptr));
     } // retranslateUi

@@ -645,6 +645,16 @@ QPushButton:hover{
               <string>Validité</string>
              </property>
             </column>
+            <column>
+             <property name="text">
+              <string>Renouvellement</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Supprimer</string>
+             </property>
+            </column>
            </widget>
           </item>
          </layout>

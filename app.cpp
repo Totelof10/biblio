@@ -16,6 +16,7 @@ App::App(QWidget *parent)
     comboArmoireAfficher();
     afficherLivreDansTableau();
     afficherMembreDansTableau();
+    ajoutBtnTableau();
     ui->stackedWidget->setCurrentWidget(ui->pageAccueil);
     connect(ui->btnDeconnexion, &QPushButton::clicked, this, &App::deconnexion);
     connect(ui->btnAccueil, &QPushButton::clicked, this, &App::handleAccueil);
@@ -415,9 +416,10 @@ void App::enregistrerMembre(){
     }
     emit ajoutMemebre();
     afficherMembreDansTableau();
+    ajoutBtnTableau();
 }
 
-void App::afficherMembreDansTableau(){
+void App::afficherMembreDansTableau() {
     CustomMessageBox msgBox;
 
     // Récupère la base de données via DatabaseManager
@@ -450,7 +452,7 @@ void App::afficherMembreDansTableau(){
         QString debut = query.value(4).toString();
         QString fin = query.value(5).toString();
 
-        // Insertion des données dans le QTableWidget sans l'ID
+        // Insertion des données dans le QTableWidget
         ui->tableWidget_2->setItem(row, 0, new QTableWidgetItem(nom));
         ui->tableWidget_2->setItem(row, 1, new QTableWidgetItem(prenoms));
         ui->tableWidget_2->setItem(row, 2, new QTableWidgetItem(statut));
@@ -458,6 +460,58 @@ void App::afficherMembreDansTableau(){
         ui->tableWidget_2->setItem(row, 4, new QTableWidgetItem(debut));
         ui->tableWidget_2->setItem(row, 5, new QTableWidgetItem(fin));
 
+        // Ajouter la colonne "Validité" (colonne 6)
+        ui->tableWidget_2->setItem(row, 6, new QTableWidgetItem(""));
+
+        // Convertir les dates de début et de fin
+        QDate dateDebut = QDate::fromString(debut, "dd-MM-yyyy");
+        QDate dateFin = QDate::fromString(fin, "dd-MM-yyyy");
+        QDate currentDate = QDate::currentDate();
+
+        // Vérifier si la date actuelle est dans la plage
+        if (dateDebut.isValid() && dateFin.isValid()) {
+            if (currentDate >= dateDebut && currentDate <= dateFin) {
+                // Colorer en vert (validité)
+                ui->tableWidget_2->item(row, 6)->setBackground(QBrush(Qt::green));
+            } else {
+                // Colorer en rouge (non valide)
+                ui->tableWidget_2->item(row, 6)->setBackground(QBrush(Qt::red));
+            }
+        } else {
+            // Si la date est invalide, colorer en rouge également
+            ui->tableWidget_2->item(row, 6)->setBackground(QBrush(Qt::red));
+        }
+
         row++;
     }
+}
+
+
+void App::ajoutBtnTableau(){
+    int rowCount = ui->tableWidget_2->rowCount();
+    for(int row = 0; row < rowCount; ++row){
+        QPushButton* btnModifier = new QPushButton("Modifier", this);
+        QPushButton* btnSupprimer = new QPushButton("Supprimer", this);
+
+        ui->tableWidget_2->setCellWidget(row, 7, btnModifier);
+        ui->tableWidget_2->setCellWidget(row, 8, btnSupprimer);
+        connect(btnSupprimer, &QPushButton::clicked, this, [this, row](){ supprimerMembre(row);});
+    }
+}
+
+void App::supprimerMembre(int row){
+    CustomMessageBox msgBox;
+    QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
+    QString nom = ui->tableWidget_2->item(row, 0)->text();
+    QSqlQuery query(sqlitedb);
+    query.prepare("DELETE FROM membres WHERE nom = :nom");
+    query.bindValue(":nom", nom);
+    if(query.exec()){
+        msgBox.showInformation("Succes", "Suppression réussie");
+        ui->tableWidget_2->removeRow(row);
+    }else{
+        msgBox.showError("Erreur", "Erreur lors de la suppression");
+        qDebug()<<"Erreur lors de la suppresion "<<query.lastError();
+    }
+
 }
