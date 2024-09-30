@@ -582,17 +582,29 @@ QPushButton:hover{
           <item row="5" column="1">
            <widget class="QDateTimeEdit" name="dateTimeEditFin"/>
           </item>
+          <item row="6" column="1">
+           <widget class="QPushButton" name="btnEnregistrerMembre">
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	border: 1px solid white;
+	border-radius: 7px;
+	background-color: #16423C;
+	color:white;
+	padding: 7px;
+}
+QPushButton:hover{
+	background-color: #6A9C89;
+}</string>
+            </property>
+            <property name="text">
+             <string>Enregistrer</string>
+            </property>
+           </widget>
+          </item>
           <item row="7" column="0">
            <widget class="QLabel" name="label_7">
             <property name="text">
              <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="1">
-           <widget class="QPushButton" name="btnEnregistrerMembre">
-            <property name="text">
-             <string>Enregistrer</string>
             </property>
            </widget>
           </item>
@@ -647,12 +659,17 @@ QPushButton:hover{
             </column>
             <column>
              <property name="text">
-              <string>Renouvellement</string>
+              <string>Montant</string>
              </property>
             </column>
             <column>
              <property name="text">
-              <string>Supprimer</string>
+              <string/>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
              </property>
             </column>
            </widget>

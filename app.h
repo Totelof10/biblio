@@ -43,6 +43,8 @@ private slots:
     void afficherMembreDansTableau();
     void ajoutBtnTableau();
     void supprimerMembre(int row);
+    void clearForm();
+    void modifierDates(int row);
 
 signals:
     void ajoutMemebre();

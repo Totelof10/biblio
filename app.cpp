@@ -413,6 +413,7 @@ void App::enregistrerMembre(){
     }else{
         msgBox.showInformation("Succes", "Ajout réussi!!");
         qDebug() <<"okk";
+        clearForm();
     }
     emit ajoutMemebre();
     afficherMembreDansTableau();
@@ -431,7 +432,7 @@ void App::afficherMembreDansTableau() {
 
     // Préparation et exécution de la requête SQL
     QSqlQuery query(sqlitedb);
-    if (!query.exec("SELECT nom, prenoms, statut, sexe, debut, fin FROM membres")) {
+    if (!query.exec("SELECT nom, prenoms, statut, sexe, debut, fin , montant FROM membres")) {
         msgBox.showError("Erreur", "Échec de l'exécution de la requête.");
         return;
     }
@@ -451,6 +452,7 @@ void App::afficherMembreDansTableau() {
         QString sexe = query.value(3).toString();
         QString debut = query.value(4).toString();
         QString fin = query.value(5).toString();
+        QString montant = query.value(7).toString();
 
         // Insertion des données dans le QTableWidget
         ui->tableWidget_2->setItem(row, 0, new QTableWidgetItem(nom));
@@ -459,18 +461,19 @@ void App::afficherMembreDansTableau() {
         ui->tableWidget_2->setItem(row, 3, new QTableWidgetItem(sexe));
         ui->tableWidget_2->setItem(row, 4, new QTableWidgetItem(debut));
         ui->tableWidget_2->setItem(row, 5, new QTableWidgetItem(fin));
+        ui->tableWidget_2->setItem(row, 7, new QTableWidgetItem(montant));
 
         // Ajouter la colonne "Validité" (colonne 6)
         ui->tableWidget_2->setItem(row, 6, new QTableWidgetItem(""));
 
         // Convertir les dates de début et de fin
-        QDate dateDebut = QDate::fromString(debut, "dd-MM-yyyy");
+        //QDate dateDebut = QDate::fromString(debut, "dd-MM-yyyy");
         QDate dateFin = QDate::fromString(fin, "dd-MM-yyyy");
         QDate currentDate = QDate::currentDate();
 
         // Vérifier si la date actuelle est dans la plage
-        if (dateDebut.isValid() && dateFin.isValid()) {
-            if (currentDate >= dateDebut && currentDate <= dateFin) {
+        if (/*dateDebut.isValid() &&*/dateFin.isValid()) {
+            if (/*currentDate >= dateDebut && */currentDate <= dateFin) {
                 // Colorer en vert (validité)
                 ui->tableWidget_2->item(row, 6)->setBackground(QBrush(Qt::green));
             } else {
@@ -490,14 +493,144 @@ void App::afficherMembreDansTableau() {
 void App::ajoutBtnTableau(){
     int rowCount = ui->tableWidget_2->rowCount();
     for(int row = 0; row < rowCount; ++row){
-        QPushButton* btnModifier = new QPushButton("Modifier", this);
+        QPushButton* btnModifier = new QPushButton("Renouveler", this);
         QPushButton* btnSupprimer = new QPushButton("Supprimer", this);
+        QString buttonStyle = "QPushButton{"
+                              "border: 1px solid white;"
+                              "border-radius: 7px;"
+                              "background-color: #FFA823;"
+                              "color: white;"
+                              "padding: 7px;"
+                              "}"
+                              "QPushButton:hover{"
+                              "background-color: #FFD35A;"
+                              "}";
+        QString buttonStyle2 = "QPushButton{"
+                              "border: 1px solid white;"
+                              "border-radius: 7px;"
+                              "background-color: #821131;"
+                              "color: white;"
+                              "padding: 7px;"
+                              "}"
+                              "QPushButton:hover{"
+                              "background-color: #C7253E;"
+                              "}";
+        btnModifier->setStyleSheet(buttonStyle);
+        btnSupprimer->setStyleSheet(buttonStyle2);
 
-        ui->tableWidget_2->setCellWidget(row, 7, btnModifier);
-        ui->tableWidget_2->setCellWidget(row, 8, btnSupprimer);
-        connect(btnSupprimer, &QPushButton::clicked, this, [this, row](){ supprimerMembre(row);});
+        ui->tableWidget_2->setCellWidget(row, 8, btnModifier);
+        ui->tableWidget_2->setCellWidget(row, 9, btnSupprimer);
+
+        // Gestion de la modification
+        connect(btnModifier, &QPushButton::clicked, this, [this, row]() {
+            modifierDates(row);
+        });
+
+        // Gestion de la suppression
+        connect(btnSupprimer, &QPushButton::clicked, this, [this, row]() {
+            supprimerMembre(row);
+        });
     }
 }
+
+void App::modifierDates(int row) {
+    CustomMessageBox msgBox;
+    QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
+
+    // Récupérer le statut
+    QString statut = ui->tableWidget_2->item(row, 2)->text();
+
+    // Calculer les nouvelles dates en fonction du statut
+    QDate currentDate = QDate::currentDate();
+    QDate newDateFin;
+
+    if (statut == "Adulte") {
+        // Date actuelle + 1 an pour les adultes
+        newDateFin = currentDate.addYears(1);
+    } else if (statut == "Enfant") {
+        // Date actuelle + 3 mois pour les enfants
+        newDateFin = currentDate.addMonths(3);
+    }
+
+    // Mettre à jour les valeurs dans le QTableWidget
+    ui->tableWidget_2->setItem(row, 4, new QTableWidgetItem(currentDate.toString("dd-MM-yyyy")));
+    ui->tableWidget_2->setItem(row, 5, new QTableWidgetItem(newDateFin.toString("dd-MM-yyyy")));
+
+    // Récupérer le nom pour la requête SQL
+    QString nom = ui->tableWidget_2->item(row, 0)->text();
+
+    // 1. Récupérer la valeur actuelle du champ montant
+    QSqlQuery queryMontant(sqlitedb);
+    queryMontant.prepare("SELECT montant FROM membres WHERE nom = :nom");
+    queryMontant.bindValue(":nom", nom);
+
+    int montantActuel = 0;
+    if (queryMontant.exec()) {
+        if (queryMontant.next()) {
+            montantActuel = queryMontant.value(0).toInt();
+        }
+    } else {
+        msgBox.showError("Erreur", "Erreur lors de la récupération du montant actuel.");
+        qDebug() << queryMontant.lastError();
+        return;
+    }
+
+    // 2. Calculer le nouveau montant
+    int increment = 0;
+    if (statut == "Adulte") {
+        increment = 15000;
+    } else if (statut == "Enfant") {
+        increment = 3000;
+    }
+
+    int nouveauMontant = montantActuel + increment;
+
+    // 3. Mettre à jour le champ montant dans la base de données
+    QSqlQuery queryUpdateMontant(sqlitedb);
+    queryUpdateMontant.prepare("UPDATE membres SET montant = :montant WHERE nom = :nom");
+    queryUpdateMontant.bindValue(":montant", nouveauMontant);
+    queryUpdateMontant.bindValue(":nom", nom);
+
+    if (!queryUpdateMontant.exec()) {
+        msgBox.showError("Erreur", "Erreur lors de la mise à jour du montant.");
+        qDebug() << queryUpdateMontant.lastError();
+        return;
+    }
+
+    ui->tableWidget_2->setItem(row, 7, new QTableWidgetItem(QString::number(nouveauMontant)));
+
+    // Mettre à jour la base de données avec les nouvelles dates
+    QSqlQuery query(sqlitedb);
+    query.prepare("UPDATE membres SET debut = :debut, fin = :fin WHERE nom = :nom");
+    query.bindValue(":debut", currentDate.toString("dd-MM-yyyy"));
+    query.bindValue(":fin", newDateFin.toString("dd-MM-yyyy"));
+    query.bindValue(":nom", nom);
+
+    if (query.exec()) {
+        msgBox.showInformation("Succès", "Les dates et le montant ont été mis à jour.");
+    } else {
+        msgBox.showError("Erreur", "Erreur lors de la mise à jour des dates.");
+        qDebug() << query.lastError();
+    }
+
+    // Mettre à jour la colonne "Validité" après modification des dates
+    QDate dateFin = QDate::fromString(newDateFin.toString("dd-MM-yyyy"), "dd-MM-yyyy");
+
+    if (dateFin.isValid()) {
+        if (currentDate <= dateFin) {
+            // Colorer en vert (validité)
+            ui->tableWidget_2->item(row, 6)->setBackground(QBrush(Qt::green));
+        } else {
+            // Colorer en rouge (non valide)
+            ui->tableWidget_2->item(row, 6)->setBackground(QBrush(Qt::red));
+        }
+    } else {
+        // Si la date est invalide, colorer en rouge également
+        ui->tableWidget_2->item(row, 6)->setBackground(QBrush(Qt::red));
+    }
+}
+
+
 
 void App::supprimerMembre(int row){
     CustomMessageBox msgBox;
@@ -515,3 +648,29 @@ void App::supprimerMembre(int row){
     }
 
 }
+void App::clearForm(){
+    ui->lineEditNom->clear();
+    ui->lineEditPrenoms->clear();
+
+    // Réinitialise les champs QDateTimeEdit à la date actuelle ou une autre valeur par défaut
+    ui->dateTimeEditDebut->setDateTime(QDateTime::currentDateTime());
+    ui->dateTimeEditFin->setDateTime(QDateTime::currentDateTime());
+
+    // Déselectionner les QRadioButton
+    ui->radioAdulte->setAutoExclusive(false);
+    ui->radioEnfant->setAutoExclusive(false);
+    ui->radioSexeHomme->setAutoExclusive(false);
+    ui->radioSexeFemme->setAutoExclusive(false);
+
+    ui->radioAdulte->setChecked(false);
+    ui->radioEnfant->setChecked(false);
+    ui->radioSexeHomme->setChecked(false);
+    ui->radioSexeFemme->setChecked(false);
+
+    // Réactiver le comportement exclusif pour les QRadioButton
+    ui->radioAdulte->setAutoExclusive(true);
+    ui->radioEnfant->setAutoExclusive(true);
+    ui->radioSexeHomme->setAutoExclusive(true);
+    ui->radioSexeFemme->setAutoExclusive(true);
+}
+

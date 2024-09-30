@@ -94,8 +94,8 @@ public:
     QDateTimeEdit *dateTimeEditDebut;
     QLabel *label_10;
     QDateTimeEdit *dateTimeEditFin;
-    QLabel *label_7;
     QPushButton *btnEnregistrerMembre;
+    QLabel *label_7;
     QFrame *frame_5;
     QVBoxLayout *verticalLayout_3;
     QTableWidget *tableWidget_2;
@@ -484,15 +484,25 @@ public:
 
         formLayout->setWidget(5, QFormLayout::FieldRole, dateTimeEditFin);
 
+        btnEnregistrerMembre = new QPushButton(frame_4);
+        btnEnregistrerMembre->setObjectName("btnEnregistrerMembre");
+        btnEnregistrerMembre->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	border: 1px solid white;\n"
+"	border-radius: 7px;\n"
+"	background-color: #16423C;\n"
+"	color:white;\n"
+"	padding: 7px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: #6A9C89;\n"
+"}"));
+
+        formLayout->setWidget(6, QFormLayout::FieldRole, btnEnregistrerMembre);
+
         label_7 = new QLabel(frame_4);
         label_7->setObjectName("label_7");
 
         formLayout->setWidget(7, QFormLayout::LabelRole, label_7);
-
-        btnEnregistrerMembre = new QPushButton(frame_4);
-        btnEnregistrerMembre->setObjectName("btnEnregistrerMembre");
-
-        formLayout->setWidget(6, QFormLayout::FieldRole, btnEnregistrerMembre);
 
 
         horizontalLayout_4->addWidget(frame_4);
@@ -504,8 +514,8 @@ public:
         verticalLayout_3 = new QVBoxLayout(frame_5);
         verticalLayout_3->setObjectName("verticalLayout_3");
         tableWidget_2 = new QTableWidget(frame_5);
-        if (tableWidget_2->columnCount() < 9)
-            tableWidget_2->setColumnCount(9);
+        if (tableWidget_2->columnCount() < 10)
+            tableWidget_2->setColumnCount(10);
         QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
         tableWidget_2->setHorizontalHeaderItem(0, __qtablewidgetitem7);
         QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
@@ -524,6 +534,8 @@ public:
         tableWidget_2->setHorizontalHeaderItem(7, __qtablewidgetitem14);
         QTableWidgetItem *__qtablewidgetitem15 = new QTableWidgetItem();
         tableWidget_2->setHorizontalHeaderItem(8, __qtablewidgetitem15);
+        QTableWidgetItem *__qtablewidgetitem16 = new QTableWidgetItem();
+        tableWidget_2->setHorizontalHeaderItem(9, __qtablewidgetitem16);
         tableWidget_2->setObjectName("tableWidget_2");
 
         verticalLayout_3->addWidget(tableWidget_2);
@@ -633,8 +645,8 @@ public:
         radioSexeFemme->setText(QCoreApplication::translate("App", "Femme", nullptr));
         label_9->setText(QCoreApplication::translate("App", "D\303\251but :", nullptr));
         label_10->setText(QCoreApplication::translate("App", "Fin :", nullptr));
-        label_7->setText(QString());
         btnEnregistrerMembre->setText(QCoreApplication::translate("App", "Enregistrer", nullptr));
+        label_7->setText(QString());
         QTableWidgetItem *___qtablewidgetitem7 = tableWidget_2->horizontalHeaderItem(0);
         ___qtablewidgetitem7->setText(QCoreApplication::translate("App", "Nom", nullptr));
         QTableWidgetItem *___qtablewidgetitem8 = tableWidget_2->horizontalHeaderItem(1);
@@ -650,9 +662,7 @@ public:
         QTableWidgetItem *___qtablewidgetitem13 = tableWidget_2->horizontalHeaderItem(6);
         ___qtablewidgetitem13->setText(QCoreApplication::translate("App", "Validit\303\251", nullptr));
         QTableWidgetItem *___qtablewidgetitem14 = tableWidget_2->horizontalHeaderItem(7);
-        ___qtablewidgetitem14->setText(QCoreApplication::translate("App", "Renouvellement", nullptr));
-        QTableWidgetItem *___qtablewidgetitem15 = tableWidget_2->horizontalHeaderItem(8);
-        ___qtablewidgetitem15->setText(QCoreApplication::translate("App", "Supprimer", nullptr));
+        ___qtablewidgetitem14->setText(QCoreApplication::translate("App", "Montant", nullptr));
         btnParametre->setText(QCoreApplication::translate("App", "Parametre", nullptr));
         btnDeconnexion->setText(QCoreApplication::translate("App", "D\303\251connexion", nullptr));
     } // retranslateUi
