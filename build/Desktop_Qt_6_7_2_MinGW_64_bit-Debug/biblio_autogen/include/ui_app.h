@@ -14,7 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCalendarWidget>
 #include <QtWidgets/QComboBox>
-#include <QtWidgets/QDateTimeEdit>
+#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
@@ -55,6 +55,7 @@ public:
     QPushButton *pushButton_3;
     QWidget *pageLivre;
     QVBoxLayout *verticalLayout_2;
+    QLabel *label_12;
     QFrame *frame_7;
     QHBoxLayout *horizontalLayout_7;
     QLineEdit *lineEditRecherche;
@@ -91,15 +92,38 @@ public:
     QRadioButton *radioSexeHomme;
     QRadioButton *radioSexeFemme;
     QLabel *label_9;
-    QDateTimeEdit *dateTimeEditDebut;
     QLabel *label_10;
-    QDateTimeEdit *dateTimeEditFin;
-    QPushButton *btnEnregistrerMembre;
     QLabel *label_7;
+    QPushButton *btnEnregistrerMembre;
+    QLineEdit *lineEditContact;
+    QLabel *label_13;
+    QDateEdit *dateTimeEditDebut;
+    QDateEdit *dateTimeEditFin;
     QFrame *frame_5;
     QVBoxLayout *verticalLayout_3;
+    QLabel *label_11;
+    QFrame *frame_12;
+    QHBoxLayout *horizontalLayout_10;
+    QLineEdit *lineRecherche;
     QTableWidget *tableWidget_2;
     QWidget *pageEmprunt;
+    QHBoxLayout *horizontalLayout_11;
+    QFrame *frame_13;
+    QFormLayout *formLayout_2;
+    QLabel *label_14;
+    QComboBox *comboBox;
+    QLabel *label_15;
+    QComboBox *comboBox_2;
+    QLabel *label_16;
+    QLabel *label_17;
+    QDateEdit *dateEdit;
+    QDateEdit *dateEdit_2;
+    QPushButton *pushButton_4;
+    QLineEdit *lineEdit_2;
+    QLineEdit *lineEdit_3;
+    QFrame *frame_14;
+    QVBoxLayout *verticalLayout_4;
+    QTableWidget *tableWidget_3;
     QFrame *frame_3;
     QHBoxLayout *horizontalLayout_3;
     QSpacerItem *horizontalSpacer_2;
@@ -110,7 +134,7 @@ public:
     {
         if (App->objectName().isEmpty())
             App->setObjectName("App");
-        App->resize(529, 431);
+        App->resize(529, 432);
         verticalLayout = new QVBoxLayout(App);
         verticalLayout->setObjectName("verticalLayout");
         frame = new QFrame(App);
@@ -225,6 +249,15 @@ public:
         pageLivre->setObjectName("pageLivre");
         verticalLayout_2 = new QVBoxLayout(pageLivre);
         verticalLayout_2->setObjectName("verticalLayout_2");
+        label_12 = new QLabel(pageLivre);
+        label_12->setObjectName("label_12");
+        QFont font1;
+        font1.setBold(true);
+        label_12->setFont(font1);
+        label_12->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        verticalLayout_2->addWidget(label_12);
+
         frame_7 = new QFrame(pageLivre);
         frame_7->setObjectName("frame_7");
         frame_7->setFrameShape(QFrame::Shape::StyledPanel);
@@ -248,9 +281,9 @@ public:
 
         btnRecherche = new QPushButton(frame_7);
         btnRecherche->setObjectName("btnRecherche");
-        QFont font1;
-        font1.setBold(false);
-        btnRecherche->setFont(font1);
+        QFont font2;
+        font2.setBold(false);
+        btnRecherche->setFont(font2);
         btnRecherche->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         btnRecherche->setMouseTracking(true);
         btnRecherche->setStyleSheet(QString::fromUtf8(""));
@@ -323,9 +356,7 @@ public:
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         btnAjouterLivre = new QPushButton(frame_2);
         btnAjouterLivre->setObjectName("btnAjouterLivre");
-        QFont font2;
-        font2.setBold(true);
-        btnAjouterLivre->setFont(font2);
+        btnAjouterLivre->setFont(font1);
         btnAjouterLivre->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         btnAjouterLivre->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	border: 1px solid white;\n"
@@ -363,7 +394,7 @@ public:
 
         btnSupprimerLivre = new QPushButton(frame_2);
         btnSupprimerLivre->setObjectName("btnSupprimerLivre");
-        btnSupprimerLivre->setFont(font2);
+        btnSupprimerLivre->setFont(font1);
         btnSupprimerLivre->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         btnSupprimerLivre->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	border: 1px solid white;\n"
@@ -399,27 +430,27 @@ public:
         label_4 = new QLabel(frame_4);
         label_4->setObjectName("label_4");
 
-        formLayout->setWidget(0, QFormLayout::LabelRole, label_4);
+        formLayout->setWidget(2, QFormLayout::LabelRole, label_4);
 
         lineEditNom = new QLineEdit(frame_4);
         lineEditNom->setObjectName("lineEditNom");
 
-        formLayout->setWidget(0, QFormLayout::FieldRole, lineEditNom);
+        formLayout->setWidget(2, QFormLayout::FieldRole, lineEditNom);
 
         label_5 = new QLabel(frame_4);
         label_5->setObjectName("label_5");
 
-        formLayout->setWidget(1, QFormLayout::LabelRole, label_5);
+        formLayout->setWidget(3, QFormLayout::LabelRole, label_5);
 
         lineEditPrenoms = new QLineEdit(frame_4);
         lineEditPrenoms->setObjectName("lineEditPrenoms");
 
-        formLayout->setWidget(1, QFormLayout::FieldRole, lineEditPrenoms);
+        formLayout->setWidget(3, QFormLayout::FieldRole, lineEditPrenoms);
 
         label_6 = new QLabel(frame_4);
         label_6->setObjectName("label_6");
 
-        formLayout->setWidget(2, QFormLayout::LabelRole, label_6);
+        formLayout->setWidget(4, QFormLayout::LabelRole, label_6);
 
         frame_11 = new QFrame(frame_4);
         frame_11->setObjectName("frame_11");
@@ -438,12 +469,12 @@ public:
         horizontalLayout_6->addWidget(radioEnfant);
 
 
-        formLayout->setWidget(2, QFormLayout::FieldRole, frame_11);
+        formLayout->setWidget(4, QFormLayout::FieldRole, frame_11);
 
         label_8 = new QLabel(frame_4);
         label_8->setObjectName("label_8");
 
-        formLayout->setWidget(3, QFormLayout::LabelRole, label_8);
+        formLayout->setWidget(5, QFormLayout::LabelRole, label_8);
 
         frame_6 = new QFrame(frame_4);
         frame_6->setObjectName("frame_6");
@@ -462,27 +493,22 @@ public:
         horizontalLayout_5->addWidget(radioSexeFemme);
 
 
-        formLayout->setWidget(3, QFormLayout::FieldRole, frame_6);
+        formLayout->setWidget(5, QFormLayout::FieldRole, frame_6);
 
         label_9 = new QLabel(frame_4);
         label_9->setObjectName("label_9");
 
-        formLayout->setWidget(4, QFormLayout::LabelRole, label_9);
-
-        dateTimeEditDebut = new QDateTimeEdit(frame_4);
-        dateTimeEditDebut->setObjectName("dateTimeEditDebut");
-
-        formLayout->setWidget(4, QFormLayout::FieldRole, dateTimeEditDebut);
+        formLayout->setWidget(6, QFormLayout::LabelRole, label_9);
 
         label_10 = new QLabel(frame_4);
         label_10->setObjectName("label_10");
 
-        formLayout->setWidget(5, QFormLayout::LabelRole, label_10);
+        formLayout->setWidget(7, QFormLayout::LabelRole, label_10);
 
-        dateTimeEditFin = new QDateTimeEdit(frame_4);
-        dateTimeEditFin->setObjectName("dateTimeEditFin");
+        label_7 = new QLabel(frame_4);
+        label_7->setObjectName("label_7");
 
-        formLayout->setWidget(5, QFormLayout::FieldRole, dateTimeEditFin);
+        formLayout->setWidget(12, QFormLayout::LabelRole, label_7);
 
         btnEnregistrerMembre = new QPushButton(frame_4);
         btnEnregistrerMembre->setObjectName("btnEnregistrerMembre");
@@ -497,12 +523,27 @@ public:
 "	background-color: #6A9C89;\n"
 "}"));
 
-        formLayout->setWidget(6, QFormLayout::FieldRole, btnEnregistrerMembre);
+        formLayout->setWidget(12, QFormLayout::FieldRole, btnEnregistrerMembre);
 
-        label_7 = new QLabel(frame_4);
-        label_7->setObjectName("label_7");
+        lineEditContact = new QLineEdit(frame_4);
+        lineEditContact->setObjectName("lineEditContact");
 
-        formLayout->setWidget(7, QFormLayout::LabelRole, label_7);
+        formLayout->setWidget(9, QFormLayout::FieldRole, lineEditContact);
+
+        label_13 = new QLabel(frame_4);
+        label_13->setObjectName("label_13");
+
+        formLayout->setWidget(9, QFormLayout::LabelRole, label_13);
+
+        dateTimeEditDebut = new QDateEdit(frame_4);
+        dateTimeEditDebut->setObjectName("dateTimeEditDebut");
+
+        formLayout->setWidget(6, QFormLayout::FieldRole, dateTimeEditDebut);
+
+        dateTimeEditFin = new QDateEdit(frame_4);
+        dateTimeEditFin->setObjectName("dateTimeEditFin");
+
+        formLayout->setWidget(7, QFormLayout::FieldRole, dateTimeEditFin);
 
 
         horizontalLayout_4->addWidget(frame_4);
@@ -513,9 +554,38 @@ public:
         frame_5->setFrameShadow(QFrame::Shadow::Raised);
         verticalLayout_3 = new QVBoxLayout(frame_5);
         verticalLayout_3->setObjectName("verticalLayout_3");
+        label_11 = new QLabel(frame_5);
+        label_11->setObjectName("label_11");
+        label_11->setFont(font3);
+        label_11->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        verticalLayout_3->addWidget(label_11);
+
+        frame_12 = new QFrame(frame_5);
+        frame_12->setObjectName("frame_12");
+        frame_12->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_12->setFrameShadow(QFrame::Shadow::Raised);
+        horizontalLayout_10 = new QHBoxLayout(frame_12);
+        horizontalLayout_10->setObjectName("horizontalLayout_10");
+        lineRecherche = new QLineEdit(frame_12);
+        lineRecherche->setObjectName("lineRecherche");
+        lineRecherche->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+"	border: 1px solid white;\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QLineEdit:focus{\n"
+"	border: 1px solid black;\n"
+"}"));
+
+        horizontalLayout_10->addWidget(lineRecherche);
+
+
+        verticalLayout_3->addWidget(frame_12);
+
         tableWidget_2 = new QTableWidget(frame_5);
-        if (tableWidget_2->columnCount() < 10)
-            tableWidget_2->setColumnCount(10);
+        if (tableWidget_2->columnCount() < 11)
+            tableWidget_2->setColumnCount(11);
         QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
         tableWidget_2->setHorizontalHeaderItem(0, __qtablewidgetitem7);
         QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
@@ -536,6 +606,8 @@ public:
         tableWidget_2->setHorizontalHeaderItem(8, __qtablewidgetitem15);
         QTableWidgetItem *__qtablewidgetitem16 = new QTableWidgetItem();
         tableWidget_2->setHorizontalHeaderItem(9, __qtablewidgetitem16);
+        QTableWidgetItem *__qtablewidgetitem17 = new QTableWidgetItem();
+        tableWidget_2->setHorizontalHeaderItem(10, __qtablewidgetitem17);
         tableWidget_2->setObjectName("tableWidget_2");
 
         verticalLayout_3->addWidget(tableWidget_2);
@@ -543,10 +615,91 @@ public:
 
         horizontalLayout_4->addWidget(frame_5);
 
-        horizontalLayout_4->setStretch(1, 6);
+        horizontalLayout_4->setStretch(1, 8);
         stackedWidget->addWidget(pageMembre);
         pageEmprunt = new QWidget();
         pageEmprunt->setObjectName("pageEmprunt");
+        horizontalLayout_11 = new QHBoxLayout(pageEmprunt);
+        horizontalLayout_11->setObjectName("horizontalLayout_11");
+        frame_13 = new QFrame(pageEmprunt);
+        frame_13->setObjectName("frame_13");
+        frame_13->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_13->setFrameShadow(QFrame::Shadow::Raised);
+        formLayout_2 = new QFormLayout(frame_13);
+        formLayout_2->setObjectName("formLayout_2");
+        label_14 = new QLabel(frame_13);
+        label_14->setObjectName("label_14");
+
+        formLayout_2->setWidget(1, QFormLayout::LabelRole, label_14);
+
+        comboBox = new QComboBox(frame_13);
+        comboBox->setObjectName("comboBox");
+
+        formLayout_2->setWidget(1, QFormLayout::FieldRole, comboBox);
+
+        label_15 = new QLabel(frame_13);
+        label_15->setObjectName("label_15");
+
+        formLayout_2->setWidget(4, QFormLayout::LabelRole, label_15);
+
+        comboBox_2 = new QComboBox(frame_13);
+        comboBox_2->setObjectName("comboBox_2");
+
+        formLayout_2->setWidget(4, QFormLayout::FieldRole, comboBox_2);
+
+        label_16 = new QLabel(frame_13);
+        label_16->setObjectName("label_16");
+
+        formLayout_2->setWidget(5, QFormLayout::LabelRole, label_16);
+
+        label_17 = new QLabel(frame_13);
+        label_17->setObjectName("label_17");
+
+        formLayout_2->setWidget(6, QFormLayout::LabelRole, label_17);
+
+        dateEdit = new QDateEdit(frame_13);
+        dateEdit->setObjectName("dateEdit");
+
+        formLayout_2->setWidget(5, QFormLayout::FieldRole, dateEdit);
+
+        dateEdit_2 = new QDateEdit(frame_13);
+        dateEdit_2->setObjectName("dateEdit_2");
+
+        formLayout_2->setWidget(6, QFormLayout::FieldRole, dateEdit_2);
+
+        pushButton_4 = new QPushButton(frame_13);
+        pushButton_4->setObjectName("pushButton_4");
+
+        formLayout_2->setWidget(7, QFormLayout::FieldRole, pushButton_4);
+
+        lineEdit_2 = new QLineEdit(frame_13);
+        lineEdit_2->setObjectName("lineEdit_2");
+
+        formLayout_2->setWidget(0, QFormLayout::FieldRole, lineEdit_2);
+
+        lineEdit_3 = new QLineEdit(frame_13);
+        lineEdit_3->setObjectName("lineEdit_3");
+
+        formLayout_2->setWidget(3, QFormLayout::FieldRole, lineEdit_3);
+
+
+        horizontalLayout_11->addWidget(frame_13);
+
+        frame_14 = new QFrame(pageEmprunt);
+        frame_14->setObjectName("frame_14");
+        frame_14->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_14->setFrameShadow(QFrame::Shadow::Raised);
+        verticalLayout_4 = new QVBoxLayout(frame_14);
+        verticalLayout_4->setObjectName("verticalLayout_4");
+        tableWidget_3 = new QTableWidget(frame_14);
+        tableWidget_3->setObjectName("tableWidget_3");
+
+        verticalLayout_4->addWidget(tableWidget_3);
+
+
+        horizontalLayout_11->addWidget(frame_14);
+
+        horizontalLayout_11->setStretch(1, 6);
         stackedWidget->addWidget(pageEmprunt);
 
         verticalLayout->addWidget(stackedWidget);
@@ -614,6 +767,7 @@ public:
         pushButton->setText(QCoreApplication::translate("App", "Emprunt en cours", nullptr));
         pushButton_2->setText(QCoreApplication::translate("App", "Etat", nullptr));
         pushButton_3->setText(QCoreApplication::translate("App", "Tableau de bord", nullptr));
+        label_12->setText(QCoreApplication::translate("App", "GESTION DES LIVRES", nullptr));
         lineEditRecherche->setPlaceholderText(QCoreApplication::translate("App", "Recherche", nullptr));
         btnRecherche->setText(QString());
         label->setText(QCoreApplication::translate("App", "Trier par armoire", nullptr));
@@ -645,8 +799,11 @@ public:
         radioSexeFemme->setText(QCoreApplication::translate("App", "Femme", nullptr));
         label_9->setText(QCoreApplication::translate("App", "D\303\251but :", nullptr));
         label_10->setText(QCoreApplication::translate("App", "Fin :", nullptr));
-        btnEnregistrerMembre->setText(QCoreApplication::translate("App", "Enregistrer", nullptr));
         label_7->setText(QString());
+        btnEnregistrerMembre->setText(QCoreApplication::translate("App", "Enregistrer", nullptr));
+        label_13->setText(QCoreApplication::translate("App", "Contact", nullptr));
+        label_11->setText(QCoreApplication::translate("App", "GESTION DES MEMBRES", nullptr));
+        lineRecherche->setPlaceholderText(QCoreApplication::translate("App", "Recherche", nullptr));
         QTableWidgetItem *___qtablewidgetitem7 = tableWidget_2->horizontalHeaderItem(0);
         ___qtablewidgetitem7->setText(QCoreApplication::translate("App", "Nom", nullptr));
         QTableWidgetItem *___qtablewidgetitem8 = tableWidget_2->horizontalHeaderItem(1);
@@ -660,9 +817,16 @@ public:
         QTableWidgetItem *___qtablewidgetitem12 = tableWidget_2->horizontalHeaderItem(5);
         ___qtablewidgetitem12->setText(QCoreApplication::translate("App", "Fin", nullptr));
         QTableWidgetItem *___qtablewidgetitem13 = tableWidget_2->horizontalHeaderItem(6);
-        ___qtablewidgetitem13->setText(QCoreApplication::translate("App", "Validit\303\251", nullptr));
+        ___qtablewidgetitem13->setText(QCoreApplication::translate("App", "Contact", nullptr));
         QTableWidgetItem *___qtablewidgetitem14 = tableWidget_2->horizontalHeaderItem(7);
-        ___qtablewidgetitem14->setText(QCoreApplication::translate("App", "Montant", nullptr));
+        ___qtablewidgetitem14->setText(QCoreApplication::translate("App", "Validit\303\251", nullptr));
+        QTableWidgetItem *___qtablewidgetitem15 = tableWidget_2->horizontalHeaderItem(8);
+        ___qtablewidgetitem15->setText(QCoreApplication::translate("App", "Montant", nullptr));
+        label_14->setText(QCoreApplication::translate("App", "TextLabel", nullptr));
+        label_15->setText(QCoreApplication::translate("App", "TextLabel", nullptr));
+        label_16->setText(QCoreApplication::translate("App", "TextLabel", nullptr));
+        label_17->setText(QCoreApplication::translate("App", "TextLabel", nullptr));
+        pushButton_4->setText(QCoreApplication::translate("App", "PushButton", nullptr));
         btnParametre->setText(QCoreApplication::translate("App", "Parametre", nullptr));
         btnDeconnexion->setText(QCoreApplication::translate("App", "D\303\251connexion", nullptr));
     } // retranslateUi

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>529</width>
-    <height>431</height>
+    <height>432</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -196,6 +196,21 @@ QPushButton:focus{
      </widget>
      <widget class="QWidget" name="pageLivre">
       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QLabel" name="label_12">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>GESTION DES LIVRES</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QFrame" name="frame_7">
          <property name="frameShape">
@@ -466,7 +481,7 @@ QPushButton:hover{
       </layout>
      </widget>
      <widget class="QWidget" name="pageMembre">
-      <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,6">
+      <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,8">
        <item>
         <widget class="QFrame" name="frame_4">
          <property name="frameShape">
@@ -476,34 +491,34 @@ QPushButton:hover{
           <enum>QFrame::Shadow::Raised</enum>
          </property>
          <layout class="QFormLayout" name="formLayout">
-          <item row="0" column="0">
+          <item row="2" column="0">
            <widget class="QLabel" name="label_4">
             <property name="text">
              <string>Nom :</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
+          <item row="2" column="1">
            <widget class="QLineEdit" name="lineEditNom"/>
           </item>
-          <item row="1" column="0">
+          <item row="3" column="0">
            <widget class="QLabel" name="label_5">
             <property name="text">
              <string>Prénom(s) :</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
+          <item row="3" column="1">
            <widget class="QLineEdit" name="lineEditPrenoms"/>
           </item>
-          <item row="2" column="0">
+          <item row="4" column="0">
            <widget class="QLabel" name="label_6">
             <property name="text">
              <string>Statut :</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
+          <item row="4" column="1">
            <widget class="QFrame" name="frame_11">
             <property name="frameShape">
              <enum>QFrame::Shape::StyledPanel</enum>
@@ -529,14 +544,14 @@ QPushButton:hover{
             </layout>
            </widget>
           </item>
-          <item row="3" column="0">
+          <item row="5" column="0">
            <widget class="QLabel" name="label_8">
             <property name="text">
              <string>Sexe :</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
+          <item row="5" column="1">
            <widget class="QFrame" name="frame_6">
             <property name="frameShape">
              <enum>QFrame::Shape::StyledPanel</enum>
@@ -562,27 +577,28 @@ QPushButton:hover{
             </layout>
            </widget>
           </item>
-          <item row="4" column="0">
+          <item row="6" column="0">
            <widget class="QLabel" name="label_9">
             <property name="text">
              <string>Début :</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="1">
-           <widget class="QDateTimeEdit" name="dateTimeEditDebut"/>
-          </item>
-          <item row="5" column="0">
+          <item row="7" column="0">
            <widget class="QLabel" name="label_10">
             <property name="text">
              <string>Fin :</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="1">
-           <widget class="QDateTimeEdit" name="dateTimeEditFin"/>
+          <item row="12" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
           </item>
-          <item row="6" column="1">
+          <item row="12" column="1">
            <widget class="QPushButton" name="btnEnregistrerMembre">
             <property name="styleSheet">
              <string notr="true">QPushButton{
@@ -601,12 +617,21 @@ QPushButton:hover{
             </property>
            </widget>
           </item>
-          <item row="7" column="0">
-           <widget class="QLabel" name="label_7">
+          <item row="9" column="1">
+           <widget class="QLineEdit" name="lineEditContact"/>
+          </item>
+          <item row="9" column="0">
+           <widget class="QLabel" name="label_13">
             <property name="text">
-             <string/>
+             <string>Contact</string>
             </property>
            </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QDateEdit" name="dateTimeEditDebut"/>
+          </item>
+          <item row="7" column="1">
+           <widget class="QDateEdit" name="dateTimeEditFin"/>
           </item>
          </layout>
         </widget>
@@ -620,6 +645,51 @@ QPushButton:hover{
           <enum>QFrame::Shadow::Raised</enum>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QLabel" name="label_11">
+            <property name="font">
+             <font>
+              <bold>true</bold>
+              <underline>false</underline>
+             </font>
+            </property>
+            <property name="text">
+             <string>GESTION DES MEMBRES</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frame_12">
+            <property name="frameShape">
+             <enum>QFrame::Shape::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Shadow::Raised</enum>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_10">
+             <item>
+              <widget class="QLineEdit" name="lineRecherche">
+               <property name="styleSheet">
+                <string notr="true">QLineEdit{
+	border: 1px solid white;
+	border-radius: 5px;
+}
+
+QLineEdit:focus{
+	border: 1px solid black;
+}</string>
+               </property>
+               <property name="placeholderText">
+                <string>Recherche</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
           <item>
            <widget class="QTableWidget" name="tableWidget_2">
             <column>
@@ -654,6 +724,11 @@ QPushButton:hover{
             </column>
             <column>
              <property name="text">
+              <string>Contact</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
               <string>Validité</string>
              </property>
             </column>
@@ -679,7 +754,90 @@ QPushButton:hover{
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="pageEmprunt"/>
+     <widget class="QWidget" name="pageEmprunt">
+      <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="0,6">
+       <item>
+        <widget class="QFrame" name="frame_13">
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <layout class="QFormLayout" name="formLayout_2">
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_14">
+            <property name="text">
+             <string>TextLabel</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="comboBox"/>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_15">
+            <property name="text">
+             <string>TextLabel</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QComboBox" name="comboBox_2"/>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_16">
+            <property name="text">
+             <string>TextLabel</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_17">
+            <property name="text">
+             <string>TextLabel</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QDateEdit" name="dateEdit"/>
+          </item>
+          <item row="6" column="1">
+           <widget class="QDateEdit" name="dateEdit_2"/>
+          </item>
+          <item row="7" column="1">
+           <widget class="QPushButton" name="pushButton_4">
+            <property name="text">
+             <string>PushButton</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="lineEdit_2"/>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="lineEdit_3"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_14">
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QTableWidget" name="tableWidget_3"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item>

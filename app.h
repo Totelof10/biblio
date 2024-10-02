@@ -45,7 +45,7 @@ private slots:
     void supprimerMembre(int row);
     void clearForm();
     void modifierDates(int row);
-
+    void rechercheMembres();
 signals:
     void ajoutMemebre();
 private:
