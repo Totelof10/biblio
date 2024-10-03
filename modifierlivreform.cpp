@@ -64,6 +64,7 @@ void ModifierLivreForm::modifierLivre() {
     } else {
         msgBox.showError("Erreur", "Échec de la modification des informations du livre.");
     }
+
 }
 
 void ModifierLivreForm::annulerModif(){

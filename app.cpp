@@ -14,6 +14,7 @@ App::App(QWidget *parent)
     ui->setupUi(this);
 
     comboArmoireAfficher();
+    comboBoxEmprunt();
     afficherLivreDansTableau();
     afficherMembreDansTableau();
     ajoutBtnTableau();
@@ -35,6 +36,8 @@ App::App(QWidget *parent)
     //Gestion Membre
     connect(ui->btnEnregistrerMembre, &QPushButton::clicked, this, &App::enregistrerMembre);
     connect(ui->lineRecherche, &QLineEdit::textChanged, this, &App::rechercheMembres);
+    connect(ui->lineEditRechercheMembres, &QLineEdit::textChanged, this, &App::filtrageComboMembre);
+    connect(ui->lineEditRechercheLivres, &QLineEdit::textChanged, this, &App::filtrageComboLivre);
 
 }
 
@@ -64,6 +67,9 @@ void App::handleMembre(){
 
 void App::handleEmprunt(){
     ui->stackedWidget->setCurrentWidget(ui->pageEmprunt);
+    comboBoxEmprunt();
+    //afficherLivreDansTableau();
+    //afficherMembreDansTableau();
 }
 
 void App::handleAfficherAjoutLivreForm(){
@@ -742,4 +748,98 @@ void App::rechercheMembres(){
     }
     ajoutBtnTableau();
 }
+
+void App::comboBoxEmprunt() {
+    CustomMessageBox msgBox;
+    QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
+    if (!sqlitedb.open()) {
+        msgBox.showError("Erreur", "Impossible d'ouvrir la base de données.");
+        return;
+    }
+
+    QSqlQuery queryMembre(sqlitedb);
+    QSqlQuery queryLivres(sqlitedb);
+
+    if (!queryMembre.exec("SELECT prenoms FROM membres")) {
+        msgBox.showError("Erreur", "Erreur lors de l'exécution de la requête pour les membres.");
+        qDebug() << queryMembre.lastError();
+        return;
+    }
+
+    if (!queryLivres.exec("SELECT titre FROM livres WHERE quantite > 0")) {
+        msgBox.showError("Erreur", "Erreur lors de l'exécution de la requête pour les livres.");
+        qDebug() << queryLivres.lastError();
+        return;
+    }
+
+    // Clear existing items
+    ui->comboBoxMembres->clear();
+    ui->comboBoxLivres->clear();
+
+    // Add placeholder items
+    ui->comboBoxMembres->addItem("Séléction");
+    ui->comboBoxLivres->addItem("Séléction");
+
+    // Populate comboBoxMembres with prenoms
+    while (queryMembre.next()) {
+        QString membre = queryMembre.value("prenoms").toString();
+        ui->comboBoxMembres->addItem(membre);
+    }
+
+    // Populate comboBoxLivres with titres
+    while (queryLivres.next()) {
+        QString livre = queryLivres.value("titre").toString();
+        ui->comboBoxLivres->addItem(livre);
+    }
+}
+
+void App::filtrageComboMembre(){
+    CustomMessageBox msgBox;
+    QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
+    QString recherche = ui->lineEditRechercheMembres->text();
+    QSqlQuery query(sqlitedb);
+    query.prepare("SELECT nom, prenoms, statut, sexe, debut, fin, montant FROM membres WHERE (nom || ' ' || prenoms) LIKE :recherche");
+    query.bindValue(":recherche", "%" +recherche+ "%");
+
+    if (!query.exec()) {
+        qDebug() << "Erreur lors de l'exécution de la requête" << query.lastError();
+        return;
+    }
+
+    // Vider le comboBox avant de le remplir
+    ui->comboBoxMembres->clear();
+
+    // Ajouter les résultats au comboBox
+    while(query.next()){
+        QString nomComplet = query.value("nom").toString() + " " + query.value("prenoms").toString();
+        ui->comboBoxMembres->addItem(nomComplet);
+    }
+}
+
+void App::filtrageComboLivre(){
+    CustomMessageBox msgBox;
+    QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
+    QString recherche = ui->lineEditRechercheLivres->text();
+    QSqlQuery query(sqlitedb);
+    query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire FROM livres WHERE titre LIKE :recherche");
+    query.bindValue(":recherche", "%" +recherche+ "%");
+
+    if (!query.exec()) {
+        qDebug() << "Erreur lors de l'exécution de la requête" << query.lastError();
+        return;
+    }
+
+    // Vider le comboBox avant de le remplir
+    ui->comboBoxLivres->clear();
+
+    // Ajouter les résultats au comboBox
+    while(query.next()){
+        QString titre = query.value("titre").toString();
+        ui->comboBoxLivres->addItem(titre);
+    }
+}
+
+
+
+
 

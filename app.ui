@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>529</width>
-    <height>432</height>
+    <height>445</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -127,7 +127,7 @@ QPushButton:focus{
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="pageAccueil">
       <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -768,34 +768,34 @@ QLineEdit:focus{
           <item row="1" column="0">
            <widget class="QLabel" name="label_14">
             <property name="text">
-             <string>TextLabel</string>
+             <string>Membres</string>
             </property>
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QComboBox" name="comboBox"/>
+           <widget class="QComboBox" name="comboBoxMembres"/>
           </item>
           <item row="4" column="0">
            <widget class="QLabel" name="label_15">
             <property name="text">
-             <string>TextLabel</string>
+             <string>Livres</string>
             </property>
            </widget>
           </item>
           <item row="4" column="1">
-           <widget class="QComboBox" name="comboBox_2"/>
+           <widget class="QComboBox" name="comboBoxLivres"/>
           </item>
           <item row="5" column="0">
            <widget class="QLabel" name="label_16">
             <property name="text">
-             <string>TextLabel</string>
+             <string>Début de l'emprunt</string>
             </property>
            </widget>
           </item>
           <item row="6" column="0">
            <widget class="QLabel" name="label_17">
             <property name="text">
-             <string>TextLabel</string>
+             <string>Fin de l'emprunt</string>
             </property>
            </widget>
           </item>
@@ -808,15 +808,43 @@ QLineEdit:focus{
           <item row="7" column="1">
            <widget class="QPushButton" name="pushButton_4">
             <property name="text">
-             <string>PushButton</string>
+             <string>Enregistrer</string>
             </property>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLineEdit" name="lineEdit_2"/>
+           <widget class="QLineEdit" name="lineEditRechercheMembres">
+            <property name="styleSheet">
+             <string notr="true">QLineEdit{
+	border: 1px solid white;
+	border-radius: 5px;
+}
+
+QLineEdit:focus{
+	border: 1px solid black;
+}</string>
+            </property>
+            <property name="placeholderText">
+             <string>Membres</string>
+            </property>
+           </widget>
           </item>
           <item row="3" column="1">
-           <widget class="QLineEdit" name="lineEdit_3"/>
+           <widget class="QLineEdit" name="lineEditRechercheLivres">
+            <property name="styleSheet">
+             <string notr="true">QLineEdit{
+	border: 1px solid white;
+	border-radius: 5px;
+}
+
+QLineEdit:focus{
+	border: 1px solid black;
+}</string>
+            </property>
+            <property name="placeholderText">
+             <string>Livres</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>

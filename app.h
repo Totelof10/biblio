@@ -46,6 +46,9 @@ private slots:
     void clearForm();
     void modifierDates(int row);
     void rechercheMembres();
+    void comboBoxEmprunt();
+    void filtrageComboMembre();
+    void filtrageComboLivre();
 signals:
     void ajoutMemebre();
 private:
