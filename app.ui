@@ -313,6 +313,12 @@ QLineEdit:focus{
        </item>
        <item>
         <widget class="QTableWidget" name="tableWidget">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="sizeAdjustPolicy">
           <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustIgnored</enum>
          </property>
@@ -800,13 +806,25 @@ QLineEdit:focus{
            </widget>
           </item>
           <item row="5" column="1">
-           <widget class="QDateEdit" name="dateEdit"/>
+           <widget class="QDateEdit" name="dateEditDebut"/>
           </item>
           <item row="6" column="1">
-           <widget class="QDateEdit" name="dateEdit_2"/>
+           <widget class="QDateEdit" name="dateEditFin"/>
           </item>
           <item row="7" column="1">
-           <widget class="QPushButton" name="pushButton_4">
+           <widget class="QPushButton" name="btnEnregistrerEmprunt">
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	border: 1px solid white;
+	border-radius: 7px;
+	background-color: #16423C;
+	color:white;
+	padding: 7px;
+}
+QPushButton:hover{
+	background-color: #6A9C89;
+}</string>
+            </property>
             <property name="text">
              <string>Enregistrer</string>
             </property>
@@ -859,7 +877,28 @@ QLineEdit:focus{
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
-           <widget class="QTableWidget" name="tableWidget_3"/>
+           <widget class="QTableWidget" name="tableWidget_3">
+            <column>
+             <property name="text">
+              <string>Livre</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Emprunteur</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Début</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Fin</string>
+             </property>
+            </column>
+           </widget>
           </item>
          </layout>
         </widget>

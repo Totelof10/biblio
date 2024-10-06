@@ -62,7 +62,8 @@ constexpr auto qt_meta_stringdata_CLASSAppENDCLASS = QtMocHelpers::stringData(
     "rechercheMembres",
     "comboBoxEmprunt",
     "filtrageComboMembre",
-    "filtrageComboLivre"
+    "filtrageComboLivre",
+    "ajoutEmprunt"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -75,7 +76,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAppENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      25,   14, // methods
+      26,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -83,33 +84,34 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAppENDCLASS[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  164,    2, 0x06,    1 /* Public */,
+       1,    0,  170,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       3,    0,  165,    2, 0x08,    2 /* Private */,
-       4,    0,  166,    2, 0x08,    3 /* Private */,
-       5,    0,  167,    2, 0x08,    4 /* Private */,
-       6,    0,  168,    2, 0x08,    5 /* Private */,
-       7,    0,  169,    2, 0x08,    6 /* Private */,
-       8,    0,  170,    2, 0x08,    7 /* Private */,
-       9,    0,  171,    2, 0x08,    8 /* Private */,
-      10,    0,  172,    2, 0x08,    9 /* Private */,
-      11,    0,  173,    2, 0x08,   10 /* Private */,
-      12,    0,  174,    2, 0x08,   11 /* Private */,
-      13,    0,  175,    2, 0x08,   12 /* Private */,
-      14,    0,  176,    2, 0x08,   13 /* Private */,
-      15,    0,  177,    2, 0x08,   14 /* Private */,
-      16,    0,  178,    2, 0x08,   15 /* Private */,
-      17,    0,  179,    2, 0x08,   16 /* Private */,
-      18,    0,  180,    2, 0x08,   17 /* Private */,
-      19,    0,  181,    2, 0x08,   18 /* Private */,
-      20,    1,  182,    2, 0x08,   19 /* Private */,
-      22,    0,  185,    2, 0x08,   21 /* Private */,
-      23,    1,  186,    2, 0x08,   22 /* Private */,
-      24,    0,  189,    2, 0x08,   24 /* Private */,
-      25,    0,  190,    2, 0x08,   25 /* Private */,
-      26,    0,  191,    2, 0x08,   26 /* Private */,
-      27,    0,  192,    2, 0x08,   27 /* Private */,
+       3,    0,  171,    2, 0x08,    2 /* Private */,
+       4,    0,  172,    2, 0x08,    3 /* Private */,
+       5,    0,  173,    2, 0x08,    4 /* Private */,
+       6,    0,  174,    2, 0x08,    5 /* Private */,
+       7,    0,  175,    2, 0x08,    6 /* Private */,
+       8,    0,  176,    2, 0x08,    7 /* Private */,
+       9,    0,  177,    2, 0x08,    8 /* Private */,
+      10,    0,  178,    2, 0x08,    9 /* Private */,
+      11,    0,  179,    2, 0x08,   10 /* Private */,
+      12,    0,  180,    2, 0x08,   11 /* Private */,
+      13,    0,  181,    2, 0x08,   12 /* Private */,
+      14,    0,  182,    2, 0x08,   13 /* Private */,
+      15,    0,  183,    2, 0x08,   14 /* Private */,
+      16,    0,  184,    2, 0x08,   15 /* Private */,
+      17,    0,  185,    2, 0x08,   16 /* Private */,
+      18,    0,  186,    2, 0x08,   17 /* Private */,
+      19,    0,  187,    2, 0x08,   18 /* Private */,
+      20,    1,  188,    2, 0x08,   19 /* Private */,
+      22,    0,  191,    2, 0x08,   21 /* Private */,
+      23,    1,  192,    2, 0x08,   22 /* Private */,
+      24,    0,  195,    2, 0x08,   24 /* Private */,
+      25,    0,  196,    2, 0x08,   25 /* Private */,
+      26,    0,  197,    2, 0x08,   26 /* Private */,
+      27,    0,  198,    2, 0x08,   27 /* Private */,
+      28,    0,  199,    2, 0x08,   28 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
@@ -135,6 +137,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAppENDCLASS[] = {
     QMetaType::Void, QMetaType::Int,   21,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,   21,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -203,6 +206,8 @@ Q_CONSTINIT const QMetaObject App::staticMetaObject = { {
         // method 'filtrageComboMembre'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'filtrageComboLivre'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'ajoutEmprunt'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -239,6 +244,7 @@ void App::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **
         case 22: _t->comboBoxEmprunt(); break;
         case 23: _t->filtrageComboMembre(); break;
         case 24: _t->filtrageComboLivre(); break;
+        case 25: _t->ajoutEmprunt(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -272,13 +278,13 @@ int App::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 25)
+        if (_id < 26)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 25;
+        _id -= 26;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 25)
+        if (_id < 26)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 25;
+        _id -= 26;
     }
     return _id;
 }

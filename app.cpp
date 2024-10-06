@@ -38,6 +38,7 @@ App::App(QWidget *parent)
     connect(ui->lineRecherche, &QLineEdit::textChanged, this, &App::rechercheMembres);
     connect(ui->lineEditRechercheMembres, &QLineEdit::textChanged, this, &App::filtrageComboMembre);
     connect(ui->lineEditRechercheLivres, &QLineEdit::textChanged, this, &App::filtrageComboLivre);
+    connect(ui->btnEnregistrerEmprunt, &QPushButton::clicked, this, &App::ajoutEmprunt);
 
 }
 
@@ -402,8 +403,8 @@ void App::enregistrerMembre(){
     QString prenoms = ui->lineEditPrenoms->text();
     QString statut = ui->radioAdulte->isChecked()? "Adulte":"Enfant";
     QString sexe = ui->radioSexeHomme->isChecked()?"Homme":"Femme";
-    QString debut = ui->dateTimeEditDebut->dateTime().toString("dd-MM-yyyy");
-    QString fin = ui->dateTimeEditFin->dateTime().toString("dd-MM-yyyy");
+    QString debut = ui->dateTimeEditDebut->date().toString("dd-MM-yyyy");
+    QString fin = ui->dateTimeEditFin->date().toString("dd-MM-yyyy");
     QString contact = ui->lineEditContact->text();
 
     if(nom.isEmpty()||prenoms.isEmpty()){
@@ -836,6 +837,49 @@ void App::filtrageComboLivre(){
     while(query.next()){
         QString titre = query.value("titre").toString();
         ui->comboBoxLivres->addItem(titre);
+    }
+}
+
+void App::ajoutEmprunt(){
+    CustomMessageBox msgBox;
+    QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
+    QString prenoms = ui->comboBoxMembres->currentText();
+    QString livre = ui->comboBoxLivres->currentText();
+    QString debut = ui->dateEditDebut->date().toString("dd-MM-yyyy");
+    QString fin = ui->dateEditFin->date().toString("dd-MM-yyyy");
+
+    QSqlQuery queryMembre(sqlitedb);
+    queryMembre.prepare("SELECT id FROM membres WHERE prenoms = :prenoms");
+    queryMembre.bindValue(":prenoms", prenoms);
+    if(!queryMembre.exec()){
+        qDebug()<<queryMembre.lastError();
+        msgBox.showError("erreur", "Erreur lors de la récupération des données");
+    }
+
+    /*QSqlQuery queryLivre(sqlitedb);
+    queryLivre.prepare("SELECT titre FROM livres");
+    queryLivre.bindValue(":titre", livre);*/
+    int idMembre = -1;
+    if(queryMembre.next()){
+        idMembre = queryMembre.value(0).toInt();
+    }
+    if(idMembre == -1){
+        qDebug()<<"Utilisateur non trouvé";
+    }
+
+    QSqlQuery queryInsert(sqlitedb);
+    queryInsert.prepare("INSERT INTO emprunt(id_membres, id_livres, debut, fin, emprunteur) VALUES (:id_membres, :id_livres, :debut, :fin, :emprunteur)");
+    queryInsert.bindValue(":id_membres", idMembre);
+    queryInsert.bindValue(":id_livres", livre);
+    queryInsert.bindValue(":emprunteur", prenoms);
+    queryInsert.bindValue(":debut", debut);
+    queryInsert.bindValue(":fin", fin);
+
+    if(!queryInsert.exec()){
+        qDebug()<<queryInsert.lastError();
+        msgBox.showError("erreur", "Erreur lors de la recupération des données");
+    }else{
+        msgBox.showInformation("Succes", "Emprunt réussi");
     }
 }
 

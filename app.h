@@ -49,6 +49,7 @@ private slots:
     void comboBoxEmprunt();
     void filtrageComboMembre();
     void filtrageComboLivre();
+    void ajoutEmprunt();
 signals:
     void ajoutMemebre();
 private:

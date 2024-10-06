@@ -116,9 +116,9 @@ public:
     QComboBox *comboBoxLivres;
     QLabel *label_16;
     QLabel *label_17;
-    QDateEdit *dateEdit;
-    QDateEdit *dateEdit_2;
-    QPushButton *pushButton_4;
+    QDateEdit *dateEditDebut;
+    QDateEdit *dateEditFin;
+    QPushButton *btnEnregistrerEmprunt;
     QLineEdit *lineEditRechercheMembres;
     QLineEdit *lineEditRechercheLivres;
     QFrame *frame_14;
@@ -342,6 +342,11 @@ public:
         QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(6, __qtablewidgetitem6);
         tableWidget->setObjectName("tableWidget");
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(tableWidget->sizePolicy().hasHeightForWidth());
+        tableWidget->setSizePolicy(sizePolicy);
         tableWidget->setSizeAdjustPolicy(QAbstractScrollArea::SizeAdjustPolicy::AdjustIgnored);
 
         verticalLayout_2->addWidget(tableWidget);
@@ -657,20 +662,30 @@ public:
 
         formLayout_2->setWidget(6, QFormLayout::LabelRole, label_17);
 
-        dateEdit = new QDateEdit(frame_13);
-        dateEdit->setObjectName("dateEdit");
+        dateEditDebut = new QDateEdit(frame_13);
+        dateEditDebut->setObjectName("dateEditDebut");
 
-        formLayout_2->setWidget(5, QFormLayout::FieldRole, dateEdit);
+        formLayout_2->setWidget(5, QFormLayout::FieldRole, dateEditDebut);
 
-        dateEdit_2 = new QDateEdit(frame_13);
-        dateEdit_2->setObjectName("dateEdit_2");
+        dateEditFin = new QDateEdit(frame_13);
+        dateEditFin->setObjectName("dateEditFin");
 
-        formLayout_2->setWidget(6, QFormLayout::FieldRole, dateEdit_2);
+        formLayout_2->setWidget(6, QFormLayout::FieldRole, dateEditFin);
 
-        pushButton_4 = new QPushButton(frame_13);
-        pushButton_4->setObjectName("pushButton_4");
+        btnEnregistrerEmprunt = new QPushButton(frame_13);
+        btnEnregistrerEmprunt->setObjectName("btnEnregistrerEmprunt");
+        btnEnregistrerEmprunt->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	border: 1px solid white;\n"
+"	border-radius: 7px;\n"
+"	background-color: #16423C;\n"
+"	color:white;\n"
+"	padding: 7px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: #6A9C89;\n"
+"}"));
 
-        formLayout_2->setWidget(7, QFormLayout::FieldRole, pushButton_4);
+        formLayout_2->setWidget(7, QFormLayout::FieldRole, btnEnregistrerEmprunt);
 
         lineEditRechercheMembres = new QLineEdit(frame_13);
         lineEditRechercheMembres->setObjectName("lineEditRechercheMembres");
@@ -842,7 +857,7 @@ public:
         label_15->setText(QCoreApplication::translate("App", "Livres", nullptr));
         label_16->setText(QCoreApplication::translate("App", "D\303\251but de l'emprunt", nullptr));
         label_17->setText(QCoreApplication::translate("App", "Fin de l'emprunt", nullptr));
-        pushButton_4->setText(QCoreApplication::translate("App", "Enregistrer", nullptr));
+        btnEnregistrerEmprunt->setText(QCoreApplication::translate("App", "Enregistrer", nullptr));
         lineEditRechercheMembres->setPlaceholderText(QCoreApplication::translate("App", "Membres", nullptr));
         lineEditRechercheLivres->setPlaceholderText(QCoreApplication::translate("App", "Livres", nullptr));
         btnParametre->setText(QCoreApplication::translate("App", "Parametre", nullptr));
