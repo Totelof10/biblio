@@ -73,6 +73,7 @@ public:
     QPushButton *btnModifierLivre;
     QPushButton *btnSupprimerLivre;
     QSpacerItem *horizontalSpacer;
+    QPushButton *pushButton_4;
     QWidget *pageMembre;
     QHBoxLayout *horizontalLayout_4;
     QFrame *frame_4;
@@ -123,6 +124,7 @@ public:
     QLineEdit *lineEditRechercheLivres;
     QFrame *frame_14;
     QVBoxLayout *verticalLayout_4;
+    QLabel *label_18;
     QTableWidget *tableWidget_3;
     QFrame *frame_3;
     QHBoxLayout *horizontalLayout_3;
@@ -417,6 +419,26 @@ public:
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer);
+
+        pushButton_4 = new QPushButton(frame_2);
+        pushButton_4->setObjectName("pushButton_4");
+        QFont font4;
+        font4.setBold(true);
+        font4.setItalic(false);
+        pushButton_4->setFont(font4);
+        pushButton_4->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        pushButton_4->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	border: 1px solid white;\n"
+"	border-radius: 7px;\n"
+"	background-color: #03346E;\n"
+"	color:white;\n"
+"	padding: 7px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: #6EACDA;\n"
+"}"));
+
+        horizontalLayout_2->addWidget(pushButton_4);
 
 
         verticalLayout_2->addWidget(frame_2);
@@ -722,7 +744,30 @@ public:
         frame_14->setFrameShadow(QFrame::Shadow::Raised);
         verticalLayout_4 = new QVBoxLayout(frame_14);
         verticalLayout_4->setObjectName("verticalLayout_4");
+        label_18 = new QLabel(frame_14);
+        label_18->setObjectName("label_18");
+        label_18->setFont(font1);
+        label_18->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        verticalLayout_4->addWidget(label_18);
+
         tableWidget_3 = new QTableWidget(frame_14);
+        if (tableWidget_3->columnCount() < 7)
+            tableWidget_3->setColumnCount(7);
+        QTableWidgetItem *__qtablewidgetitem18 = new QTableWidgetItem();
+        tableWidget_3->setHorizontalHeaderItem(0, __qtablewidgetitem18);
+        QTableWidgetItem *__qtablewidgetitem19 = new QTableWidgetItem();
+        tableWidget_3->setHorizontalHeaderItem(1, __qtablewidgetitem19);
+        QTableWidgetItem *__qtablewidgetitem20 = new QTableWidgetItem();
+        tableWidget_3->setHorizontalHeaderItem(2, __qtablewidgetitem20);
+        QTableWidgetItem *__qtablewidgetitem21 = new QTableWidgetItem();
+        tableWidget_3->setHorizontalHeaderItem(3, __qtablewidgetitem21);
+        QTableWidgetItem *__qtablewidgetitem22 = new QTableWidgetItem();
+        tableWidget_3->setHorizontalHeaderItem(4, __qtablewidgetitem22);
+        QTableWidgetItem *__qtablewidgetitem23 = new QTableWidgetItem();
+        tableWidget_3->setHorizontalHeaderItem(5, __qtablewidgetitem23);
+        QTableWidgetItem *__qtablewidgetitem24 = new QTableWidgetItem();
+        tableWidget_3->setHorizontalHeaderItem(6, __qtablewidgetitem24);
         tableWidget_3->setObjectName("tableWidget_3");
 
         verticalLayout_4->addWidget(tableWidget_3);
@@ -820,6 +865,7 @@ public:
         btnAjouterLivre->setText(QCoreApplication::translate("App", "Nouveau", nullptr));
         btnModifierLivre->setText(QCoreApplication::translate("App", "Modifier", nullptr));
         btnSupprimerLivre->setText(QCoreApplication::translate("App", "Supprimer", nullptr));
+        pushButton_4->setText(QCoreApplication::translate("App", "Importer", nullptr));
         label_4->setText(QCoreApplication::translate("App", "Nom :", nullptr));
         label_5->setText(QCoreApplication::translate("App", "Pr\303\251nom(s) :", nullptr));
         label_6->setText(QCoreApplication::translate("App", "Statut :", nullptr));
@@ -860,6 +906,17 @@ public:
         btnEnregistrerEmprunt->setText(QCoreApplication::translate("App", "Enregistrer", nullptr));
         lineEditRechercheMembres->setPlaceholderText(QCoreApplication::translate("App", "Membres", nullptr));
         lineEditRechercheLivres->setPlaceholderText(QCoreApplication::translate("App", "Livres", nullptr));
+        label_18->setText(QCoreApplication::translate("App", "GESTION DES EMPRUNTS", nullptr));
+        QTableWidgetItem *___qtablewidgetitem16 = tableWidget_3->horizontalHeaderItem(0);
+        ___qtablewidgetitem16->setText(QCoreApplication::translate("App", "Livre", nullptr));
+        QTableWidgetItem *___qtablewidgetitem17 = tableWidget_3->horizontalHeaderItem(1);
+        ___qtablewidgetitem17->setText(QCoreApplication::translate("App", "Emprunteur", nullptr));
+        QTableWidgetItem *___qtablewidgetitem18 = tableWidget_3->horizontalHeaderItem(2);
+        ___qtablewidgetitem18->setText(QCoreApplication::translate("App", "D\303\251but", nullptr));
+        QTableWidgetItem *___qtablewidgetitem19 = tableWidget_3->horizontalHeaderItem(3);
+        ___qtablewidgetitem19->setText(QCoreApplication::translate("App", "Fin", nullptr));
+        QTableWidgetItem *___qtablewidgetitem20 = tableWidget_3->horizontalHeaderItem(4);
+        ___qtablewidgetitem20->setText(QCoreApplication::translate("App", "Validit\303\251", nullptr));
         btnParametre->setText(QCoreApplication::translate("App", "Parametre", nullptr));
         btnDeconnexion->setText(QCoreApplication::translate("App", "D\303\251connexion", nullptr));
     } // retranslateUi

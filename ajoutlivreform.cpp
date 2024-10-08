@@ -29,10 +29,11 @@ void AjoutLivreForm::handleAjouterLivre(){
     CustomMessageBox msgBox;
 
     // Vérifier que les champs obligatoires ne sont pas vides
+    QString identifiant = ui->lineEditIdentifiant->text();
     QString titre = ui->lineEditTitre->text();
     QString genre = ui->comboBoxGenre->currentText();
     QString auteur = ui->lineEditAuteur->text();
-    if (titre.isEmpty() || genre.isEmpty() || auteur.isEmpty()) {
+    if (titre.isEmpty() || genre.isEmpty() || auteur.isEmpty() || identifiant.isEmpty()) {
         msgBox.showError("Erreur", "Veuillez remplir tous les champs obligatoires.");
         return;
     }
@@ -51,8 +52,8 @@ void AjoutLivreForm::handleAjouterLivre(){
 
 
     QSqlQuery query(sqlitedb);
-    query.prepare("INSERT INTO Livres (titre, genre, auteur, maison_edition, proprietes, quantite, armoire) "
-                  "VALUES (:titre, :genre, :auteur, :maison_edition, :propriete, :quantite, :armoire)");
+    query.prepare("INSERT INTO Livres (titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant) "
+                  "VALUES (:titre, :genre, :auteur, :maison_edition, :propriete, :quantite, :armoire, :identifiant)");
 
     query.bindValue(":titre", titre);
     query.bindValue(":genre", genre);
@@ -61,6 +62,7 @@ void AjoutLivreForm::handleAjouterLivre(){
     query.bindValue(":propriete", propriete);
     query.bindValue(":quantite", quantite);
     query.bindValue(":armoire", armoire);
+    query.bindValue(":identifiant", identifiant);
 
     if (query.exec()) {
         msgBox.showInformation("Succès", "Ajout réussi");
@@ -73,6 +75,7 @@ void AjoutLivreForm::handleAjouterLivre(){
 
 
 void AjoutLivreForm::clearForm(){
+    ui->lineEditIdentifiant->clear();
     ui->lineEditTitre->clear();        // Vide le champ Titre
     ui->comboBoxGenre->setCurrentIndex(0);
     ui->lineEditAuteur->clear();       // Vide le champ Auteur

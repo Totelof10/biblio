@@ -18,6 +18,8 @@ App::App(QWidget *parent)
     afficherLivreDansTableau();
     afficherMembreDansTableau();
     ajoutBtnTableau();
+    afficherEmprunt();
+    ajoutBtnTableauEmprunt();
     ui->stackedWidget->setCurrentWidget(ui->pageAccueil);
     connect(ui->btnDeconnexion, &QPushButton::clicked, this, &App::deconnexion);
     connect(ui->btnAccueil, &QPushButton::clicked, this, &App::handleAccueil);
@@ -69,6 +71,9 @@ void App::handleMembre(){
 void App::handleEmprunt(){
     ui->stackedWidget->setCurrentWidget(ui->pageEmprunt);
     comboBoxEmprunt();
+    QDate currentDate = QDate::currentDate();
+    ui->dateEditDebut->setDate(currentDate);
+    ui->dateEditFin->setDate(currentDate);
     //afficherLivreDansTableau();
     //afficherMembreDansTableau();
 }
@@ -91,7 +96,7 @@ void App::afficherLivreDansTableau(){
 
     // Préparation et exécution de la requête SQL
     QSqlQuery query(sqlitedb);
-    if (!query.exec("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire FROM livres")) {
+    if (!query.exec("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant FROM livres")) {
         msgBox.showError("Erreur", "Échec de l'exécution de la requête.");
         return;
     }
@@ -100,9 +105,9 @@ void App::afficherLivreDansTableau(){
     ui->tableWidget->setRowCount(0);
 
     // Configuration du QTableWidget (nombre de colonnes et labels des en-têtes)
-    ui->tableWidget->setColumnCount(7); // 6 colonnes : titre, genre, auteur, maison_edition, proprietes, quantite
+    ui->tableWidget->setColumnCount(8); // 6 colonnes : titre, genre, auteur, maison_edition, proprietes, quantite
     ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "Titre" << "Genre" << "Auteur"
-                                                             << "Maison d'édition" << "Propriétés" << "Quantité"<<"Armoire");
+                                                             << "Maison d'édition" << "Propriétés" << "Quantité"<<"Armoire"<<"Identifiant");
 
     // Insertion des données dans le QTableWidget
     int row = 0;
@@ -117,6 +122,7 @@ void App::afficherLivreDansTableau(){
         QString proprietes = query.value(4).toString();
         int quantite = query.value(5).toInt();
         QString armoire = query.value(6).toString();
+        QString identifiant = query.value(7).toString();
 
         // Insertion des données dans le QTableWidget sans l'ID
         ui->tableWidget->setItem(row, 0, new QTableWidgetItem(titre));
@@ -126,6 +132,7 @@ void App::afficherLivreDansTableau(){
         ui->tableWidget->setItem(row, 4, new QTableWidgetItem(proprietes));
         ui->tableWidget->setItem(row, 5, new QTableWidgetItem(QString::number(quantite)));
         ui->tableWidget->setItem(row, 6, new QTableWidgetItem(armoire));
+        ui->tableWidget->setItem(row, 7, new QTableWidgetItem(identifiant));
 
         row++;
     }
@@ -184,8 +191,9 @@ void App::afficherFormulaireModif(){
     QString proprietes = ui->tableWidget->item(selectedRow, 4)->text();
     int quantite = ui->tableWidget->item(selectedRow, 5)->text().toInt();
     QString armoire = ui->tableWidget->item(selectedRow, 6)->text();
+    QString identifiant = ui->tableWidget->item(selectedRow, 7)->text();
 
-    ModifierLivreForm *modifLivre = new ModifierLivreForm(titre, genre, auteur, maison_edition, proprietes, quantite, armoire, nullptr);
+    ModifierLivreForm *modifLivre = new ModifierLivreForm(titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant, nullptr);
     connect(modifLivre, &ModifierLivreForm::modifieLivre, this, [=](const QString &nouvTitre, const QString &nouvGenre, const QString &nouvAuteur,
                                                                     const QString &nouvMaisonEdition, const QString &nouvProprietes, int nouvQuantite, const QString &nouvArmoire) {
         mettreAJourLigne(selectedRow, nouvTitre, nouvGenre, nouvAuteur, nouvMaisonEdition, nouvProprietes, nouvQuantite, nouvArmoire);
@@ -215,7 +223,7 @@ void App::rechercheDeLivre(){
     QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
     QString recherche = ui->lineEditRecherche->text();
     QSqlQuery query(sqlitedb);
-    query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire FROM livres WHERE titre LIKE :recherche OR genre LIKE :recherche OR auteur LIKE :recherche OR maison_edition LIKE :recherche OR proprietes LIKE :recherche OR armoire LIKE :recherche");
+    query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant FROM livres WHERE titre LIKE :recherche OR genre LIKE :recherche OR auteur LIKE :recherche OR maison_edition LIKE :recherche OR proprietes LIKE :recherche OR armoire LIKE :recherche OR identifiant LIKE :recherche");
     query.bindValue(":recherche", "%" +recherche+"%");
     if (!query.exec()) {
         qDebug() << "Erreur lors de l'exécution de la requête";
@@ -234,6 +242,7 @@ void App::rechercheDeLivre(){
         QTableWidgetItem *proprietes = new QTableWidgetItem(query.value("proprietes").toString());
         QTableWidgetItem *quantite = new QTableWidgetItem(QString::number(query.value("quantite").toInt()));
         QTableWidgetItem *armoire = new QTableWidgetItem(query.value("armoire").toString());
+        QTableWidgetItem *identifiant = new QTableWidgetItem(query.value("identifiant").toString());
 
 
         ui->tableWidget->setItem(row, 0, titre);
@@ -243,6 +252,7 @@ void App::rechercheDeLivre(){
         ui->tableWidget->setItem(row, 4, proprietes);
         ui->tableWidget->setItem(row, 5, quantite);
         ui->tableWidget->setItem(row, 6, armoire);
+        ui->tableWidget->setItem(row, 7, identifiant);
 
 
         row++;
@@ -822,7 +832,7 @@ void App::filtrageComboLivre(){
     QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
     QString recherche = ui->lineEditRechercheLivres->text();
     QSqlQuery query(sqlitedb);
-    query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire FROM livres WHERE titre LIKE :recherche");
+    query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant FROM livres WHERE titre LIKE :recherche");
     query.bindValue(":recherche", "%" +recherche+ "%");
 
     if (!query.exec()) {
@@ -881,9 +891,114 @@ void App::ajoutEmprunt(){
     }else{
         msgBox.showInformation("Succes", "Emprunt réussi");
     }
+    clearFormEmprunt();
+    afficherEmprunt();
+    ajoutBtnTableauEmprunt();
+}
+
+void App::clearFormEmprunt(){
+    ui->comboBoxMembres->setCurrentIndex(0);
+    ui->comboBoxLivres->setCurrentIndex(0);
+}
+
+void App::ajoutBtnTableauEmprunt(){
+    int rowCount = ui->tableWidget_3->rowCount();
+    for(int row = 0; row < rowCount; ++row){
+        QPushButton* btnSupprimer = new QPushButton("Supprimer", this);
+
+        QString buttonStyle2 = "QPushButton{"
+                               "border: 1px solid white;"
+                               "border-radius: 7px;"
+                               "background-color: #821131;"
+                               "color: white;"
+                               "padding: 7px;"
+                               "}"
+                               "QPushButton:hover{"
+                               "background-color: #C7253E;"
+                               "}";
+        btnSupprimer->setStyleSheet(buttonStyle2);
+
+        ui->tableWidget_3->setCellWidget(row, 5, btnSupprimer);
+
+        // Utiliser un lambda sans capturer directement 'row'
+        connect(btnSupprimer, &QPushButton::clicked, this, [this, btnSupprimer]() {
+            // Récupérer dynamiquement l'index de la ligne en fonction du bouton cliqué
+            int row = ui->tableWidget_3->indexAt(btnSupprimer->parentWidget()->pos()).row();
+            supprimerEmprunt(row);
+        });
+    }
 }
 
 
+void App::afficherEmprunt(){
+    CustomMessageBox msgBox;
+    QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
+    if (!sqlitedb.open()) {
+        msgBox.showError("Erreur", "Impossible d'ouvrir la base de données.");
+        return;
+    }
+    QSqlQuery query(sqlitedb);
+    if(!query.exec("SELECT id_livres, debut, fin, emprunteur, id FROM emprunt")){
+        msgBox.showError("Erreur", "Erreur lors de la récupération de la base données");
+        qDebug()<<query.lastError();
+        return;
+    }
 
+    ui->tableWidget_3->setRowCount(0);
+    int row = 0;
+    while(query.next()){
+        ui->tableWidget_3->insertRow(row);
+        QString livre = query.value(0).toString();
+        QString debut = query.value(1).toString();
+        QString fin = query.value(2).toString();
+        QString emprunteur = query.value(3).toString();
+        QString id = query.value(4).toString();
+
+
+        ui->tableWidget_3->setItem(row, 0, new QTableWidgetItem(livre));
+        ui->tableWidget_3->setItem(row, 1, new QTableWidgetItem(debut));
+        ui->tableWidget_3->setItem(row, 2, new QTableWidgetItem(fin));
+        ui->tableWidget_3->setItem(row, 3, new QTableWidgetItem(emprunteur));
+        ui->tableWidget_3->setItem(row, 4, new QTableWidgetItem(""));
+        ui->tableWidget_3->setColumnHidden(6,true);
+        ui->tableWidget_3->setItem(row, 6, new QTableWidgetItem(id));
+
+        QDate dateFin = QDate::fromString(fin, "dd-MM-yyyy");
+        QDate currentDate = QDate::currentDate();
+
+        //Vérifier si la date actuelle est dans la plage
+        if (/*dateDebut.isValid() &&*/dateFin.isValid()) {
+            if (/*currentDate >= dateDebut && */currentDate <= dateFin) {
+                // Colorer en vert (validité)
+                ui->tableWidget_3->item(row, 4)->setBackground(QBrush(Qt::green));
+            } else {
+                // Colorer en rouge (non valide)
+                ui->tableWidget_3->item(row, 4)->setBackground(QBrush(Qt::red));
+            }
+        } else {
+            // Si la date est invalide, colorer en rouge également
+            ui->tableWidget_3->item(row, 4)->setBackground(QBrush(Qt::red));
+        }
+
+        row++;
+    }
+
+}
+
+void App::supprimerEmprunt(int row){
+    CustomMessageBox msgBox;
+    QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
+    QString id = ui->tableWidget_3->item(row, 6)->text();
+    QSqlQuery query(sqlitedb);
+    query.prepare("DELETE FROM emprunt WHERE id = :id");
+    query.bindValue(":id", id);
+    if(query.exec()){
+        msgBox.showInformation("Succes", "Suppression réussie");
+        ui->tableWidget_3->removeRow(row);
+    }else{
+        msgBox.showError("Erreur", "Erreur lors de la suppression");
+        qDebug()<<"Erreur lors de la suppresion "<<query.lastError();
+    }
+}
 
 

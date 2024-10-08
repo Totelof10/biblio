@@ -50,6 +50,10 @@ private slots:
     void filtrageComboMembre();
     void filtrageComboLivre();
     void ajoutEmprunt();
+    void ajoutBtnTableauEmprunt();
+    void clearFormEmprunt();
+    void afficherEmprunt();
+    void supprimerEmprunt(int row);
 signals:
     void ajoutMemebre();
 private:

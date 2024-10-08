@@ -8,7 +8,7 @@ ModifierLivreForm::ModifierLivreForm(QWidget *parent)
     ui->setupUi(this);
 }
 
-ModifierLivreForm::ModifierLivreForm(QString titre, QString genre, QString auteur, QString maison_edition, QString proprietes, int quantite, QString armoire, QWidget *parent)
+ModifierLivreForm::ModifierLivreForm(QString titre, QString genre, QString auteur, QString maison_edition, QString proprietes, int quantite, QString armoire, QString identifiant, QWidget *parent)
     : QWidget(parent), ancienTitre(titre)
     , ui(new Ui::ModifierLivreForm)
 {

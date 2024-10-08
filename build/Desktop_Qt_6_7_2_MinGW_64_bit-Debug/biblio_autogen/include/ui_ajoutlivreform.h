@@ -51,6 +51,8 @@ public:
     QLabel *label_8;
     QComboBox *comboBoxArmoire;
     QComboBox *comboBoxGenre;
+    QLabel *label_9;
+    QLineEdit *lineEditIdentifiant;
     QFrame *frame_3;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *btnAjouter;
@@ -98,7 +100,7 @@ public:
         label = new QLabel(frame);
         label->setObjectName("label");
 
-        formLayout->setWidget(0, QFormLayout::LabelRole, label);
+        formLayout->setWidget(1, QFormLayout::LabelRole, label);
 
         lineEditTitre = new QLineEdit(frame);
         lineEditTitre->setObjectName("lineEditTitre");
@@ -106,67 +108,77 @@ public:
         font1.setKerning(true);
         lineEditTitre->setFont(font1);
 
-        formLayout->setWidget(0, QFormLayout::FieldRole, lineEditTitre);
+        formLayout->setWidget(1, QFormLayout::FieldRole, lineEditTitre);
 
         label_2 = new QLabel(frame);
         label_2->setObjectName("label_2");
 
-        formLayout->setWidget(1, QFormLayout::LabelRole, label_2);
+        formLayout->setWidget(2, QFormLayout::LabelRole, label_2);
 
         label_3 = new QLabel(frame);
         label_3->setObjectName("label_3");
 
-        formLayout->setWidget(2, QFormLayout::LabelRole, label_3);
+        formLayout->setWidget(3, QFormLayout::LabelRole, label_3);
 
         lineEditAuteur = new QLineEdit(frame);
         lineEditAuteur->setObjectName("lineEditAuteur");
 
-        formLayout->setWidget(2, QFormLayout::FieldRole, lineEditAuteur);
+        formLayout->setWidget(3, QFormLayout::FieldRole, lineEditAuteur);
 
         label_4 = new QLabel(frame);
         label_4->setObjectName("label_4");
 
-        formLayout->setWidget(3, QFormLayout::LabelRole, label_4);
+        formLayout->setWidget(4, QFormLayout::LabelRole, label_4);
 
         lineEditMaisonEdition = new QLineEdit(frame);
         lineEditMaisonEdition->setObjectName("lineEditMaisonEdition");
 
-        formLayout->setWidget(3, QFormLayout::FieldRole, lineEditMaisonEdition);
+        formLayout->setWidget(4, QFormLayout::FieldRole, lineEditMaisonEdition);
 
         label_5 = new QLabel(frame);
         label_5->setObjectName("label_5");
 
-        formLayout->setWidget(4, QFormLayout::LabelRole, label_5);
+        formLayout->setWidget(5, QFormLayout::LabelRole, label_5);
 
         textEditPropriete = new QTextEdit(frame);
         textEditPropriete->setObjectName("textEditPropriete");
 
-        formLayout->setWidget(4, QFormLayout::FieldRole, textEditPropriete);
+        formLayout->setWidget(5, QFormLayout::FieldRole, textEditPropriete);
 
         label_6 = new QLabel(frame);
         label_6->setObjectName("label_6");
 
-        formLayout->setWidget(5, QFormLayout::LabelRole, label_6);
+        formLayout->setWidget(6, QFormLayout::LabelRole, label_6);
 
         spinBoxQuantite = new QSpinBox(frame);
         spinBoxQuantite->setObjectName("spinBoxQuantite");
 
-        formLayout->setWidget(5, QFormLayout::FieldRole, spinBoxQuantite);
+        formLayout->setWidget(6, QFormLayout::FieldRole, spinBoxQuantite);
 
         label_8 = new QLabel(frame);
         label_8->setObjectName("label_8");
 
-        formLayout->setWidget(6, QFormLayout::LabelRole, label_8);
+        formLayout->setWidget(7, QFormLayout::LabelRole, label_8);
 
         comboBoxArmoire = new QComboBox(frame);
         comboBoxArmoire->setObjectName("comboBoxArmoire");
 
-        formLayout->setWidget(6, QFormLayout::FieldRole, comboBoxArmoire);
+        formLayout->setWidget(7, QFormLayout::FieldRole, comboBoxArmoire);
 
         comboBoxGenre = new QComboBox(frame);
         comboBoxGenre->setObjectName("comboBoxGenre");
 
-        formLayout->setWidget(1, QFormLayout::FieldRole, comboBoxGenre);
+        formLayout->setWidget(2, QFormLayout::FieldRole, comboBoxGenre);
+
+        label_9 = new QLabel(frame);
+        label_9->setObjectName("label_9");
+
+        formLayout->setWidget(0, QFormLayout::LabelRole, label_9);
+
+        lineEditIdentifiant = new QLineEdit(frame);
+        lineEditIdentifiant->setObjectName("lineEditIdentifiant");
+
+        formLayout->setWidget(0, QFormLayout::FieldRole, lineEditIdentifiant);
 
 
         verticalLayout->addWidget(frame);
@@ -234,6 +246,7 @@ public:
         label_5->setText(QCoreApplication::translate("AjoutLivreForm", "Propri\303\251t\303\251s", nullptr));
         label_6->setText(QCoreApplication::translate("AjoutLivreForm", "Quantit\303\251", nullptr));
         label_8->setText(QCoreApplication::translate("AjoutLivreForm", "Armoire", nullptr));
+        label_9->setText(QCoreApplication::translate("AjoutLivreForm", "Identifiant", nullptr));
         btnAjouter->setText(QCoreApplication::translate("AjoutLivreForm", "Ajouter", nullptr));
         btnAnnuler->setText(QCoreApplication::translate("AjoutLivreForm", "Fermer", nullptr));
     } // retranslateUi

@@ -481,6 +481,34 @@ QPushButton:hover{
             </property>
            </spacer>
           </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_4">
+            <property name="font">
+             <font>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	border: 1px solid white;
+	border-radius: 7px;
+	background-color: #03346E;
+	color:white;
+	padding: 7px;
+}
+QPushButton:hover{
+	background-color: #6EACDA;
+}</string>
+            </property>
+            <property name="text">
+             <string>Importer</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -877,6 +905,21 @@ QLineEdit:focus{
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
+           <widget class="QLabel" name="label_18">
+            <property name="font">
+             <font>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>GESTION DES EMPRUNTS</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QTableWidget" name="tableWidget_3">
             <column>
              <property name="text">
@@ -896,6 +939,21 @@ QLineEdit:focus{
             <column>
              <property name="text">
               <string>Fin</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Validité</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
              </property>
             </column>
            </widget>

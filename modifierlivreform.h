@@ -13,7 +13,7 @@ class ModifierLivreForm : public QWidget
 
 public:
     explicit ModifierLivreForm(QWidget *parent = nullptr);
-     ModifierLivreForm(QString titre, QString genre, QString auteur, QString maison_edition, QString proprietes, int quantite, QString armoire, QWidget *parent = nullptr);
+     ModifierLivreForm(QString titre, QString genre, QString auteur, QString maison_edition, QString proprietes, int quantite, QString armoire, QString identifiant ,QWidget *parent = nullptr);
     //void setFormValues(QString titre, QString genre, QString auteur, QString maison_edition, QString proprietes, int quantite, QString armoire);
     ~ModifierLivreForm();
  private:
