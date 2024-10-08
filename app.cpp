@@ -34,6 +34,7 @@ App::App(QWidget *parent)
     connect(ui->comboBoxChoixArmoir, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &App::filtreArmoire);
     connect(ui->btnParametre, &QPushButton::clicked, this, &App::handleAfficheParam);
     connect(ui->comboBoxChoixGenre, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &App::filtreGenre);
+    connect(ui->btnImporter, &QPushButton::clicked, this, &App::importerCsv);
 
     //Gestion Membre
     connect(ui->btnEnregistrerMembre, &QPushButton::clicked, this, &App::enregistrerMembre);
@@ -405,6 +406,57 @@ void App::comboArmoireAfficher() {
     }
 }
 
+void App::importerCsv(){
+    CustomMessageBox msgBox;
+    QString fichier = QFileDialog::getOpenFileName(this, tr("Ouvrir fichier CSV"), "", tr("Fichiers CSV(*.csv)"));
+    if(fichier.isEmpty()){
+        return;
+    }
+    QFile file(fichier);
+    if(!file.open(QIODevice::ReadOnly)){
+        msgBox.showWarning("Erreur", "Impossible d'ouvrir le fichier");
+        return;
+    }
+
+    QTextStream in(&file);
+    int ligne = 0;
+
+    while (!in.atEnd()) {
+        QString ligneTexte = in.readLine();
+        qDebug() << "Ligne lue:" << ligneTexte;  // Affiche la ligne lue
+
+        QStringList valeurs = ligneTexte.split(";");  // Assurez-vous d'utiliser "\t" si c'est le délimiteur
+        qDebug() << "Valeurs extraites:" << valeurs;  // Affiche les valeurs extraites
+
+
+
+        if (valeurs.size() != 8) {
+            msgBox.showWarning("Erreur", QString("Format CSV incorrect à la ligne %1: %2 (attendu: 8 colonnes, obtenu: %3)")
+                                             .arg(ligne + 1)
+                                             .arg(ligneTexte)
+                                             .arg(valeurs.size()));
+            return;
+        }
+
+        // Assurez-vous de n'accéder à valeurs[] que si la taille est correcte
+        QString titre = valeurs[0].trimmed();
+        QString genre = valeurs[1].trimmed();
+        QString auteur = valeurs[2].trimmed();
+        QString maison_edition = valeurs[3].trimmed();
+        QString proprietes = valeurs[4].trimmed();
+        int quantite = valeurs[5].toInt();
+        QString armoire = valeurs[6].trimmed();
+        QString identifiant = valeurs[7].trimmed();
+        qDebug() << "Insertion des données:" << titre << genre << auteur << maison_edition << proprietes << quantite << armoire << identifiant;
+
+
+        DatabaseManager::enregistrerLivre(titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant);
+        ligne++;
+    }
+    file.close();
+    msgBox.showInformation("Succes", "Importation terminée");
+    afficherLivreDansTableau();
+}
 //Gestion Membre
 void App::enregistrerMembre(){
     CustomMessageBox msgBox;

@@ -73,7 +73,7 @@ public:
     QPushButton *btnModifierLivre;
     QPushButton *btnSupprimerLivre;
     QSpacerItem *horizontalSpacer;
-    QPushButton *pushButton_4;
+    QPushButton *btnImporter;
     QWidget *pageMembre;
     QHBoxLayout *horizontalLayout_4;
     QFrame *frame_4;
@@ -420,14 +420,14 @@ public:
 
         horizontalLayout_2->addItem(horizontalSpacer);
 
-        pushButton_4 = new QPushButton(frame_2);
-        pushButton_4->setObjectName("pushButton_4");
+        btnImporter = new QPushButton(frame_2);
+        btnImporter->setObjectName("btnImporter");
         QFont font4;
         font4.setBold(true);
         font4.setItalic(false);
-        pushButton_4->setFont(font4);
-        pushButton_4->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        pushButton_4->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+        btnImporter->setFont(font4);
+        btnImporter->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        btnImporter->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	border: 1px solid white;\n"
 "	border-radius: 7px;\n"
 "	background-color: #03346E;\n"
@@ -438,7 +438,7 @@ public:
 "	background-color: #6EACDA;\n"
 "}"));
 
-        horizontalLayout_2->addWidget(pushButton_4);
+        horizontalLayout_2->addWidget(btnImporter);
 
 
         verticalLayout_2->addWidget(frame_2);
@@ -826,7 +826,7 @@ public:
 
         retranslateUi(App);
 
-        stackedWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(App);
@@ -865,7 +865,7 @@ public:
         btnAjouterLivre->setText(QCoreApplication::translate("App", "Nouveau", nullptr));
         btnModifierLivre->setText(QCoreApplication::translate("App", "Modifier", nullptr));
         btnSupprimerLivre->setText(QCoreApplication::translate("App", "Supprimer", nullptr));
-        pushButton_4->setText(QCoreApplication::translate("App", "Importer", nullptr));
+        btnImporter->setText(QCoreApplication::translate("App", "Importer", nullptr));
         label_4->setText(QCoreApplication::translate("App", "Nom :", nullptr));
         label_5->setText(QCoreApplication::translate("App", "Pr\303\251nom(s) :", nullptr));
         label_6->setText(QCoreApplication::translate("App", "Statut :", nullptr));

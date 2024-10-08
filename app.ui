@@ -127,7 +127,7 @@ QPushButton:focus{
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>3</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="pageAccueil">
       <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -482,7 +482,7 @@ QPushButton:hover{
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_4">
+           <widget class="QPushButton" name="btnImporter">
             <property name="font">
              <font>
               <italic>false</italic>

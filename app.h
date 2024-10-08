@@ -3,6 +3,9 @@
 
 #include <QWidget>
 #include <QSqlError>
+#include <QFile>
+#include<QTextStream>
+#include<QFileDialog>
 
 
 namespace Ui {
@@ -38,6 +41,7 @@ private slots:
     void filtreGenre();
     void handleAfficheParam();
     void comboArmoireAfficher();
+    void importerCsv();
     //Gestion Membre
     void enregistrerMembre();
     void afficherMembreDansTableau();
