@@ -127,7 +127,7 @@ QPushButton:focus{
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="pageAccueil">
       <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -928,17 +928,17 @@ QLineEdit:focus{
             </column>
             <column>
              <property name="text">
-              <string>Emprunteur</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
               <string>Début</string>
              </property>
             </column>
             <column>
              <property name="text">
               <string>Fin</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Emprunteur</string>
              </property>
             </column>
             <column>

@@ -826,7 +826,7 @@ public:
 
         retranslateUi(App);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(App);
@@ -910,11 +910,11 @@ public:
         QTableWidgetItem *___qtablewidgetitem16 = tableWidget_3->horizontalHeaderItem(0);
         ___qtablewidgetitem16->setText(QCoreApplication::translate("App", "Livre", nullptr));
         QTableWidgetItem *___qtablewidgetitem17 = tableWidget_3->horizontalHeaderItem(1);
-        ___qtablewidgetitem17->setText(QCoreApplication::translate("App", "Emprunteur", nullptr));
+        ___qtablewidgetitem17->setText(QCoreApplication::translate("App", "D\303\251but", nullptr));
         QTableWidgetItem *___qtablewidgetitem18 = tableWidget_3->horizontalHeaderItem(2);
-        ___qtablewidgetitem18->setText(QCoreApplication::translate("App", "D\303\251but", nullptr));
+        ___qtablewidgetitem18->setText(QCoreApplication::translate("App", "Fin", nullptr));
         QTableWidgetItem *___qtablewidgetitem19 = tableWidget_3->horizontalHeaderItem(3);
-        ___qtablewidgetitem19->setText(QCoreApplication::translate("App", "Fin", nullptr));
+        ___qtablewidgetitem19->setText(QCoreApplication::translate("App", "Emprunteur", nullptr));
         QTableWidgetItem *___qtablewidgetitem20 = tableWidget_3->horizontalHeaderItem(4);
         ___qtablewidgetitem20->setText(QCoreApplication::translate("App", "Validit\303\251", nullptr));
         btnParametre->setText(QCoreApplication::translate("App", "Parametre", nullptr));
