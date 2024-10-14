@@ -125,6 +125,7 @@ public:
     QFrame *frame_14;
     QVBoxLayout *verticalLayout_4;
     QLabel *label_18;
+    QLineEdit *lineEditRechercheEmprunt;
     QTableWidget *tableWidget_3;
     QFrame *frame_3;
     QHBoxLayout *horizontalLayout_3;
@@ -330,18 +331,25 @@ public:
         if (tableWidget->columnCount() < 7)
             tableWidget->setColumnCount(7);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
+        __qtablewidgetitem->setFont(font1);
         tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
+        __qtablewidgetitem1->setFont(font1);
         tableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
         QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
+        __qtablewidgetitem2->setFont(font1);
         tableWidget->setHorizontalHeaderItem(2, __qtablewidgetitem2);
         QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
+        __qtablewidgetitem3->setFont(font1);
         tableWidget->setHorizontalHeaderItem(3, __qtablewidgetitem3);
         QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
+        __qtablewidgetitem4->setFont(font1);
         tableWidget->setHorizontalHeaderItem(4, __qtablewidgetitem4);
         QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
+        __qtablewidgetitem5->setFont(font1);
         tableWidget->setHorizontalHeaderItem(5, __qtablewidgetitem5);
         QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
+        __qtablewidgetitem6->setFont(font1);
         tableWidget->setHorizontalHeaderItem(6, __qtablewidgetitem6);
         tableWidget->setObjectName("tableWidget");
         QSizePolicy sizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
@@ -614,22 +622,31 @@ public:
         if (tableWidget_2->columnCount() < 11)
             tableWidget_2->setColumnCount(11);
         QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
+        __qtablewidgetitem7->setFont(font1);
         tableWidget_2->setHorizontalHeaderItem(0, __qtablewidgetitem7);
         QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
+        __qtablewidgetitem8->setFont(font1);
         tableWidget_2->setHorizontalHeaderItem(1, __qtablewidgetitem8);
         QTableWidgetItem *__qtablewidgetitem9 = new QTableWidgetItem();
+        __qtablewidgetitem9->setFont(font1);
         tableWidget_2->setHorizontalHeaderItem(2, __qtablewidgetitem9);
         QTableWidgetItem *__qtablewidgetitem10 = new QTableWidgetItem();
+        __qtablewidgetitem10->setFont(font1);
         tableWidget_2->setHorizontalHeaderItem(3, __qtablewidgetitem10);
         QTableWidgetItem *__qtablewidgetitem11 = new QTableWidgetItem();
+        __qtablewidgetitem11->setFont(font1);
         tableWidget_2->setHorizontalHeaderItem(4, __qtablewidgetitem11);
         QTableWidgetItem *__qtablewidgetitem12 = new QTableWidgetItem();
+        __qtablewidgetitem12->setFont(font1);
         tableWidget_2->setHorizontalHeaderItem(5, __qtablewidgetitem12);
         QTableWidgetItem *__qtablewidgetitem13 = new QTableWidgetItem();
+        __qtablewidgetitem13->setFont(font1);
         tableWidget_2->setHorizontalHeaderItem(6, __qtablewidgetitem13);
         QTableWidgetItem *__qtablewidgetitem14 = new QTableWidgetItem();
+        __qtablewidgetitem14->setFont(font1);
         tableWidget_2->setHorizontalHeaderItem(7, __qtablewidgetitem14);
         QTableWidgetItem *__qtablewidgetitem15 = new QTableWidgetItem();
+        __qtablewidgetitem15->setFont(font1);
         tableWidget_2->setHorizontalHeaderItem(8, __qtablewidgetitem15);
         QTableWidgetItem *__qtablewidgetitem16 = new QTableWidgetItem();
         tableWidget_2->setHorizontalHeaderItem(9, __qtablewidgetitem16);
@@ -751,20 +768,39 @@ public:
 
         verticalLayout_4->addWidget(label_18);
 
+        lineEditRechercheEmprunt = new QLineEdit(frame_14);
+        lineEditRechercheEmprunt->setObjectName("lineEditRechercheEmprunt");
+        lineEditRechercheEmprunt->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+"	border: 1px solid white;\n"
+"	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QLineEdit:focus{\n"
+"	border: 1px solid black;\n"
+"}"));
+
+        verticalLayout_4->addWidget(lineEditRechercheEmprunt);
+
         tableWidget_3 = new QTableWidget(frame_14);
         if (tableWidget_3->columnCount() < 7)
             tableWidget_3->setColumnCount(7);
         QTableWidgetItem *__qtablewidgetitem18 = new QTableWidgetItem();
+        __qtablewidgetitem18->setFont(font1);
         tableWidget_3->setHorizontalHeaderItem(0, __qtablewidgetitem18);
         QTableWidgetItem *__qtablewidgetitem19 = new QTableWidgetItem();
+        __qtablewidgetitem19->setFont(font1);
         tableWidget_3->setHorizontalHeaderItem(1, __qtablewidgetitem19);
         QTableWidgetItem *__qtablewidgetitem20 = new QTableWidgetItem();
+        __qtablewidgetitem20->setFont(font1);
         tableWidget_3->setHorizontalHeaderItem(2, __qtablewidgetitem20);
         QTableWidgetItem *__qtablewidgetitem21 = new QTableWidgetItem();
+        __qtablewidgetitem21->setFont(font1);
         tableWidget_3->setHorizontalHeaderItem(3, __qtablewidgetitem21);
         QTableWidgetItem *__qtablewidgetitem22 = new QTableWidgetItem();
+        __qtablewidgetitem22->setFont(font1);
         tableWidget_3->setHorizontalHeaderItem(4, __qtablewidgetitem22);
         QTableWidgetItem *__qtablewidgetitem23 = new QTableWidgetItem();
+        __qtablewidgetitem23->setFont(font1);
         tableWidget_3->setHorizontalHeaderItem(5, __qtablewidgetitem23);
         QTableWidgetItem *__qtablewidgetitem24 = new QTableWidgetItem();
         tableWidget_3->setHorizontalHeaderItem(6, __qtablewidgetitem24);
@@ -907,17 +943,20 @@ public:
         lineEditRechercheMembres->setPlaceholderText(QCoreApplication::translate("App", "Membres", nullptr));
         lineEditRechercheLivres->setPlaceholderText(QCoreApplication::translate("App", "Livres", nullptr));
         label_18->setText(QCoreApplication::translate("App", "GESTION DES EMPRUNTS", nullptr));
+        lineEditRechercheEmprunt->setPlaceholderText(QCoreApplication::translate("App", "Recherche", nullptr));
         QTableWidgetItem *___qtablewidgetitem16 = tableWidget_3->horizontalHeaderItem(0);
-        ___qtablewidgetitem16->setText(QCoreApplication::translate("App", "Livre", nullptr));
+        ___qtablewidgetitem16->setText(QCoreApplication::translate("App", "Id de l'emprunt", nullptr));
         QTableWidgetItem *___qtablewidgetitem17 = tableWidget_3->horizontalHeaderItem(1);
-        ___qtablewidgetitem17->setText(QCoreApplication::translate("App", "D\303\251but", nullptr));
+        ___qtablewidgetitem17->setText(QCoreApplication::translate("App", "Livre", nullptr));
         QTableWidgetItem *___qtablewidgetitem18 = tableWidget_3->horizontalHeaderItem(2);
-        ___qtablewidgetitem18->setText(QCoreApplication::translate("App", "Fin", nullptr));
+        ___qtablewidgetitem18->setText(QCoreApplication::translate("App", "D\303\251but", nullptr));
         QTableWidgetItem *___qtablewidgetitem19 = tableWidget_3->horizontalHeaderItem(3);
-        ___qtablewidgetitem19->setText(QCoreApplication::translate("App", "Emprunteur", nullptr));
+        ___qtablewidgetitem19->setText(QCoreApplication::translate("App", "Fin", nullptr));
         QTableWidgetItem *___qtablewidgetitem20 = tableWidget_3->horizontalHeaderItem(4);
-        ___qtablewidgetitem20->setText(QCoreApplication::translate("App", "Validit\303\251", nullptr));
-        btnParametre->setText(QCoreApplication::translate("App", "Parametre", nullptr));
+        ___qtablewidgetitem20->setText(QCoreApplication::translate("App", "Emprunteur", nullptr));
+        QTableWidgetItem *___qtablewidgetitem21 = tableWidget_3->horizontalHeaderItem(5);
+        ___qtablewidgetitem21->setText(QCoreApplication::translate("App", "Validit\303\251", nullptr));
+        btnParametre->setText(QCoreApplication::translate("App", "Param\303\250tre", nullptr));
         btnDeconnexion->setText(QCoreApplication::translate("App", "D\303\251connexion", nullptr));
     } // retranslateUi
 

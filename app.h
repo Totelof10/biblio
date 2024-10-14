@@ -42,7 +42,8 @@ private slots:
     void handleAfficheParam();
     void comboArmoireAfficher();
     void importerCsv();
-    //Gestion Membre
+
+    //GESTION MEMBRES
     void enregistrerMembre();
     void afficherMembreDansTableau();
     void ajoutBtnTableau();
@@ -50,6 +51,8 @@ private slots:
     void clearForm();
     void modifierDates(int row);
     void rechercheMembres();
+
+    //GESTION EMPRUNTS
     void comboBoxEmprunt();
     void filtrageComboMembre();
     void filtrageComboLivre();
@@ -58,6 +61,7 @@ private slots:
     void clearFormEmprunt();
     void afficherEmprunt();
     void supprimerEmprunt(int row);
+    void rechercheEmprunt();
 signals:
     void ajoutMemebre();
 private:

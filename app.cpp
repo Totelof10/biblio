@@ -41,6 +41,7 @@ App::App(QWidget *parent)
     connect(ui->lineRecherche, &QLineEdit::textChanged, this, &App::rechercheMembres);
     connect(ui->lineEditRechercheMembres, &QLineEdit::textChanged, this, &App::filtrageComboMembre);
     connect(ui->lineEditRechercheLivres, &QLineEdit::textChanged, this, &App::filtrageComboLivre);
+    connect(ui->lineEditRechercheEmprunt, &QLineEdit::textChanged, this, &App::rechercheEmprunt);
     connect(ui->btnEnregistrerEmprunt, &QPushButton::clicked, this, &App::ajoutEmprunt);
 
 }
@@ -53,15 +54,18 @@ App::~App()
 void App::handleAccueil(){
     ui->stackedWidget->setCurrentWidget(ui->pageAccueil);
 }
-//Auth
+
+//AUTHENTIFICATION
 void App::deconnexion(){
     Deconnexion *deconnexion = new Deconnexion(this, this);  // 'this' est la fenêtre parent, 'appWindow' est l'instance de App
     deconnexion->show();
 
 }
-//Gestion Livre
+
+//GESTION LIVRE
 void App::handleLivre(){
     ui->stackedWidget->setCurrentWidget(ui->pageLivre);
+    afficherLivreDansTableau();
 
 }
 
@@ -106,9 +110,9 @@ void App::afficherLivreDansTableau(){
     ui->tableWidget->setRowCount(0);
 
     // Configuration du QTableWidget (nombre de colonnes et labels des en-têtes)
-    ui->tableWidget->setColumnCount(8); // 6 colonnes : titre, genre, auteur, maison_edition, proprietes, quantite
+    ui->tableWidget->setColumnCount(9); // 6 colonnes : titre, genre, auteur, maison_edition, proprietes, quantite
     ui->tableWidget->setHorizontalHeaderLabels(QStringList() <<"Identifiant"<< "Titre" << "Genre" << "Auteur"
-                                                             << "Maison d'édition" << "Propriétés" << "Quantité"<<"Armoire");
+                                                             << "Maison d'édition" << "Propriétés" << "Quantité" << "Armoire" << "Disponibilité");
 
     // Insertion des données dans le QTableWidget
     int row = 0;
@@ -134,6 +138,13 @@ void App::afficherLivreDansTableau(){
         ui->tableWidget->setItem(row, 6, new QTableWidgetItem(QString::number(quantite)));
         ui->tableWidget->setItem(row, 7, new QTableWidgetItem(armoire));
         ui->tableWidget->setItem(row, 0, new QTableWidgetItem(identifiant));
+        ui->tableWidget->setItem(row, 8, new QTableWidgetItem(""));
+
+        if(quantite <= 0){
+            ui->tableWidget->item(row, 8)->setBackground(QBrush(Qt::red));
+        }else{
+            ui->tableWidget->item(row, 8)->setBackground(QBrush(Qt::green));
+        }
 
         row++;
     }
@@ -499,7 +510,8 @@ void App::importerCsv(){
     msgBox.showInformation("Succes", "Importation terminée");
     afficherLivreDansTableau();
 }
-//Gestion Membre
+
+//GESTION MEMBRE
 void App::enregistrerMembre(){
     CustomMessageBox msgBox;
     QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
@@ -510,12 +522,13 @@ void App::enregistrerMembre(){
     QString debut = ui->dateTimeEditDebut->date().toString("dd-MM-yyyy");
     QString fin = ui->dateTimeEditFin->date().toString("dd-MM-yyyy");
     QString contact = ui->lineEditContact->text();
+    int jetons = 3;
 
     if(nom.isEmpty()||prenoms.isEmpty()){
         msgBox.showWarning("Erreur", "Veuillez remplir les champs");
     }else{
         QSqlQuery query(sqlitedb);
-        query.prepare("INSERT INTO membres (nom, prenoms, statut, sexe, debut, fin, contact) VALUES(:nom, :prenoms, :statut, :sexe, :debut, :fin, :contact)");
+        query.prepare("INSERT INTO membres (nom, prenoms, statut, sexe, debut, fin, contact, jetons) VALUES(:nom, :prenoms, :statut, :sexe, :debut, :fin, :contact, :jetons)");
         query.bindValue(":nom", nom);
         query.bindValue(":prenoms", prenoms);
         query.bindValue(":statut", statut);
@@ -523,6 +536,7 @@ void App::enregistrerMembre(){
         query.bindValue(":debut", debut);
         query.bindValue(":fin", fin);
         query.bindValue(":contact", contact);
+        query.bindValue(":jetons", jetons);
 
         if(!query.exec()){
             msgBox.showError("Erreur", "Erreur lors de l'ajout du membre");
@@ -781,11 +795,21 @@ void App::modifierDates(int row) {
     } else {
         ui->tableWidget_2->item(row, 7)->setBackground(QBrush(Qt::red));    // Non valide
     }
+
+    QSqlQuery queryInsertAbonnement(sqlitedb);
+    queryInsertAbonnement.prepare("INSERT INTO abonnement (membres, montants, date_paiement) "
+                                  "VALUES (:membres, :montants, :date_paiement)");
+    QString membre = ui->tableWidget_2->item(row, 0)->text() + " " + prenoms;  // Concatène nom et prénoms
+    queryInsertAbonnement.bindValue(":membres", membre);
+    queryInsertAbonnement.bindValue(":montants", montantStatut);  // Montant récupéré pour le statut
+    queryInsertAbonnement.bindValue(":date_paiement", currentDate.toString("dd-MM-yyyy"));
+
+    if (!queryInsertAbonnement.exec()) {
+        msgBox.showError("Erreur", "Erreur lors de l'enregistrement dans la table abonnement.");
+        qDebug() << queryInsertAbonnement.lastError();
+        return;
+    }
 }
-
-
-
-
 
 void App::supprimerMembre(int row){
     CustomMessageBox msgBox;
@@ -841,6 +865,7 @@ void App::supprimerMembre(int row){
     }
 
 }
+
 void App::clearForm(){
     ui->lineEditNom->clear();
     ui->lineEditPrenoms->clear();
@@ -872,7 +897,7 @@ void App::rechercheMembres(){
     QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
     QString recherche = ui->lineRecherche->text();
     QSqlQuery query(sqlitedb);
-    query.prepare("SELECT nom, prenoms, statut, sexe, debut, fin, montant FROM membres WHERE (nom || ' ' || prenoms) LIKE :recherche");
+    query.prepare("SELECT nom, prenoms, statut, sexe, debut, fin, montant FROM membres WHERE (nom || prenoms) LIKE :recherche");
     query.bindValue(":recherche", "%" +recherche+ "%");
     if (!query.exec()) {
         qDebug() << "Erreur lors de l'exécution de la requête" << query.lastError();
@@ -926,6 +951,7 @@ void App::rechercheMembres(){
     ajoutBtnTableau();
 }
 
+//GESTION EMPRUNTS
 void App::comboBoxEmprunt() {
     CustomMessageBox msgBox;
     QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
@@ -975,7 +1001,7 @@ void App::filtrageComboMembre(){
     QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
     QString recherche = ui->lineEditRechercheMembres->text();
     QSqlQuery query(sqlitedb);
-    query.prepare("SELECT nom, prenoms, statut, sexe, debut, fin, montant FROM membres WHERE (nom || ' ' || prenoms) LIKE :recherche");
+    query.prepare("SELECT nom, prenoms, statut, sexe, debut, fin, montant FROM membres WHERE prenoms LIKE :recherche");
     query.bindValue(":recherche", "%" +recherche+ "%");
 
     if (!query.exec()) {
@@ -989,8 +1015,8 @@ void App::filtrageComboMembre(){
 
     // Ajouter les résultats au comboBox
     while(query.next()){
-        QString nomComplet = query.value("nom").toString() + " " + query.value("prenoms").toString();
-        ui->comboBoxMembres->addItem(nomComplet);
+        QString prenoms = query.value("prenoms").toString();
+        ui->comboBoxMembres->addItem(prenoms);
     }
 }
 
@@ -1028,7 +1054,7 @@ void App::ajoutEmprunt(){
 
     // Récupérer l'id du membre
     QSqlQuery queryMembre(sqlitedb);
-    queryMembre.prepare("SELECT id FROM membres WHERE prenoms = :prenoms");
+    queryMembre.prepare("SELECT id, jetons FROM membres WHERE prenoms = :prenoms");
     queryMembre.bindValue(":prenoms", prenoms);
     if(!queryMembre.exec()){
         qDebug() << queryMembre.lastError();
@@ -1037,18 +1063,25 @@ void App::ajoutEmprunt(){
     }
 
     int idMembre = -1;
+    int jetons = -1;
     if(queryMembre.next()){
         idMembre = queryMembre.value(0).toInt();
+        jetons = queryMembre.value(1).toInt();
     }
     if(idMembre == -1){
         qDebug() << "Membre non trouvé";
         msgBox.showError("Erreur", "Membre non trouvé");
         return;
     }
+    if(jetons == 0){
+        qDebug()<<"Jetons insuffisant";
+        msgBox.showWarning("Erreur", "Jeton insuffisant pour "+prenoms+". Veuillez rendre les livres pour pouvoir faire à nouveau un emprunt.");
+        return;
+    }
 
-    // Récupérer l'identifiant spécial du livre
+    // Récupérer l'identifiant spécial et la quantité du livre
     QSqlQuery queryLivre(sqlitedb);
-    queryLivre.prepare("SELECT identifiant FROM livres WHERE titre = :titre");
+    queryLivre.prepare("SELECT identifiant, quantite FROM livres WHERE titre = :titre");
     queryLivre.bindValue(":titre", livreTitre);
     if(!queryLivre.exec()){
         qDebug() << queryLivre.lastError();
@@ -1057,12 +1090,20 @@ void App::ajoutEmprunt(){
     }
 
     QString idLivre;
+    int quantite = -1;
     if(queryLivre.next()){
         idLivre = queryLivre.value(0).toString();
+        quantite = queryLivre.value(1).toInt();
     }
     if(idLivre.isEmpty()){
         qDebug() << "Livre non trouvé";
         msgBox.showError("Erreur", "Livre non trouvé");
+        return;
+    }
+
+    // Vérifier la quantité du livre
+    if (quantite <= 0) {
+        msgBox.showError("Erreur", "Quantité insuffisante pour emprunter ce livre.");
         return;
     }
 
@@ -1078,8 +1119,27 @@ void App::ajoutEmprunt(){
     if(!queryInsert.exec()){
         qDebug() << queryInsert.lastError();
         msgBox.showError("Erreur", "Erreur lors de l'enregistrement de l'emprunt: "+queryInsert.lastError().text());
-    }else{
-        msgBox.showInformation("Succès", "Emprunt enregistré avec succès");
+        return;
+    }
+
+    // Mettre à jour la quantité du livre
+    QSqlQuery queryUpdateQuantite(sqlitedb);
+    queryUpdateQuantite.prepare("UPDATE livres SET quantite = quantite - 1 WHERE identifiant = :idLivre");
+    queryUpdateQuantite.bindValue(":idLivre", idLivre);
+
+    if(!queryUpdateQuantite.exec()){
+        qDebug() << queryUpdateQuantite.lastError();
+        msgBox.showError("Erreur", "Erreur lors de la mise à jour de la quantité du livre: "+queryUpdateQuantite.lastError().text());
+    } else {
+        msgBox.showInformation("Succès", "Emprunt enregistré avec succès, quantité mise à jour.");
+    }
+
+    QSqlQuery queryUpdateJeton(sqlitedb);
+    queryUpdateJeton.prepare("UPDATE membres SET jetons = jetons - 1 WHERE prenoms = :prenoms");
+    queryUpdateJeton.bindValue(":prenoms", prenoms);
+    if(!queryUpdateJeton.exec()){
+        qDebug()<<queryUpdateJeton.lastError();
+        msgBox.showError("Erreur", "Erreur lors de la mise à jour des jetons "+queryUpdateJeton.lastError().text());
     }
 
     // Nettoyer le formulaire et mettre à jour la table
@@ -1087,7 +1147,6 @@ void App::ajoutEmprunt(){
     afficherEmprunt();
     ajoutBtnTableauEmprunt();
 }
-
 
 
 void App::clearFormEmprunt(){
@@ -1112,17 +1171,19 @@ void App::ajoutBtnTableauEmprunt(){
                                "}";
         btnSupprimer->setStyleSheet(buttonStyle2);
 
-        ui->tableWidget_3->setCellWidget(row, 5, btnSupprimer);
+        ui->tableWidget_3->setCellWidget(row, 6, btnSupprimer);
 
         // Utiliser un lambda sans capturer directement 'row'
-        connect(btnSupprimer, &QPushButton::clicked, this, [this, btnSupprimer]() {
+        /*connect(btnSupprimer, &QPushButton::clicked, this, [this, btnSupprimer]() {
             // Récupérer dynamiquement l'index de la ligne en fonction du bouton cliqué
             int row = ui->tableWidget_3->indexAt(btnSupprimer->parentWidget()->pos()).row();
+            supprimerEmprunt(row);
+        });*/
+        connect(btnSupprimer, &QPushButton::clicked, this, [this, row]() {
             supprimerEmprunt(row);
         });
     }
 }
-
 
 void App::afficherEmprunt(){
     CustomMessageBox msgBox;
@@ -1162,13 +1223,12 @@ void App::afficherEmprunt(){
         }
 
         // Remplir les colonnes du tableau
-        ui->tableWidget_3->setItem(row, 0, new QTableWidgetItem(titreLivre));  // Affichage du titre
-        ui->tableWidget_3->setItem(row, 1, new QTableWidgetItem(debut));
-        ui->tableWidget_3->setItem(row, 2, new QTableWidgetItem(fin));
-        ui->tableWidget_3->setItem(row, 3, new QTableWidgetItem(emprunteur));
-        ui->tableWidget_3->setItem(row, 4, new QTableWidgetItem(""));  // Colonne colorée
-        ui->tableWidget_3->setColumnHidden(6, true);  // Masquer la colonne id
-        ui->tableWidget_3->setItem(row, 6, new QTableWidgetItem(id));  // Stocker l'id pour référence
+        ui->tableWidget_3->setItem(row, 1, new QTableWidgetItem(titreLivre));  // Affichage du titre
+        ui->tableWidget_3->setItem(row, 2, new QTableWidgetItem(debut));
+        ui->tableWidget_3->setItem(row, 3, new QTableWidgetItem(fin));
+        ui->tableWidget_3->setItem(row, 4, new QTableWidgetItem(emprunteur));
+        ui->tableWidget_3->setItem(row, 5, new QTableWidgetItem(""));  // Colonne colorée
+        ui->tableWidget_3->setItem(row, 0, new QTableWidgetItem(id));  // Stocker l'id pour référence
 
         // Vérification de la validité des dates et coloration de la cellule
         QDate dateFin = QDate::fromString(fin, "dd-MM-yyyy");
@@ -1176,12 +1236,12 @@ void App::afficherEmprunt(){
 
         if (dateFin.isValid()) {
             if (currentDate <= dateFin) {
-                ui->tableWidget_3->item(row, 4)->setBackground(QBrush(Qt::green));  // Valide
+                ui->tableWidget_3->item(row, 5)->setBackground(QBrush(Qt::green));  // Valide
             } else {
-                ui->tableWidget_3->item(row, 4)->setBackground(QBrush(Qt::red));    // Non valide
+                ui->tableWidget_3->item(row, 5)->setBackground(QBrush(Qt::red));    // Non valide
             }
         } else {
-            ui->tableWidget_3->item(row, 4)->setBackground(QBrush(Qt::red));        // Date invalide
+            ui->tableWidget_3->item(row, 5)->setBackground(QBrush(Qt::red));        // Date invalide
         }
 
         row++;
@@ -1191,23 +1251,25 @@ void App::afficherEmprunt(){
 void App::supprimerEmprunt(int row){
     CustomMessageBox msgBox;
     QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
-    QString titre = ui->tableWidget_3->item(row, 0)->text();
-    QString debut = ui->tableWidget_3->item(row, 1)->text();
-    QString fin = ui->tableWidget_3->item(row, 2)->text();
-    QString emprunteur = ui->tableWidget_3->item(row, 3)->text();
-    QString id = ui->tableWidget_3->item(row, 6)->text();
+    QString titre = ui->tableWidget_3->item(row, 1)->text();
+    QString debut = ui->tableWidget_3->item(row, 2)->text();
+    QString fin = ui->tableWidget_3->item(row, 3)->text();
+    QString emprunteur = ui->tableWidget_3->item(row, 4)->text();
+    QString id = ui->tableWidget_3->item(row, 0)->text();
     QDate currentDate = QDate::currentDate();
+
+    // Confirmation de suppression
     QMessageBox confirmationBox;
     confirmationBox.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::FramelessWindowHint);
-    confirmationBox.setText("Voulez-vous vraiment supprimer l'emprunt de " + titre + " par "+emprunteur+" et le mettre dans l'historique des emprunts?");
+    confirmationBox.setText("Voulez-vous vraiment supprimer l'emprunt de " + titre + " par " + emprunteur + " et le mettre dans l'historique des emprunts?");
     confirmationBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     confirmationBox.setIcon(QMessageBox::Question);
     confirmationBox.setStyleSheet("QMessageBox {"
                                   "   background-color: white;"
                                   "   border: 1px outset grey;"
                                   "   border-radius: 10px;"
-                                  "   padding: 0px;"               // Retirer le débordement
-                                  "   margin: 0px;"                // Ajuster les marges pour éviter tout débordement
+                                  "   padding: 0px;"
+                                  "   margin: 0px;"
                                   "}"
                                   "QLabel {"
                                   "   color: black;"
@@ -1229,10 +1291,10 @@ void App::supprimerEmprunt(int row){
     int ret = confirmationBox.exec();
 
     if (ret == QMessageBox::No) {
-        // Si l'utilisateur a cliqué sur "NON", annuler l'opération
-        return;
+        return;  // Annuler l'opération si l'utilisateur a cliqué sur "Non"
     }
 
+    // Ajouter l'emprunt à l'historique avant de le supprimer
     QSqlQuery queryBeforeDelete(sqlitedb);
     queryBeforeDelete.prepare("INSERT INTO historique_emprunt (id_emprunt, emprunteur, livre, debut, fin, date_suppression) VALUES (?,?,?,?,?,?)");
     queryBeforeDelete.addBindValue(id);
@@ -1241,22 +1303,101 @@ void App::supprimerEmprunt(int row){
     queryBeforeDelete.addBindValue(debut);
     queryBeforeDelete.addBindValue(fin);
     queryBeforeDelete.addBindValue(currentDate);
+
     if(queryBeforeDelete.exec()){
+        // Supprimer l'emprunt
         QSqlQuery queryDelete(sqlitedb);
         queryDelete.prepare("DELETE FROM emprunt WHERE id = :id");
         queryDelete.bindValue(":id", id);
         if(queryDelete.exec()){
-            msgBox.showInformation("Succes", "Suppression réussie");
+            // Mettre à jour la quantité du livre (+1)
+            QSqlQuery queryUpdateQuantite(sqlitedb);
+            queryUpdateQuantite.prepare("UPDATE livres SET quantite = quantite + 1 WHERE titre = :titre");
+            queryUpdateQuantite.bindValue(":titre", titre);
+
+            if(queryUpdateQuantite.exec()){
+                msgBox.showInformation("Succès", "Suppression réussie et quantité de livre mise à jour.");
+            } else {
+                msgBox.showError("Erreur", "Erreur lors de la mise à jour de la quantité du livre: " + queryUpdateQuantite.lastError().text());
+            }
+            QSqlQuery queryUpdateJeton(sqlitedb);
+            queryUpdateJeton.prepare("UPDATE membres SET jetons = jetons + 1 WHERE prenoms = :prenoms");
+            queryUpdateJeton.bindValue(":prenoms", emprunteur);
+            if(!queryUpdateJeton.exec()){
+                qDebug()<<queryUpdateJeton.lastError();
+                msgBox.showError("Erreur", "Erreur lors de la mise à jour des jetons "+queryUpdateJeton.lastError().text());
+            }
+
+            // Retirer la ligne du tableau
             ui->tableWidget_3->removeRow(row);
-        }else{
-            msgBox.showError("Erreur", "Erreur lors de la suppression"+queryDelete.lastError().text());
-            qDebug()<<"Erreur lors de la suppresion "<<queryDelete.lastError();
+        } else {
+            msgBox.showError("Erreur", "Erreur lors de la suppression: " + queryDelete.lastError().text());
+            qDebug() << "Erreur lors de la suppression: " << queryDelete.lastError();
         }
-    }else{
-        msgBox.showError("Erreur", "Erreur lors de l'insertion dans l'historique:"+queryBeforeDelete.lastError().text());
+    } else {
+        msgBox.showError("Erreur", "Erreur lors de l'insertion dans l'historique: " + queryBeforeDelete.lastError().text());
     }
-
-
 }
+
+void App::rechercheEmprunt(){
+    CustomMessageBox msgBox;
+    QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
+    QString recherche = ui->lineEditRechercheEmprunt->text();
+    QSqlQuery query(sqlitedb);
+    query.prepare("SELECT id_livres, debut, fin, emprunteur, id FROM emprunt WHERE emprunteur LIKE :recherche");
+    query.bindValue(":recherche", "%" +recherche+ "%");
+    if(!query.exec()){
+        qDebug()<<query.lastError();
+        msgBox.showError("Erreur", "Erreur lors de la récupération des données"+query.lastError().text());
+    }
+    ui->tableWidget_3->setRowCount(0);
+    int row = 0;
+    while(query.next()){
+        ui->tableWidget_3->insertRow(row);
+        QString idLivre = query.value(0).toString();
+        QSqlQuery queryLivre(sqlitedb);
+        queryLivre.prepare("SELECT titre FROM livres WHERE identifiant = :identifiant");
+        queryLivre.bindValue(":identifiant", idLivre);
+        QString titreLivre;
+        if(queryLivre.exec() && queryLivre.next()){
+            titreLivre = queryLivre.value(0).toString();
+        } else {
+            titreLivre = "Inconnu";  // Si le titre n'est pas trouvé
+            qDebug() << queryLivre.lastError();
+        }
+        QTableWidgetItem *titre = new QTableWidgetItem(titreLivre);
+        QTableWidgetItem *debut = new QTableWidgetItem(query.value(1).toString());
+        QTableWidgetItem *fin = new QTableWidgetItem(query.value(2).toString());
+        QTableWidgetItem *emprunteur = new QTableWidgetItem(query.value(3).toString());
+        QTableWidgetItem *id = new QTableWidgetItem(query.value(4).toString());
+
+        ui->tableWidget_3->setItem(row, 1, titre);
+        ui->tableWidget_3->setItem(row, 2, debut);
+        ui->tableWidget_3->setItem(row, 3, fin);
+        ui->tableWidget_3->setItem(row, 4, emprunteur);
+        ui->tableWidget_3->setItem(row, 5, new QTableWidgetItem(""));
+        ui->tableWidget_3->setItem(row, 0, id);
+
+        QDate dateFin = QDate::fromString(query.value("fin").toString(), "dd-MM-yyyy");
+        QDate currentDate = QDate::currentDate();
+
+        if (dateFin.isValid()) {
+            if (currentDate <= dateFin) {
+                ui->tableWidget_3->item(row, 5)->setBackground(QBrush(Qt::green));  // Valide
+            } else {
+                ui->tableWidget_3->item(row, 5)->setBackground(QBrush(Qt::red));    // Non valide
+            }
+        } else {
+            ui->tableWidget_3->item(row, 5)->setBackground(QBrush(Qt::red));        // Date invalide
+        }
+
+        row++;
+
+    }
+    ajoutBtnTableauEmprunt();
+}
+
+
+
 
 
