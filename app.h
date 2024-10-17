@@ -62,6 +62,10 @@ private slots:
     void afficherEmprunt();
     void supprimerEmprunt(int row);
     void rechercheEmprunt();
+
+    //ETATS
+    void afficherHistorique();
+    void afficherEtatFinance();
 signals:
     void ajoutMemebre();
 private:

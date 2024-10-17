@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>../../Downloads/CartoBMW/img/FRK.jpg</file>
+        <file>../../Downloads/CartoBMW/img/AMBOHITANTELY.jpg</file>
     </qresource>
 </RCC>

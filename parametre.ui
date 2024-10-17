@@ -66,6 +66,13 @@
     </widget>
    </item>
    <item>
+    <widget class="QPushButton" name="reinitialisation">
+     <property name="text">
+      <string>Reinitialiser les données</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QFrame" name="frame_2">
      <property name="frameShape">
       <enum>QFrame::Shape::StyledPanel</enum>

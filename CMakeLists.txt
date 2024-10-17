@@ -32,6 +32,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         parametre.h parametre.cpp parametre.ui
         deconnexion.h deconnexion.cpp deconnexion.ui
         hoverbutton.h hoverbutton.cpp
+        historique.h historique.cpp historique.ui
+        etatfinance.h etatfinance.cpp etatfinance.ui
 
 
 

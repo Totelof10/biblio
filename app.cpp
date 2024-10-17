@@ -6,6 +6,8 @@
 #include "modifierlivreform.h"
 #include "parametre.h"
 #include "deconnexion.h"
+#include "historique.h"
+#include "etatfinance.h"
 
 App::App(QWidget *parent)
     : QWidget(parent)
@@ -44,6 +46,9 @@ App::App(QWidget *parent)
     connect(ui->lineEditRechercheEmprunt, &QLineEdit::textChanged, this, &App::rechercheEmprunt);
     connect(ui->btnEnregistrerEmprunt, &QPushButton::clicked, this, &App::ajoutEmprunt);
 
+    //ETATS
+    connect(ui->btnHistorique, &QPushButton::clicked, this, &App::afficherHistorique);
+    connect(ui->btnFinance, &QPushButton::clicked, this, &App::afficherEtatFinance);
 }
 
 App::~App()
@@ -71,6 +76,8 @@ void App::handleLivre(){
 
 void App::handleMembre(){
     ui->stackedWidget->setCurrentWidget(ui->pageMembre);
+    afficherMembreDansTableau();
+    ajoutBtnTableau();
 }
 
 void App::handleEmprunt(){
@@ -624,7 +631,6 @@ void App::afficherMembreDansTableau() {
     }
 }
 
-
 void App::ajoutBtnTableau(){
     int rowCount = ui->tableWidget_2->rowCount();
     for(int row = 0; row < rowCount; ++row){
@@ -1148,7 +1154,6 @@ void App::ajoutEmprunt(){
     ajoutBtnTableauEmprunt();
 }
 
-
 void App::clearFormEmprunt(){
     ui->comboBoxMembres->setCurrentIndex(0);
     ui->comboBoxLivres->setCurrentIndex(0);
@@ -1344,7 +1349,7 @@ void App::rechercheEmprunt(){
     QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
     QString recherche = ui->lineEditRechercheEmprunt->text();
     QSqlQuery query(sqlitedb);
-    query.prepare("SELECT id_livres, debut, fin, emprunteur, id FROM emprunt WHERE emprunteur LIKE :recherche");
+    query.prepare("SELECT id_livres, debut, fin, emprunteur, id FROM emprunt WHERE emprunteur LIKE :recherche OR fin LIKE :recherche");
     query.bindValue(":recherche", "%" +recherche+ "%");
     if(!query.exec()){
         qDebug()<<query.lastError();
@@ -1397,6 +1402,16 @@ void App::rechercheEmprunt(){
     ajoutBtnTableauEmprunt();
 }
 
+//ETATS
+void App::afficherHistorique(){
+    Historique *historique = new Historique(nullptr);
+    historique->show();
+}
+
+void App::afficherEtatFinance(){
+    EtatFinance *finance = new EtatFinance(nullptr);
+    finance->show();
+}
 
 
 

@@ -84,6 +84,9 @@ QPushButton:focus{
         <property name="cursor">
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <property name="text">
          <string>Livres</string>
         </property>
@@ -127,7 +130,7 @@ QPushButton:focus{
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>3</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="pageAccueil">
       <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -149,7 +152,7 @@ QPushButton:focus{
              </font>
             </property>
             <property name="text">
-             <string>&quot;Mots de Dieux&quot;</string>
+             <string>&quot;Tenin'Andriamanitra&quot;</string>
             </property>
            </widget>
           </item>
@@ -169,23 +172,16 @@ QPushButton:focus{
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_9">
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="btnHistorique">
             <property name="text">
-             <string>Emprunt en cours</string>
+             <string>Historique des emprunts</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_2">
+           <widget class="QPushButton" name="btnFinance">
             <property name="text">
-             <string>Etat</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_3">
-            <property name="text">
-             <string>Tableau de bord</string>
+             <string>Etat financier</string>
             </property>
            </widget>
           </item>
@@ -598,6 +594,9 @@ QPushButton:hover{
             <layout class="QHBoxLayout" name="horizontalLayout_6">
              <item>
               <widget class="QRadioButton" name="radioAdulte">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
                <property name="text">
                 <string>Adulte</string>
                </property>
@@ -605,6 +604,9 @@ QPushButton:hover{
              </item>
              <item>
               <widget class="QRadioButton" name="radioEnfant">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
                <property name="text">
                 <string>Enfant</string>
                </property>
@@ -631,6 +633,9 @@ QPushButton:hover{
             <layout class="QHBoxLayout" name="horizontalLayout_5">
              <item>
               <widget class="QRadioButton" name="radioSexeHomme">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
                <property name="text">
                 <string>Homme</string>
                </property>
@@ -638,6 +643,9 @@ QPushButton:hover{
              </item>
              <item>
               <widget class="QRadioButton" name="radioSexeFemme">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
                <property name="text">
                 <string>Femme</string>
                </property>
@@ -669,6 +677,9 @@ QPushButton:hover{
           </item>
           <item row="12" column="1">
            <widget class="QPushButton" name="btnEnregistrerMembre">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
             <property name="styleSheet">
              <string notr="true">QPushButton{
 	border: 1px solid white;
@@ -921,6 +932,9 @@ QLineEdit:focus{
           </item>
           <item row="7" column="1">
            <widget class="QPushButton" name="btnEnregistrerEmprunt">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
             <property name="styleSheet">
              <string notr="true">QPushButton{
 	border: 1px solid white;

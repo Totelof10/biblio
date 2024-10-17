@@ -55,7 +55,7 @@ void MainWindow::handleConnectionButton()
 
     if(query.exec()){
         if(query.next()){
-            msgBox.showInformation("Succés", "Connexion reussie");
+            msgBox.showInformation("Succés", "Accés autorisé");
             App *app = new App(nullptr);
             app->show();
             this->hide();
