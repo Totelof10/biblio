@@ -46,7 +46,7 @@ public:
             Historique->setObjectName("Historique");
         Historique->resize(406, 349);
         Historique->setStyleSheet(QString::fromUtf8("QWidget{\n"
-"background-color: rgb(29, 46, 62);\n"
+"background-color: #F4F6FF\n"
 "}\n"
 "QFrame{\n"
 "background-color: none;\n"
@@ -58,7 +58,7 @@ public:
         QFont font;
         font.setBold(true);
         label->setFont(font);
-        label->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        label->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         label->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         verticalLayout->addWidget(label);
@@ -123,6 +123,7 @@ public:
         tableWidget->setHorizontalHeaderItem(6, __qtablewidgetitem6);
         tableWidget->setObjectName("tableWidget");
         tableWidget->setStyleSheet(QString::fromUtf8(""));
+        tableWidget->horizontalHeader()->setStretchLastSection(true);
 
         horizontalLayout_3->addWidget(tableWidget);
 

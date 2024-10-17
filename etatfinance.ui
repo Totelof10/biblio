@@ -14,7 +14,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(30, 48, 63);</string>
+   <string notr="true">background-color: rgb(244, 246, 255);</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -32,7 +32,7 @@
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">color: rgb(255, 255, 255);</string>
+          <string notr="true">color: rgb(0, 0, 0);</string>
          </property>
          <property name="text">
           <string>RECETTE DES ABONNEMENTS</string>
@@ -67,10 +67,10 @@
            <widget class="QLineEdit" name="lineEdit">
             <property name="styleSheet">
              <string notr="true">QLineEdit{
-	
-	background-color: rgb(255, 255, 255);
 	border: 1px solid white;
 	border-radius: 5px;
+	
+	background-color: rgb(255, 255, 255);
 }
 
 QLineEdit:focus{
@@ -97,7 +97,7 @@ QLineEdit:focus{
           <item>
            <widget class="QLabel" name="label">
             <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
+             <string notr="true">color: rgb(31, 49, 64);</string>
             </property>
             <property name="text">
              <string>Du :</string>
@@ -114,7 +114,7 @@ QLineEdit:focus{
           <item>
            <widget class="QLabel" name="label_2">
             <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
+             <string notr="true">color: rgb(30, 48, 63);</string>
             </property>
             <property name="text">
              <string>Jusq'au :</string>
@@ -125,6 +125,29 @@ QLineEdit:focus{
            <widget class="QDateEdit" name="dateEdit_2">
             <property name="styleSheet">
              <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnClearForm">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset theme="QIcon::ThemeIcon::SystemReboot"/>
             </property>
            </widget>
           </item>
@@ -157,6 +180,49 @@ QLineEdit:focus{
             <property name="styleSheet">
              <string notr="true">background-color: rgb(255, 255, 255);</string>
             </property>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>true</bool>
+            </attribute>
+            <column>
+             <property name="text">
+              <string>Id</string>
+             </property>
+             <property name="font">
+              <font>
+               <bold>true</bold>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Membres</string>
+             </property>
+             <property name="font">
+              <font>
+               <bold>true</bold>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Montants</string>
+             </property>
+             <property name="font">
+              <font>
+               <bold>true</bold>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Date de paiment</string>
+             </property>
+             <property name="font">
+              <font>
+               <bold>true</bold>
+              </font>
+             </property>
+            </column>
            </widget>
           </item>
          </layout>
@@ -185,8 +251,14 @@ QLineEdit:focus{
           </property>
           <item>
            <widget class="QLabel" name="label_4">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
+             <string notr="true">color: rgb(31, 50, 64);</string>
             </property>
             <property name="text">
              <string>Total :</string>
@@ -202,10 +274,84 @@ QLineEdit:focus{
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
+             <string notr="true">color: rgb(31, 49, 63);</string>
             </property>
             <property name="text">
-             <string>1000000 AR</string>
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_5">
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnGraph">
+            <property name="font">
+             <font>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	border: 1px solid white;
+	border-radius: 7px;
+	background-color: #102C57;
+	color:white;
+	padding: 7px;
+}
+QPushButton:hover{
+	background-color: #1679AB;
+}</string>
+            </property>
+            <property name="text">
+             <string>Afficher un graphique</string>
             </property>
            </widget>
           </item>
@@ -214,7 +360,53 @@ QLineEdit:focus{
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="page_2"/>
+     <widget class="QWidget" name="page_2">
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QLabel" name="label_5">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>DIAGRAMME DES ABONNEMENTS</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnRetour">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+	border: 1px solid white;
+	border-radius: 7px;
+	background-color: #102C57;
+	color:white;
+	padding: 7px;
+}
+QPushButton:hover{
+	background-color: #1679AB;
+}</string>
+         </property>
+         <property name="text">
+          <string>Retour</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_5"/>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
   </layout>

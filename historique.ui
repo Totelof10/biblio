@@ -15,7 +15,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget{
-background-color: rgb(29, 46, 62);
+background-color: #F4F6FF
 }
 QFrame{
 background-color: none;
@@ -30,7 +30,7 @@ background-color: none;
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(0, 0, 0);</string>
      </property>
      <property name="text">
       <string>HISTORIQUE DES EMPRUNTS</string>
@@ -115,6 +115,9 @@ QLineEdit:focus{
         <property name="styleSheet">
          <string notr="true"/>
         </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
         <column>
          <property name="text">
           <string>Id</string>

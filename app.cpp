@@ -37,6 +37,7 @@ App::App(QWidget *parent)
     connect(ui->btnParametre, &QPushButton::clicked, this, &App::handleAfficheParam);
     connect(ui->comboBoxChoixGenre, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &App::filtreGenre);
     connect(ui->btnImporter, &QPushButton::clicked, this, &App::importerCsv);
+    connect(ui->btnExporter, &QPushButton::clicked, this, &App::exporterCsv);
 
     //Gestion Membre
     connect(ui->btnEnregistrerMembre, &QPushButton::clicked, this, &App::enregistrerMembre);
@@ -81,11 +82,14 @@ void App::handleMembre(){
 }
 
 void App::handleEmprunt(){
-    ui->stackedWidget->setCurrentWidget(ui->pageEmprunt);
+    afficherEmprunt();
+    ajoutBtnTableauEmprunt();
     comboBoxEmprunt();
     QDate currentDate = QDate::currentDate();
     ui->dateEditDebut->setDate(currentDate);
     ui->dateEditFin->setDate(currentDate);
+    ui->stackedWidget->setCurrentWidget(ui->pageEmprunt);
+
     //afficherLivreDansTableau();
     //afficherMembreDansTableau();
 }
@@ -286,30 +290,40 @@ void App::rechercheDeLivre(){
         return;
     }
     ui->tableWidget->setRowCount(0);
+
+    // Configuration du QTableWidget (nombre de colonnes et labels des en-têtes)
+
+    // Insertion des données dans le QTableWidget
     int row = 0;
     while (query.next()) {
         ui->tableWidget->insertRow(row);
 
-        // Ajouter les résultats dans les colonnes
-        QTableWidgetItem *titre = new QTableWidgetItem(query.value("titre").toString());
-        QTableWidgetItem *genre = new QTableWidgetItem(query.value("genre").toString());
-        QTableWidgetItem *auteur = new QTableWidgetItem(query.value("auteur").toString());
-        QTableWidgetItem *maison_edition = new QTableWidgetItem(query.value("maison_edition").toString());
-        QTableWidgetItem *proprietes = new QTableWidgetItem(query.value("proprietes").toString());
-        QTableWidgetItem *quantite = new QTableWidgetItem(QString::number(query.value("quantite").toInt()));
-        QTableWidgetItem *armoire = new QTableWidgetItem(query.value("armoire").toString());
-        QTableWidgetItem *identifiant = new QTableWidgetItem(query.value("identifiant").toString());
+        // Récupération des données (sans l'ID)
+        QString titre = query.value(0).toString();
+        QString genre = query.value(1).toString();
+        QString auteur = query.value(2).toString();
+        QString maison_edition = query.value(3).toString();
+        QString proprietes = query.value(4).toString();
+        int quantite = query.value(5).toInt();
+        QString armoire = query.value(6).toString();
+        QString identifiant = query.value(7).toString();
 
+        // Insertion des données dans le QTableWidget sans l'ID
+        ui->tableWidget->setItem(row, 1, new QTableWidgetItem(titre));
+        ui->tableWidget->setItem(row, 2, new QTableWidgetItem(genre));
+        ui->tableWidget->setItem(row, 3, new QTableWidgetItem(auteur));
+        ui->tableWidget->setItem(row, 4, new QTableWidgetItem(maison_edition));
+        ui->tableWidget->setItem(row, 5, new QTableWidgetItem(proprietes));
+        ui->tableWidget->setItem(row, 6, new QTableWidgetItem(QString::number(quantite)));
+        ui->tableWidget->setItem(row, 7, new QTableWidgetItem(armoire));
+        ui->tableWidget->setItem(row, 0, new QTableWidgetItem(identifiant));
+        ui->tableWidget->setItem(row, 8, new QTableWidgetItem(""));
 
-        ui->tableWidget->setItem(row, 1, titre);
-        ui->tableWidget->setItem(row, 2, genre);
-        ui->tableWidget->setItem(row, 3, auteur);
-        ui->tableWidget->setItem(row, 4, maison_edition);
-        ui->tableWidget->setItem(row, 5, proprietes);
-        ui->tableWidget->setItem(row, 6, quantite);
-        ui->tableWidget->setItem(row, 7, armoire);
-        ui->tableWidget->setItem(row, 0, identifiant);
-
+        if(quantite <= 0){
+            ui->tableWidget->item(row, 8)->setBackground(QBrush(Qt::red));
+        }else{
+            ui->tableWidget->item(row, 8)->setBackground(QBrush(Qt::green));
+        }
 
         row++;
     }
@@ -338,29 +352,39 @@ void App::filtreArmoire(){
     // Vider le tableau avant d'ajouter les nouveaux résultats
     ui->tableWidget->setRowCount(0);
 
-    // Afficher les résultats dans le QTableWidget
+    // Configuration du QTableWidget (nombre de colonnes et labels des en-têtes)
+
+    // Insertion des données dans le QTableWidget
     int row = 0;
     while (query.next()) {
         ui->tableWidget->insertRow(row);
 
-        QTableWidgetItem *titre = new QTableWidgetItem(query.value("titre").toString());
-        QTableWidgetItem *auteur = new QTableWidgetItem(query.value("auteur").toString());
-        QTableWidgetItem *genre = new QTableWidgetItem(query.value("genre").toString());
-        QTableWidgetItem *maison_edition = new QTableWidgetItem(query.value("maison_edition").toString());
-        QTableWidgetItem *proprietes = new QTableWidgetItem(query.value("proprietes").toString());
-        QTableWidgetItem *quantite = new QTableWidgetItem(QString::number(query.value("quantite").toInt()));
-        QTableWidgetItem *armoire = new QTableWidgetItem(query.value("armoire").toString());
-        QTableWidgetItem *identifiant = new QTableWidgetItem(query.value("identifiant").toString());
+        // Récupération des données (sans l'ID)
+        QString titre = query.value(0).toString();
+        QString genre = query.value(1).toString();
+        QString auteur = query.value(2).toString();
+        QString maison_edition = query.value(3).toString();
+        QString proprietes = query.value(4).toString();
+        int quantite = query.value(5).toInt();
+        QString armoire = query.value(6).toString();
+        QString identifiant = query.value(7).toString();
 
-        ui->tableWidget->setItem(row, 1, titre);
-        ui->tableWidget->setItem(row, 2, genre);
-        ui->tableWidget->setItem(row, 3, auteur);
-        ui->tableWidget->setItem(row, 4, maison_edition);
-        ui->tableWidget->setItem(row, 5, proprietes);
-        ui->tableWidget->setItem(row, 6, quantite);
-        ui->tableWidget->setItem(row, 7, armoire);
-        ui->tableWidget->setItem(row, 0, identifiant);
+        // Insertion des données dans le QTableWidget sans l'ID
+        ui->tableWidget->setItem(row, 1, new QTableWidgetItem(titre));
+        ui->tableWidget->setItem(row, 2, new QTableWidgetItem(genre));
+        ui->tableWidget->setItem(row, 3, new QTableWidgetItem(auteur));
+        ui->tableWidget->setItem(row, 4, new QTableWidgetItem(maison_edition));
+        ui->tableWidget->setItem(row, 5, new QTableWidgetItem(proprietes));
+        ui->tableWidget->setItem(row, 6, new QTableWidgetItem(QString::number(quantite)));
+        ui->tableWidget->setItem(row, 7, new QTableWidgetItem(armoire));
+        ui->tableWidget->setItem(row, 0, new QTableWidgetItem(identifiant));
+        ui->tableWidget->setItem(row, 8, new QTableWidgetItem(""));
 
+        if(quantite <= 0){
+            ui->tableWidget->item(row, 8)->setBackground(QBrush(Qt::red));
+        }else{
+            ui->tableWidget->item(row, 8)->setBackground(QBrush(Qt::green));
+        }
 
         row++;
     }
@@ -385,29 +409,40 @@ void App::filtreGenre(){
 
     // Vider le tableau avant d'ajouter les nouveaux résultats
     ui->tableWidget->setRowCount(0);
+
+    // Configuration du QTableWidget (nombre de colonnes et labels des en-têtes)
+
+    // Insertion des données dans le QTableWidget
     int row = 0;
     while (query.next()) {
         ui->tableWidget->insertRow(row);
 
-        QTableWidgetItem *titre = new QTableWidgetItem(query.value("titre").toString());
-        QTableWidgetItem *auteur = new QTableWidgetItem(query.value("auteur").toString());
-        QTableWidgetItem *genre = new QTableWidgetItem(query.value("genre").toString());
-        QTableWidgetItem *maison_edition = new QTableWidgetItem(query.value("maison_edition").toString());
-        QTableWidgetItem *proprietes = new QTableWidgetItem(query.value("proprietes").toString());
-        QTableWidgetItem *quantite = new QTableWidgetItem(QString::number(query.value("quantite").toInt()));
-        QTableWidgetItem *armoire = new QTableWidgetItem(query.value("armoire").toString());
-        QTableWidgetItem *identifiant = new QTableWidgetItem(query.value("identifiant").toString());
+        // Récupération des données (sans l'ID)
+        QString titre = query.value(0).toString();
+        QString genre = query.value(1).toString();
+        QString auteur = query.value(2).toString();
+        QString maison_edition = query.value(3).toString();
+        QString proprietes = query.value(4).toString();
+        int quantite = query.value(5).toInt();
+        QString armoire = query.value(6).toString();
+        QString identifiant = query.value(7).toString();
 
+        // Insertion des données dans le QTableWidget sans l'ID
+        ui->tableWidget->setItem(row, 1, new QTableWidgetItem(titre));
+        ui->tableWidget->setItem(row, 2, new QTableWidgetItem(genre));
+        ui->tableWidget->setItem(row, 3, new QTableWidgetItem(auteur));
+        ui->tableWidget->setItem(row, 4, new QTableWidgetItem(maison_edition));
+        ui->tableWidget->setItem(row, 5, new QTableWidgetItem(proprietes));
+        ui->tableWidget->setItem(row, 6, new QTableWidgetItem(QString::number(quantite)));
+        ui->tableWidget->setItem(row, 7, new QTableWidgetItem(armoire));
+        ui->tableWidget->setItem(row, 0, new QTableWidgetItem(identifiant));
+        ui->tableWidget->setItem(row, 8, new QTableWidgetItem(""));
 
-        ui->tableWidget->setItem(row, 1, titre);
-        ui->tableWidget->setItem(row, 2, genre);
-        ui->tableWidget->setItem(row, 3, auteur);
-        ui->tableWidget->setItem(row, 4, maison_edition);
-        ui->tableWidget->setItem(row, 5, proprietes);
-        ui->tableWidget->setItem(row, 6, quantite);
-        ui->tableWidget->setItem(row, 7, armoire);
-        ui->tableWidget->setItem(row, 0, identifiant);
-
+        if(quantite <= 0){
+            ui->tableWidget->item(row, 8)->setBackground(QBrush(Qt::red));
+        }else{
+            ui->tableWidget->item(row, 8)->setBackground(QBrush(Qt::green));
+        }
 
         row++;
     }
@@ -517,6 +552,55 @@ void App::importerCsv(){
     msgBox.showInformation("Succes", "Importation terminée");
     afficherLivreDansTableau();
 }
+
+void App::exporterCsv() {
+    CustomMessageBox msgBox;
+    QString fichier = QFileDialog::getSaveFileName(this, tr("Enregistrer fichier CSV"), "", tr("Fichiers CSV (*.csv)"));
+    if (fichier.isEmpty()) {
+        return;
+    }
+
+    QFile file(fichier);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        msgBox.showWarning("Erreur", "Impossible d'enregistrer le fichier");
+        return;
+    }
+
+    QTextStream out(&file);
+
+    // Écrire les en-têtes (si nécessaire)
+    out << "Identifiant;Titre;Genre;Auteur;Maison d'édition;Propriétés;Quantité;Armoire\n";
+
+    // Supposons que vous avez une méthode pour obtenir le nombre de livres
+    int rowCount = ui->tableWidget->rowCount(); // Remplacez par le nom de votre QTableWidget
+
+    for (int row = 0; row < rowCount; ++row) {
+        // Récupérez les données de chaque colonne
+        QString identifiant = ui->tableWidget->item(row, 0)->text();
+        QString titre = ui->tableWidget->item(row, 1)->text();
+        QString genre = ui->tableWidget->item(row, 2)->text();
+        QString auteur = ui->tableWidget->item(row, 3)->text();
+        QString maison_edition = ui->tableWidget->item(row, 4)->text();
+        QString proprietes = ui->tableWidget->item(row, 5)->text();
+        QString quantite = ui->tableWidget->item(row, 6)->text();
+        QString armoire = ui->tableWidget->item(row, 7)->text();
+
+        // Écrire les valeurs dans le fichier CSV
+        out << QString("%1;%2;%3;%4;%5;%6;%7;%8\n")
+                   .arg(identifiant)
+                   .arg(titre)
+                   .arg(genre)
+                   .arg(auteur)
+                   .arg(maison_edition)
+                   .arg(proprietes)
+                   .arg(quantite)
+                   .arg(armoire);
+    }
+
+    file.close();
+    msgBox.showInformation("Succès", "Exportation terminée");
+}
+
 
 //GESTION MEMBRE
 void App::enregistrerMembre(){

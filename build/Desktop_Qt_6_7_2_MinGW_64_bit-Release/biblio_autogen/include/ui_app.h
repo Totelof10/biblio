@@ -52,6 +52,7 @@ public:
     QHBoxLayout *horizontalLayout_9;
     QPushButton *btnHistorique;
     QPushButton *btnFinance;
+    QSpacerItem *horizontalSpacer_3;
     QWidget *pageLivre;
     QVBoxLayout *verticalLayout_2;
     QLabel *label_12;
@@ -72,6 +73,7 @@ public:
     QPushButton *btnModifierLivre;
     QPushButton *btnSupprimerLivre;
     QSpacerItem *horizontalSpacer;
+    QPushButton *btnExporter;
     QPushButton *btnImporter;
     QWidget *pageMembre;
     QHBoxLayout *horizontalLayout_4;
@@ -229,15 +231,46 @@ public:
         frame_10->setFrameShadow(QFrame::Shadow::Raised);
         horizontalLayout_9 = new QHBoxLayout(frame_10);
         horizontalLayout_9->setObjectName("horizontalLayout_9");
+        horizontalLayout_9->setContentsMargins(0, 0, 0, 0);
         btnHistorique = new QPushButton(frame_10);
         btnHistorique->setObjectName("btnHistorique");
+        QFont font1;
+        font1.setBold(true);
+        btnHistorique->setFont(font1);
+        btnHistorique->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        btnHistorique->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	border: 1px solid white;\n"
+"	border-radius: 7px;\n"
+"	background-color: #419197;\n"
+"	color:white;\n"
+"	padding: 7px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: #78D6C6;\n"
+"}"));
 
         horizontalLayout_9->addWidget(btnHistorique);
 
         btnFinance = new QPushButton(frame_10);
         btnFinance->setObjectName("btnFinance");
+        btnFinance->setFont(font1);
+        btnFinance->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        btnFinance->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	border: 1px solid white;\n"
+"	border-radius: 7px;\n"
+"	background-color: #DC6B19;\n"
+"	color:white;\n"
+"	padding: 7px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: #FFAF45;\n"
+"}"));
 
         horizontalLayout_9->addWidget(btnFinance);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_9->addItem(horizontalSpacer_3);
 
 
         verticalLayout_6->addWidget(frame_10);
@@ -249,8 +282,6 @@ public:
         verticalLayout_2->setObjectName("verticalLayout_2");
         label_12 = new QLabel(pageLivre);
         label_12->setObjectName("label_12");
-        QFont font1;
-        font1.setBold(true);
         label_12->setFont(font1);
         label_12->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
@@ -353,6 +384,7 @@ public:
         sizePolicy.setHeightForWidth(tableWidget->sizePolicy().hasHeightForWidth());
         tableWidget->setSizePolicy(sizePolicy);
         tableWidget->setSizeAdjustPolicy(QAbstractScrollArea::SizeAdjustPolicy::AdjustIgnored);
+        tableWidget->horizontalHeader()->setStretchLastSection(true);
 
         verticalLayout_2->addWidget(tableWidget);
 
@@ -422,6 +454,23 @@ public:
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer);
+
+        btnExporter = new QPushButton(frame_2);
+        btnExporter->setObjectName("btnExporter");
+        btnExporter->setFont(font1);
+        btnExporter->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        btnExporter->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	border: 1px solid white;\n"
+"	border-radius: 7px;\n"
+"	background-color: #FEAE6F;\n"
+"	color:white;\n"
+"	padding: 7px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: #F6DCAC;\n"
+"}"));
+
+        horizontalLayout_2->addWidget(btnExporter);
 
         btnImporter = new QPushButton(frame_2);
         btnImporter->setObjectName("btnImporter");
@@ -653,6 +702,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem17 = new QTableWidgetItem();
         tableWidget_2->setHorizontalHeaderItem(10, __qtablewidgetitem17);
         tableWidget_2->setObjectName("tableWidget_2");
+        tableWidget_2->horizontalHeader()->setStretchLastSection(true);
 
         verticalLayout_3->addWidget(tableWidget_2);
 
@@ -806,6 +856,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem24 = new QTableWidgetItem();
         tableWidget_3->setHorizontalHeaderItem(6, __qtablewidgetitem24);
         tableWidget_3->setObjectName("tableWidget_3");
+        tableWidget_3->horizontalHeader()->setStretchLastSection(true);
 
         verticalLayout_4->addWidget(tableWidget_3);
 
@@ -863,7 +914,7 @@ public:
 
         retranslateUi(App);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(App);
@@ -901,6 +952,7 @@ public:
         btnAjouterLivre->setText(QCoreApplication::translate("App", "Nouveau", nullptr));
         btnModifierLivre->setText(QCoreApplication::translate("App", "Modifier", nullptr));
         btnSupprimerLivre->setText(QCoreApplication::translate("App", "Supprimer", nullptr));
+        btnExporter->setText(QCoreApplication::translate("App", "Exporter", nullptr));
         btnImporter->setText(QCoreApplication::translate("App", "Importer", nullptr));
         label_4->setText(QCoreApplication::translate("App", "Nom :", nullptr));
         label_5->setText(QCoreApplication::translate("App", "Pr\303\251nom(s) :", nullptr));

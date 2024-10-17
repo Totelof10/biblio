@@ -2,6 +2,13 @@
 #define ETATFINANCE_H
 
 #include <QWidget>
+#include <QtCharts/QChartView>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QBarSeries>
+#include <QtCharts/QBarSet>
+#include <QtCharts/QValueAxis>
+
+
 
 namespace Ui {
 class EtatFinance;
@@ -14,6 +21,25 @@ class EtatFinance : public QWidget
 public:
     explicit EtatFinance(QWidget *parent = nullptr);
     ~EtatFinance();
+
+private slots:
+    void afficherLesAbonnements();
+    void recherche();
+    void afficherGraph();
+    void somme();
+    void sommeParDates();
+    void onDateChanged(const QDate &date);
+    void clear();
+    /*void afficherGraphiqueGlobal();
+    void afficherGraphiqueParMois();
+    void retour();
+    // Dans EtatFinance.h
+private:
+    QChart *chartGlobal; // Chart pour les abonnements globaux
+    QLineSeries *seriesGlobal; // Series pour les montants globaux
+    QChart *chartMois; // Chart pour les abonnements par mois
+    QBarSeries *seriesMois; // Series pour les montants par mois*/
+
 
 private:
     Ui::EtatFinance *ui;

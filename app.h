@@ -7,7 +7,6 @@
 #include<QTextStream>
 #include<QFileDialog>
 
-
 namespace Ui {
 class App;
 }
@@ -42,6 +41,7 @@ private slots:
     void handleAfficheParam();
     void comboArmoireAfficher();
     void importerCsv();
+    void exporterCsv();
 
     //GESTION MEMBRES
     void enregistrerMembre();
