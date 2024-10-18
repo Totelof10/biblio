@@ -11,10 +11,17 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Etat Finance</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="img.qrc">
+    <normaloff>:/Downloads/CartoBMW/img/FRK.jpg</normaloff>:/Downloads/CartoBMW/img/FRK.jpg</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(244, 246, 255);</string>
+   <string notr="true">QWidget{
+	background-color: rgb(215, 243, 255);
+}
+</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -411,6 +418,8 @@ QPushButton:hover{
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="img.qrc"/>
+ </resources>
  <connections/>
 </ui>

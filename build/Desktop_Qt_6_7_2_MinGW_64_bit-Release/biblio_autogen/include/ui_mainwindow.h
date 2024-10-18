@@ -10,6 +10,7 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
@@ -85,6 +86,9 @@ public:
         MainWindow->resize(600, 400);
         MainWindow->setMinimumSize(QSize(600, 400));
         MainWindow->setMaximumSize(QSize(600, 400));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/Downloads/CartoBMW/img/FRK.jpg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        MainWindow->setWindowIcon(icon);
         MainWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
@@ -378,7 +382,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Authentification", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Utilisateur :", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Mot de passe :", nullptr));
         btnConnexion->setText(QCoreApplication::translate("MainWindow", "Se connecter", nullptr));

@@ -164,7 +164,7 @@ public:
 
     void retranslateUi(QWidget *Parametre)
     {
-        Parametre->setWindowTitle(QCoreApplication::translate("Parametre", "Form", nullptr));
+        Parametre->setWindowTitle(QCoreApplication::translate("Parametre", "Parametre", nullptr));
         label->setText(QCoreApplication::translate("Parametre", "Parametre", nullptr));
         reinitialisation->setText(QCoreApplication::translate("Parametre", "Reinitialiser les donn\303\251es", nullptr));
         label_2->setText(QCoreApplication::translate("Parametre", "Armoire :", nullptr));

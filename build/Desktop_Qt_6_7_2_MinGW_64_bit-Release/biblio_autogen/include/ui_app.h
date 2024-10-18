@@ -139,6 +139,9 @@ public:
         if (App->objectName().isEmpty())
             App->setObjectName("App");
         App->resize(529, 445);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/Downloads/CartoBMW/img/FRK.jpg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        App->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(App);
         verticalLayout->setObjectName("verticalLayout");
         frame = new QFrame(App);
@@ -316,8 +319,8 @@ public:
         btnRecherche->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         btnRecherche->setMouseTracking(true);
         btnRecherche->setStyleSheet(QString::fromUtf8(""));
-        QIcon icon(QIcon::fromTheme(QIcon::ThemeIcon::EditFind));
-        btnRecherche->setIcon(icon);
+        QIcon icon1(QIcon::fromTheme(QIcon::ThemeIcon::EditFind));
+        btnRecherche->setIcon(icon1);
 
         horizontalLayout_7->addWidget(btnRecherche);
 
@@ -922,7 +925,7 @@ public:
 
     void retranslateUi(QWidget *App)
     {
-        App->setWindowTitle(QCoreApplication::translate("App", "Form", nullptr));
+        App->setWindowTitle(QCoreApplication::translate("App", "Biblioth\303\250que FRK", nullptr));
         btnAccueil->setText(QCoreApplication::translate("App", "Accueil", nullptr));
         btnLivre->setText(QCoreApplication::translate("App", "Livres", nullptr));
         btnMembre->setText(QCoreApplication::translate("App", "Membres", nullptr));

@@ -69,7 +69,13 @@ public:
         if (EtatFinance->objectName().isEmpty())
             EtatFinance->setObjectName("EtatFinance");
         EtatFinance->resize(400, 300);
-        EtatFinance->setStyleSheet(QString::fromUtf8("background-color: rgb(244, 246, 255);"));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/Downloads/CartoBMW/img/FRK.jpg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        EtatFinance->setWindowIcon(icon);
+        EtatFinance->setStyleSheet(QString::fromUtf8("QWidget{\n"
+"	background-color: rgb(215, 243, 255);\n"
+"}\n"
+""));
         verticalLayout = new QVBoxLayout(EtatFinance);
         verticalLayout->setObjectName("verticalLayout");
         stackedWidget = new QStackedWidget(EtatFinance);
@@ -149,8 +155,8 @@ public:
 
         btnClearForm = new QPushButton(frame_3);
         btnClearForm->setObjectName("btnClearForm");
-        QIcon icon(QIcon::fromTheme(QIcon::ThemeIcon::SystemReboot));
-        btnClearForm->setIcon(icon);
+        QIcon icon1(QIcon::fromTheme(QIcon::ThemeIcon::SystemReboot));
+        btnClearForm->setIcon(icon1);
 
         horizontalLayout_2->addWidget(btnClearForm);
 
@@ -297,7 +303,7 @@ public:
 
     void retranslateUi(QWidget *EtatFinance)
     {
-        EtatFinance->setWindowTitle(QCoreApplication::translate("EtatFinance", "Form", nullptr));
+        EtatFinance->setWindowTitle(QCoreApplication::translate("EtatFinance", "Etat Finance", nullptr));
         label_3->setText(QCoreApplication::translate("EtatFinance", "RECETTE DES ABONNEMENTS", nullptr));
         lineEdit->setPlaceholderText(QCoreApplication::translate("EtatFinance", "Recherche", nullptr));
         label->setText(QCoreApplication::translate("EtatFinance", "Du :", nullptr));

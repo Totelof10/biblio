@@ -10,6 +10,7 @@
 #define UI_HISTORIQUE_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
@@ -45,8 +46,11 @@ public:
         if (Historique->objectName().isEmpty())
             Historique->setObjectName("Historique");
         Historique->resize(406, 349);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/Downloads/CartoBMW/img/FRK.jpg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        Historique->setWindowIcon(icon);
         Historique->setStyleSheet(QString::fromUtf8("QWidget{\n"
-"background-color: #F4F6FF\n"
+"background-color:  #78D6C6;\n"
 "}\n"
 "QFrame{\n"
 "background-color: none;\n"
@@ -169,7 +173,7 @@ public:
 
     void retranslateUi(QWidget *Historique)
     {
-        Historique->setWindowTitle(QCoreApplication::translate("Historique", "Form", nullptr));
+        Historique->setWindowTitle(QCoreApplication::translate("Historique", "Historique", nullptr));
         label->setText(QCoreApplication::translate("Historique", "HISTORIQUE DES EMPRUNTS", nullptr));
         lineEditRechercheEmprunt->setPlaceholderText(QCoreApplication::translate("Historique", "Recherche", nullptr));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);

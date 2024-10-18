@@ -11,11 +11,15 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Historique</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="img.qrc">
+    <normaloff>:/Downloads/CartoBMW/img/FRK.jpg</normaloff>:/Downloads/CartoBMW/img/FRK.jpg</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget{
-background-color: #F4F6FF
+background-color:  #78D6C6;
 }
 QFrame{
 background-color: none;
@@ -257,6 +261,8 @@ QPushButton:hover{
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="img.qrc"/>
+ </resources>
  <connections/>
 </ui>
