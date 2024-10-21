@@ -40,7 +40,8 @@ constexpr auto qt_meta_stringdata_CLASSParametreENDCLASS = QtMocHelpers::stringD
     "",
     "enregistrerParametre",
     "fermerFenetre",
-    "reinitialiser"
+    "reinitialiser",
+    "ajustement"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -53,7 +54,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSParametreENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -61,17 +62,19 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSParametreENDCLASS[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   38,    2, 0x06,    1 /* Public */,
+       1,    0,   44,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       3,    0,   39,    2, 0x08,    2 /* Private */,
-       4,    0,   40,    2, 0x08,    3 /* Private */,
-       5,    0,   41,    2, 0x08,    4 /* Private */,
+       3,    0,   45,    2, 0x08,    2 /* Private */,
+       4,    0,   46,    2, 0x08,    3 /* Private */,
+       5,    0,   47,    2, 0x08,    4 /* Private */,
+       6,    0,   48,    2, 0x08,    5 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -95,6 +98,8 @@ Q_CONSTINIT const QMetaObject Parametre::staticMetaObject = { {
         // method 'fermerFenetre'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'reinitialiser'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'ajustement'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -110,6 +115,7 @@ void Parametre::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 1: _t->enregistrerParametre(); break;
         case 2: _t->fermerFenetre(); break;
         case 3: _t->reinitialiser(); break;
+        case 4: _t->ajustement(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -144,13 +150,13 @@ int Parametre::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }

@@ -19,6 +19,7 @@ private slots:
     void enregistrerParametre();
     void fermerFenetre();
     void reinitialiser();
+    void ajustement();
 
 signals:
     void ajoutArmoir();

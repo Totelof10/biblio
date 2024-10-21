@@ -398,7 +398,7 @@ public:
 #if QT_CONFIG(tooltip)
         lineEditAddMdp->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>Minimum 5 caract\303\250re</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
-        label_9->setText(QCoreApplication::translate("MainWindow", "Confirmer votre mot de passe :", nullptr));
+        label_9->setText(QCoreApplication::translate("MainWindow", "Confirmez votre mot de passe :", nullptr));
         btnInscription_2->setText(QCoreApplication::translate("MainWindow", "S'inscrire", nullptr));
         label_7->setText(QCoreApplication::translate("MainWindow", "D\303\251ja inscrit?", nullptr));
         btnConnexion_2->setText(QCoreApplication::translate("MainWindow", "Connectez-vous", nullptr));

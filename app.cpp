@@ -1346,7 +1346,6 @@ void App::supprimerEmprunt(int row){
     QString emprunteur = ui->tableWidget_3->item(row, 4)->text();
     QString id = ui->tableWidget_3->item(row, 0)->text();
     QDate currentDate = QDate::currentDate();
-
     // Confirmation de suppression
     QMessageBox confirmationBox;
     confirmationBox.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::FramelessWindowHint);
@@ -1426,6 +1425,8 @@ void App::supprimerEmprunt(int row){
     } else {
         msgBox.showError("Erreur", "Erreur lors de l'insertion dans l'historique: " + queryBeforeDelete.lastError().text());
     }
+    afficherEmprunt();
+    ajoutBtnTableauEmprunt();
 }
 
 void App::rechercheEmprunt(){

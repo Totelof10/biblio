@@ -371,7 +371,7 @@ color: blue;</string>
                </font>
               </property>
               <property name="text">
-               <string>Confirmer votre mot de passe :</string>
+               <string>Confirmez votre mot de passe :</string>
               </property>
              </widget>
             </item>

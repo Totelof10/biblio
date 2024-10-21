@@ -144,6 +144,7 @@ public:
         App->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(App);
         verticalLayout->setObjectName("verticalLayout");
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
         frame = new QFrame(App);
         frame->setObjectName("frame");
         frame->setAutoFillBackground(false);
@@ -217,6 +218,7 @@ public:
         label_3 = new QLabel(frame_9);
         label_3->setObjectName("label_3");
         label_3->setFont(font);
+        label_3->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         verticalLayout_7->addWidget(label_3);
 
@@ -225,6 +227,7 @@ public:
 
         calendarWidget = new QCalendarWidget(pageAccueil);
         calendarWidget->setObjectName("calendarWidget");
+        calendarWidget->setGridVisible(true);
 
         verticalLayout_6->addWidget(calendarWidget);
 
@@ -396,7 +399,7 @@ public:
         frame_2->setFrameShape(QFrame::Shape::StyledPanel);
         frame_2->setFrameShadow(QFrame::Shadow::Raised);
         horizontalLayout_2 = new QHBoxLayout(frame_2);
-        horizontalLayout_2->setSpacing(0);
+        horizontalLayout_2->setSpacing(3);
         horizontalLayout_2->setObjectName("horizontalLayout_2");
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         btnAjouterLivre = new QPushButton(frame_2);
@@ -930,7 +933,7 @@ public:
         btnLivre->setText(QCoreApplication::translate("App", "Livres", nullptr));
         btnMembre->setText(QCoreApplication::translate("App", "Membres", nullptr));
         btnEmprunt->setText(QCoreApplication::translate("App", "Emprunts", nullptr));
-        label_3->setText(QCoreApplication::translate("App", "\"Tenin'Andriamanitra\"", nullptr));
+        label_3->setText(QCoreApplication::translate("App", "\"Tsy misy mahafaly ahy, mihoatra noho ny mandre, fa ny zanako mandeha araka ny fahamarinanao\"\"", nullptr));
         btnHistorique->setText(QCoreApplication::translate("App", "Historique des emprunts", nullptr));
         btnFinance->setText(QCoreApplication::translate("App", "Etat financier", nullptr));
         label_12->setText(QCoreApplication::translate("App", "GESTION DES LIVRES", nullptr));

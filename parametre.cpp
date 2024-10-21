@@ -12,6 +12,7 @@ Parametre::Parametre(QWidget *parent)
     connect(ui->btnEnregistrerParametre, &QPushButton::clicked, this, &Parametre::enregistrerParametre);
     connect(ui->btnAnnulerParametre, &QPushButton::clicked, this, &Parametre::fermerFenetre);
     connect(ui->reinitialisation, &QPushButton::clicked, this, &Parametre::reinitialiser);
+    connect(ui->btnMontants, &QPushButton::clicked, this, &Parametre::ajustement);
 }
 
 Parametre::~Parametre()
@@ -135,6 +136,7 @@ void Parametre::reinitialiser(){
             }
         }
     }
+    msgBox.showInformation("Succes", "Reinitialisation effectuée");
 
     // Réinitialiser l'auto-incrémentation
     QSqlQuery resetSeqQuery(sqlitedb);
@@ -146,3 +148,39 @@ void Parametre::reinitialiser(){
     query.exec("PRAGMA foreign_keys = ON;");
     this->close();
 }
+
+void Parametre::ajustement() {
+    CustomMessageBox msgBox;
+    QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
+    QSqlQuery query(sqlitedb);
+
+    // Récupération des montants à partir des champs de texte
+    QString madulte = ui->lineEditAdulte->text();
+    QString menfant = ui->lineEditEnfant->text();
+
+    // Vérification que les montants ne sont pas vides
+    if (madulte.isEmpty() || menfant.isEmpty()) {
+        msgBox.showError("Erreur", "Veuillez remplir les champs vide : " + query.lastError().text());
+        return;
+    }
+
+    // Mise à jour du montant pour les adultes
+    query.prepare("UPDATE statut_montants SET montant = :montant WHERE statut = 'Adulte'");
+    query.bindValue(":montant", madulte);
+    if (!query.exec()) {
+        msgBox.showError("Erreur", "Erreur lors de la mise à jour du montant pour les adultes : " + query.lastError().text());
+        return;
+    }
+
+    // Mise à jour du montant pour les enfants
+    query.prepare("UPDATE statut_montants SET montant = :montant WHERE statut = 'Enfant'");
+    query.bindValue(":montant", menfant);
+    if (!query.exec()) {
+        msgBox.showError("Erreur", "Erreur lors de la mise à jour du montant pour les enfants : " + query.lastError().text());
+        return;
+    }
+
+    // Affichage d'un message de succès
+    msgBox.showInformation("Succes", "Les montants ont été mis à jour avec succès.");
+}
+

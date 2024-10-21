@@ -1110,6 +1110,8 @@ C:/Users/rtoha/Documents/biblio/custommessagebox.h
 C:/Users/rtoha/Documents/biblio/parametre.cpp
  uic:ui_parametre.h
 C:/Users/rtoha/Documents/biblio/databasemanager.h
+C:/Users/rtoha/Documents/biblio/ajoutlivreform.cpp
+ uic:ui_ajoutlivreform.h
 C:/Users/rtoha/Documents/biblio/deconnexion.h
  mmc:Q_OBJECT
  mdp:C:/Qt/6.7.2/mingw_64/include/QtCore/QFile
@@ -1514,8 +1516,6 @@ C:/Users/rtoha/Documents/biblio/deconnexion.h
  mdp:C:/Users/rtoha/Documents/biblio/deconnexion.h
 C:/Users/rtoha/Documents/biblio/app.cpp
  uic:ui_app.h
-C:/Users/rtoha/Documents/biblio/ajoutlivreform.cpp
- uic:ui_ajoutlivreform.h
 C:/Users/rtoha/Documents/biblio/hoverbutton.h
  mmc:Q_OBJECT
  mdp:C:/Qt/6.7.2/mingw_64/include/QtCore/q20functional.h
