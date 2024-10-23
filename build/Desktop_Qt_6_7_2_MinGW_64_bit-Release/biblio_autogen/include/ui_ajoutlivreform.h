@@ -62,7 +62,7 @@ public:
     {
         if (AjoutLivreForm->objectName().isEmpty())
             AjoutLivreForm->setObjectName("AjoutLivreForm");
-        AjoutLivreForm->resize(426, 367);
+        AjoutLivreForm->resize(426, 384);
         AjoutLivreForm->setStyleSheet(QString::fromUtf8(""));
         verticalLayout = new QVBoxLayout(AjoutLivreForm);
         verticalLayout->setObjectName("verticalLayout");
@@ -246,7 +246,7 @@ public:
         label_5->setText(QCoreApplication::translate("AjoutLivreForm", "Propri\303\251t\303\251s", nullptr));
         label_6->setText(QCoreApplication::translate("AjoutLivreForm", "Quantit\303\251", nullptr));
         label_8->setText(QCoreApplication::translate("AjoutLivreForm", "Armoire", nullptr));
-        label_9->setText(QCoreApplication::translate("AjoutLivreForm", "Identifiant", nullptr));
+        label_9->setText(QCoreApplication::translate("AjoutLivreForm", "Cote", nullptr));
         btnAjouter->setText(QCoreApplication::translate("AjoutLivreForm", "Ajouter", nullptr));
         btnAnnuler->setText(QCoreApplication::translate("AjoutLivreForm", "Fermer", nullptr));
     } // retranslateUi

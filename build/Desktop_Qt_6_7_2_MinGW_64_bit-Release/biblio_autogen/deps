@@ -25,6 +25,7 @@ biblio_autogen/timestamp: \
 	C:/Qt/6.7.2/mingw_64/include/QtCharts/qtchartsexports.h \
 	C:/Qt/6.7.2/mingw_64/include/QtCharts/qvalueaxis.h \
 	C:/Qt/6.7.2/mingw_64/include/QtCharts/qxyseries.h \
+	C:/Qt/6.7.2/mingw_64/include/QtCore/QDate \
 	C:/Qt/6.7.2/mingw_64/include/QtCore/QFile \
 	C:/Qt/6.7.2/mingw_64/include/QtCore/QList \
 	C:/Qt/6.7.2/mingw_64/include/QtCore/QMargins \

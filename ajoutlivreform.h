@@ -2,6 +2,7 @@
 #define AJOUTLIVREFORM_H
 
 #include <QWidget>
+#include <QDate>
 
 namespace Ui {
 class AjoutLivreForm;

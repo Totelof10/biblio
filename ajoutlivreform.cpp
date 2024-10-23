@@ -33,7 +33,7 @@ void AjoutLivreForm::handleAjouterLivre(){
     QString titre = ui->lineEditTitre->text();
     QString genre = ui->comboBoxGenre->currentText();
     QString auteur = ui->lineEditAuteur->text();
-    if (titre.isEmpty() || genre.isEmpty() || auteur.isEmpty() || identifiant.isEmpty()) {
+    if (titre.isEmpty() || auteur.isEmpty() || identifiant.isEmpty()) {
         msgBox.showError("Erreur", "Veuillez remplir tous les champs obligatoires.");
         return;
     }
@@ -49,11 +49,12 @@ void AjoutLivreForm::handleAjouterLivre(){
     QString propriete = ui->textEditPropriete->toPlainText();
     int quantite = ui->spinBoxQuantite->value();
     QString armoire = ui->comboBoxArmoire->currentText();
+    QDate currentDate = QDate::currentDate();
 
 
     QSqlQuery query(sqlitedb);
-    query.prepare("INSERT INTO Livres (titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant) "
-                  "VALUES (:titre, :genre, :auteur, :maison_edition, :propriete, :quantite, :armoire, :identifiant)");
+    query.prepare("INSERT INTO Livres (titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant, date_insertion) "
+                  "VALUES (:titre, :genre, :auteur, :maison_edition, :propriete, :quantite, :armoire, :identifiant, :date_insertion)");
 
     query.bindValue(":titre", titre);
     query.bindValue(":genre", genre);
@@ -63,6 +64,7 @@ void AjoutLivreForm::handleAjouterLivre(){
     query.bindValue(":quantite", quantite);
     query.bindValue(":armoire", armoire);
     query.bindValue(":identifiant", identifiant);
+    query.bindValue(":date_insertion", currentDate.toString("dd-MM-yyyy"));
 
     if (query.exec()) {
         msgBox.showInformation("Succès", "Ajout réussi");

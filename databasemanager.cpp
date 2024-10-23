@@ -14,14 +14,14 @@ QSqlDatabase& DatabaseManager::getDatabase() {
 void DatabaseManager::closeDatabase() {
     QSqlDatabase::removeDatabase("unique_connection_name");
 }
-void DatabaseManager::enregistrerLivre(const QString &titre, const QString &genre, const QString &auteur, const QString &maison_edition, const QString &proprietes, int quantite, const QString &armoire, const QString &identifiant){
+void DatabaseManager::enregistrerLivre(const QString &titre, const QString &genre, const QString &auteur, const QString &maison_edition, const QString &proprietes, int quantite, const QString &armoire, const QString &identifiant, const QString &date){
     QSqlDatabase db = getDatabase();  // Obtenez la connexion à la base de données
     if (!db.isOpen()) {
         qDebug() << "Erreur : La base de données n'est pas ouverte";
         return;  // Sortir si la base de données n'est pas ouverte
     }
     QSqlQuery query(db);
-    query.prepare("INSERT OR IGNORE INTO livres(titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant) VALUES(?,?,?,?,?,?,?,?)");
+    query.prepare("INSERT OR IGNORE INTO livres(titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant, date_insertion) VALUES(?,?,?,?,?,?,?,?,?)");
     query.addBindValue(titre);
     query.addBindValue(genre);
     query.addBindValue(auteur);
@@ -30,6 +30,7 @@ void DatabaseManager::enregistrerLivre(const QString &titre, const QString &genr
     query.addBindValue(quantite);
     query.addBindValue(armoire);
     query.addBindValue(identifiant);
+    query.addBindValue(date);
     if (!query.exec()) {
         qDebug() << query.lastError();
     }

@@ -112,7 +112,7 @@ void App::afficherLivreDansTableau(){
 
     // Préparation et exécution de la requête SQL
     QSqlQuery query(sqlitedb);
-    if (!query.exec("SELECT identifiant, titre, genre, auteur, maison_edition, proprietes, quantite, armoire FROM livres")) {
+    if (!query.exec("SELECT identifiant, titre, genre, auteur, maison_edition, proprietes, quantite, armoire, date_insertion FROM livres")) {
         msgBox.showError("Erreur", "Échec de l'exécution de la requête.");
         return;
     }
@@ -121,9 +121,9 @@ void App::afficherLivreDansTableau(){
     ui->tableWidget->setRowCount(0);
 
     // Configuration du QTableWidget (nombre de colonnes et labels des en-têtes)
-    ui->tableWidget->setColumnCount(9); // 6 colonnes : titre, genre, auteur, maison_edition, proprietes, quantite
-    ui->tableWidget->setHorizontalHeaderLabels(QStringList() <<"Identifiant"<< "Titre" << "Genre" << "Auteur"
-                                                             << "Maison d'édition" << "Propriétés" << "Quantité" << "Armoire" << "Disponibilité");
+    ui->tableWidget->setColumnCount(10); // 6 colonnes : titre, genre, auteur, maison_edition, proprietes, quantite
+    ui->tableWidget->setHorizontalHeaderLabels(QStringList() <<"Date d'insertion"<< "Titre" << "Auteur" << "Genre"
+                                                             << "Edition" << "Propriétés" << "Cote" << "Armoire" << "Quantite"<< "Disponibilité");
 
     // Insertion des données dans le QTableWidget
     int row = 0;
@@ -139,22 +139,24 @@ void App::afficherLivreDansTableau(){
         int quantite = query.value(6).toInt();
         QString armoire = query.value(7).toString();
         QString identifiant = query.value(0).toString();
+        QString date = query.value(8).toString();
 
         // Insertion des données dans le QTableWidget sans l'ID
         ui->tableWidget->setItem(row, 1, new QTableWidgetItem(titre));
-        ui->tableWidget->setItem(row, 2, new QTableWidgetItem(genre));
-        ui->tableWidget->setItem(row, 3, new QTableWidgetItem(auteur));
+        ui->tableWidget->setItem(row, 3, new QTableWidgetItem(genre));
+        ui->tableWidget->setItem(row, 2, new QTableWidgetItem(auteur));
         ui->tableWidget->setItem(row, 4, new QTableWidgetItem(maison_edition));
         ui->tableWidget->setItem(row, 5, new QTableWidgetItem(proprietes));
-        ui->tableWidget->setItem(row, 6, new QTableWidgetItem(QString::number(quantite)));
+        ui->tableWidget->setItem(row, 8, new QTableWidgetItem(QString::number(quantite)));
         ui->tableWidget->setItem(row, 7, new QTableWidgetItem(armoire));
-        ui->tableWidget->setItem(row, 0, new QTableWidgetItem(identifiant));
-        ui->tableWidget->setItem(row, 8, new QTableWidgetItem(""));
+        ui->tableWidget->setItem(row, 6, new QTableWidgetItem(identifiant));
+        ui->tableWidget->setItem(row, 9, new QTableWidgetItem(""));
+        ui->tableWidget->setItem(row, 0, new QTableWidgetItem(date));
 
         if(quantite <= 0){
-            ui->tableWidget->item(row, 8)->setBackground(QBrush(Qt::red));
+            ui->tableWidget->item(row, 9)->setBackground(QBrush(Qt::red));
         }else{
-            ui->tableWidget->item(row, 8)->setBackground(QBrush(Qt::green));
+            ui->tableWidget->item(row, 9)->setBackground(QBrush(Qt::green));
         }
 
         row++;
@@ -170,7 +172,7 @@ void App::supprimerLivre() {
     }
 
     // Récupérer le titre du livre à supprimer
-    QTableWidgetItem *identifiantItem = ui->tableWidget->item(selectedRow, 0); // Le titre est dans la première colonne
+    QTableWidgetItem *identifiantItem = ui->tableWidget->item(selectedRow, 6); // Le titre est dans la première colonne
     if (!identifiantItem) {
         msgBox.showWarning("Erreur", "Impossible de récupérer le titre du livre.");
         return;
@@ -283,7 +285,7 @@ void App::rechercheDeLivre(){
     QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
     QString recherche = ui->lineEditRecherche->text();
     QSqlQuery query(sqlitedb);
-    query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant FROM livres WHERE titre LIKE :recherche OR genre LIKE :recherche OR auteur LIKE :recherche OR maison_edition LIKE :recherche OR proprietes LIKE :recherche OR armoire LIKE :recherche OR identifiant LIKE :recherche");
+    query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant, date_insertion FROM livres WHERE titre LIKE :recherche OR genre LIKE :recherche OR auteur LIKE :recherche OR maison_edition LIKE :recherche OR proprietes LIKE :recherche OR armoire LIKE :recherche OR identifiant LIKE :recherche OR date_insertion LIKE :recherche");
     query.bindValue(":recherche", "%" +recherche+"%");
     if (!query.exec()) {
         qDebug() << "Erreur lors de l'exécution de la requête";
@@ -307,22 +309,24 @@ void App::rechercheDeLivre(){
         int quantite = query.value(5).toInt();
         QString armoire = query.value(6).toString();
         QString identifiant = query.value(7).toString();
+        QString date = query.value(8).toString();
 
         // Insertion des données dans le QTableWidget sans l'ID
         ui->tableWidget->setItem(row, 1, new QTableWidgetItem(titre));
-        ui->tableWidget->setItem(row, 2, new QTableWidgetItem(genre));
-        ui->tableWidget->setItem(row, 3, new QTableWidgetItem(auteur));
+        ui->tableWidget->setItem(row, 3, new QTableWidgetItem(genre));
+        ui->tableWidget->setItem(row, 2, new QTableWidgetItem(auteur));
         ui->tableWidget->setItem(row, 4, new QTableWidgetItem(maison_edition));
         ui->tableWidget->setItem(row, 5, new QTableWidgetItem(proprietes));
-        ui->tableWidget->setItem(row, 6, new QTableWidgetItem(QString::number(quantite)));
+        ui->tableWidget->setItem(row, 8, new QTableWidgetItem(QString::number(quantite)));
         ui->tableWidget->setItem(row, 7, new QTableWidgetItem(armoire));
-        ui->tableWidget->setItem(row, 0, new QTableWidgetItem(identifiant));
-        ui->tableWidget->setItem(row, 8, new QTableWidgetItem(""));
+        ui->tableWidget->setItem(row, 6, new QTableWidgetItem(identifiant));
+        ui->tableWidget->setItem(row, 9, new QTableWidgetItem(""));
+        ui->tableWidget->setItem(row, 0, new QTableWidgetItem(date));
 
         if(quantite <= 0){
-            ui->tableWidget->item(row, 8)->setBackground(QBrush(Qt::red));
+            ui->tableWidget->item(row, 9)->setBackground(QBrush(Qt::red));
         }else{
-            ui->tableWidget->item(row, 8)->setBackground(QBrush(Qt::green));
+            ui->tableWidget->item(row, 9)->setBackground(QBrush(Qt::green));
         }
 
         row++;
@@ -337,10 +341,10 @@ void App::filtreArmoire(){
     QSqlQuery query(sqlitedb);
     if (selectedArmoire == "Tous") {
         // Requête pour afficher tous les livres
-        query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant FROM livres");
+        query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant, date_insertion FROM livres");
     } else {
         // Requête pour filtrer les livres selon l'armoire sélectionnée
-        query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant FROM livres WHERE armoire = :armoire");
+        query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant, date_insertion FROM livres WHERE armoire = :armoire");
         query.bindValue(":armoire", selectedArmoire);
     }
 
@@ -368,22 +372,24 @@ void App::filtreArmoire(){
         int quantite = query.value(5).toInt();
         QString armoire = query.value(6).toString();
         QString identifiant = query.value(7).toString();
+        QString date = query.value(8).toString();
 
         // Insertion des données dans le QTableWidget sans l'ID
         ui->tableWidget->setItem(row, 1, new QTableWidgetItem(titre));
-        ui->tableWidget->setItem(row, 2, new QTableWidgetItem(genre));
-        ui->tableWidget->setItem(row, 3, new QTableWidgetItem(auteur));
+        ui->tableWidget->setItem(row, 3, new QTableWidgetItem(genre));
+        ui->tableWidget->setItem(row, 2, new QTableWidgetItem(auteur));
         ui->tableWidget->setItem(row, 4, new QTableWidgetItem(maison_edition));
         ui->tableWidget->setItem(row, 5, new QTableWidgetItem(proprietes));
-        ui->tableWidget->setItem(row, 6, new QTableWidgetItem(QString::number(quantite)));
+        ui->tableWidget->setItem(row, 8, new QTableWidgetItem(QString::number(quantite)));
         ui->tableWidget->setItem(row, 7, new QTableWidgetItem(armoire));
-        ui->tableWidget->setItem(row, 0, new QTableWidgetItem(identifiant));
-        ui->tableWidget->setItem(row, 8, new QTableWidgetItem(""));
+        ui->tableWidget->setItem(row, 6, new QTableWidgetItem(identifiant));
+        ui->tableWidget->setItem(row, 9, new QTableWidgetItem(""));
+        ui->tableWidget->setItem(row, 0, new QTableWidgetItem(date));
 
         if(quantite <= 0){
-            ui->tableWidget->item(row, 8)->setBackground(QBrush(Qt::red));
+            ui->tableWidget->item(row, 9)->setBackground(QBrush(Qt::red));
         }else{
-            ui->tableWidget->item(row, 8)->setBackground(QBrush(Qt::green));
+            ui->tableWidget->item(row, 9)->setBackground(QBrush(Qt::green));
         }
 
         row++;
@@ -396,10 +402,10 @@ void App::filtreGenre(){
     QSqlQuery query(sqlitedb);
     if (selectedGenre == "Tous") {
         // Requête pour afficher tous les livres
-        query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant FROM livres");
+        query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant, date_insertion FROM livres");
     } else {
         // Requête pour filtrer les livres selon l'armoire sélectionnée
-        query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant FROM livres WHERE genre = :genre");
+        query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant, date_insertion FROM livres WHERE genre = :genre");
         query.bindValue(":genre", selectedGenre);
     }
     if (!query.exec()) {
@@ -426,22 +432,24 @@ void App::filtreGenre(){
         int quantite = query.value(5).toInt();
         QString armoire = query.value(6).toString();
         QString identifiant = query.value(7).toString();
+        QString date = query.value(8).toString();
 
         // Insertion des données dans le QTableWidget sans l'ID
         ui->tableWidget->setItem(row, 1, new QTableWidgetItem(titre));
-        ui->tableWidget->setItem(row, 2, new QTableWidgetItem(genre));
-        ui->tableWidget->setItem(row, 3, new QTableWidgetItem(auteur));
+        ui->tableWidget->setItem(row, 3, new QTableWidgetItem(genre));
+        ui->tableWidget->setItem(row, 2, new QTableWidgetItem(auteur));
         ui->tableWidget->setItem(row, 4, new QTableWidgetItem(maison_edition));
         ui->tableWidget->setItem(row, 5, new QTableWidgetItem(proprietes));
-        ui->tableWidget->setItem(row, 6, new QTableWidgetItem(QString::number(quantite)));
+        ui->tableWidget->setItem(row, 8, new QTableWidgetItem(QString::number(quantite)));
         ui->tableWidget->setItem(row, 7, new QTableWidgetItem(armoire));
-        ui->tableWidget->setItem(row, 0, new QTableWidgetItem(identifiant));
-        ui->tableWidget->setItem(row, 8, new QTableWidgetItem(""));
+        ui->tableWidget->setItem(row, 6, new QTableWidgetItem(identifiant));
+        ui->tableWidget->setItem(row, 9, new QTableWidgetItem(""));
+        ui->tableWidget->setItem(row, 0, new QTableWidgetItem(date));
 
         if(quantite <= 0){
-            ui->tableWidget->item(row, 8)->setBackground(QBrush(Qt::red));
+            ui->tableWidget->item(row, 9)->setBackground(QBrush(Qt::red));
         }else{
-            ui->tableWidget->item(row, 8)->setBackground(QBrush(Qt::green));
+            ui->tableWidget->item(row, 9)->setBackground(QBrush(Qt::green));
         }
 
         row++;
@@ -525,8 +533,8 @@ void App::importerCsv(){
 
 
 
-        if (valeurs.size() != 8) {
-            msgBox.showWarning("Erreur", QString("Format CSV incorrect à la ligne %1: %2 (attendu: 8 colonnes, obtenu: %3)")
+        if (valeurs.size() != 9) {
+            msgBox.showWarning("Erreur", QString("Format CSV incorrect à la ligne %1: %2 (attendu: 9 colonnes, obtenu: %3)")
                                              .arg(ligne + 1)
                                              .arg(ligneTexte)
                                              .arg(valeurs.size()));
@@ -535,17 +543,18 @@ void App::importerCsv(){
 
         // Assurez-vous de n'accéder à valeurs[] que si la taille est correcte
         QString titre = valeurs[1].trimmed();
-        QString genre = valeurs[2].trimmed();
-        QString auteur = valeurs[3].trimmed();
+        QString genre = valeurs[3].trimmed();
+        QString auteur = valeurs[2].trimmed();
         QString maison_edition = valeurs[4].trimmed();
         QString proprietes = valeurs[5].trimmed();
-        int quantite = valeurs[6].toInt();
+        int quantite = valeurs[8].toInt();
         QString armoire = valeurs[7].trimmed();
-        QString identifiant = valeurs[0].trimmed();
-        qDebug() << "Insertion des données:" << identifiant << titre << genre << auteur << maison_edition << proprietes << quantite << armoire;
+        QString identifiant = valeurs[6].trimmed();
+        QString date = valeurs[0].trimmed();
+        qDebug() << "Insertion des données:" << date << titre << auteur << genre << maison_edition << proprietes << identifiant << armoire << quantite;
 
 
-        DatabaseManager::enregistrerLivre(titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant);
+        DatabaseManager::enregistrerLivre(titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant, date);
         ligne++;
     }
     file.close();
@@ -569,32 +578,34 @@ void App::exporterCsv() {
     QTextStream out(&file);
 
     // Écrire les en-têtes (si nécessaire)
-    out << "Identifiant;Titre;Genre;Auteur;Maison d'édition;Propriétés;Quantité;Armoire\n";
+    out << "Date_insertion;Titre;Auteur;genre;Edition;Proprietes;Cote;Armoire;Quantite\n";
 
     // Supposons que vous avez une méthode pour obtenir le nombre de livres
     int rowCount = ui->tableWidget->rowCount(); // Remplacez par le nom de votre QTableWidget
 
     for (int row = 0; row < rowCount; ++row) {
         // Récupérez les données de chaque colonne
-        QString identifiant = ui->tableWidget->item(row, 0)->text();
+        QString identifiant = ui->tableWidget->item(row, 6)->text();
         QString titre = ui->tableWidget->item(row, 1)->text();
-        QString genre = ui->tableWidget->item(row, 2)->text();
-        QString auteur = ui->tableWidget->item(row, 3)->text();
+        QString genre = ui->tableWidget->item(row, 3)->text();
+        QString auteur = ui->tableWidget->item(row, 2)->text();
         QString maison_edition = ui->tableWidget->item(row, 4)->text();
         QString proprietes = ui->tableWidget->item(row, 5)->text();
-        QString quantite = ui->tableWidget->item(row, 6)->text();
+        QString quantite = ui->tableWidget->item(row, 8)->text();
         QString armoire = ui->tableWidget->item(row, 7)->text();
+        QString date = ui->tableWidget->item(row, 0)->text();
 
         // Écrire les valeurs dans le fichier CSV
-        out << QString("%1;%2;%3;%4;%5;%6;%7;%8\n")
-                   .arg(identifiant)
+        out << QString("%1;%2;%3;%4;%5;%6;%7;%8;%9\n")
+                   .arg(date)
                    .arg(titre)
-                   .arg(genre)
                    .arg(auteur)
+                   .arg(genre)
                    .arg(maison_edition)
                    .arg(proprietes)
-                   .arg(quantite)
-                   .arg(armoire);
+                   .arg(identifiant)
+                   .arg(armoire)
+                   .arg(quantite);
     }
 
     file.close();
@@ -1115,7 +1126,7 @@ void App::filtrageComboLivre(){
     QSqlDatabase sqlitedb = DatabaseManager::getDatabase();
     QString recherche = ui->lineEditRechercheLivres->text();
     QSqlQuery query(sqlitedb);
-    query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant FROM livres WHERE titre LIKE :recherche");
+    query.prepare("SELECT titre, genre, auteur, maison_edition, proprietes, quantite, armoire, identifiant, date_insertion FROM livres WHERE titre LIKE :recherche");
     query.bindValue(":recherche", "%" +recherche+ "%");
 
     if (!query.exec()) {

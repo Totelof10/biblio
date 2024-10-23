@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>529</width>
+    <width>798</width>
     <height>445</height>
    </rect>
   </property>
@@ -146,7 +146,7 @@ QPushButton:focus{
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="pageAccueil">
       <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -411,7 +411,7 @@ QLineEdit:focus{
          </attribute>
          <column>
           <property name="text">
-           <string>Titre</string>
+           <string>Date d'insertion</string>
           </property>
           <property name="font">
            <font>
@@ -421,7 +421,7 @@ QLineEdit:focus{
          </column>
          <column>
           <property name="text">
-           <string>Genre</string>
+           <string>Titre</string>
           </property>
           <property name="font">
            <font>
@@ -441,7 +441,17 @@ QLineEdit:focus{
          </column>
          <column>
           <property name="text">
-           <string>Maison d'édition</string>
+           <string>Genre</string>
+          </property>
+          <property name="font">
+           <font>
+            <bold>true</bold>
+           </font>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Edition</string>
           </property>
           <property name="font">
            <font>
@@ -461,7 +471,7 @@ QLineEdit:focus{
          </column>
          <column>
           <property name="text">
-           <string>Quantité</string>
+           <string>Cote</string>
           </property>
           <property name="font">
            <font>
@@ -472,6 +482,16 @@ QLineEdit:focus{
          <column>
           <property name="text">
            <string>Armoire</string>
+          </property>
+          <property name="font">
+           <font>
+            <bold>true</bold>
+           </font>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Quantité</string>
           </property>
           <property name="font">
            <font>
