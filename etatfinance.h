@@ -2,11 +2,6 @@
 #define ETATFINANCE_H
 
 #include <QWidget>
-#include <QtCharts/QChartView>
-#include <QtCharts/QLineSeries>
-#include <QtCharts/QBarSeries>
-#include <QtCharts/QBarSet>
-#include <QtCharts/QValueAxis>
 
 
 
