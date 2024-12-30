@@ -4,6 +4,8 @@
 #include "databasemanager.h"
 #include "app.h"
 
+#include <QPropertyAnimation>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
